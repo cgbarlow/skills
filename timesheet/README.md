@@ -9,10 +9,11 @@ Timesheet is a simple Claude skill that manages a markdown-based timesheet store
 ## How It Works
 
 1. **Invoke** `/timesheet`
-2. **Answer** the prompts for description, start time, and end time
-3. **Hours are calculated** automatically
-4. **Entry is appended** to the markdown table
-5. **Updated timesheet** is displayed
+2. **Existing entries** are displayed with a total hours summary
+3. **Answer** the prompts for description, start time, and end time
+4. **Hours are calculated** automatically
+5. **Entry is appended** to the markdown table
+6. **Updated timesheet** is displayed
 
 ## Installation
 
