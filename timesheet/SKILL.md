@@ -1,6 +1,7 @@
 ---
-name: "timesheet"
-description: "Interactive timesheet entry skill that collects work descriptions and times via guided questions, calculates hours, and appends entries to a markdown timesheet at .campaign/timesheet.md."
+name: timesheet
+description: "Interactive timesheet entry — collects work description, start/end times via prompts, calculates hours, appends to .campaign/timesheet.md"
+user_invocable: true
 ---
 
 # /timesheet
