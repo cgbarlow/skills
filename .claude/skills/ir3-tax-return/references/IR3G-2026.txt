@@ -1,0 +1,2554 @@
+                                                          IR3G
+                                                       March 2026
+
+
+
+
+           Individual income tax
+                    return guide
+                                                      2026
+Please read page 5 to see if you need to file this return.
+ Complete and send us your IR3 return by 7 July 2026,
+     unless you have an extension of time to complete
+                       or a non-standard balance date.
+                      The information in this guide is based on
+                       current tax laws at the time of printing.
+
+
+
+
+                                                  z
+                                     i rd . govt.n
+                           in   e at
+               do   it onl
+         time,
+  Save
+ird.govt.nz                                                                                              2
+
+
+ird.govt.nz
+Go to our website for information and to use our services and tools.
+• Log in or register for myIR - manage your tax and entitlements online.
+• Calculators and tools - use our calculators, worksheets and tools. You can check your tax code, find
+    filing and payment dates and calculate your student loan repayment.
+• Forms and guides - download our forms and guides.
+
+Forgotten your user ID or password
+Request these from the myIR login screen and we'll send them to the email address we hold for you.
+
+How to get our forms and guides
+You can get copies of our forms and guides at ird.govt.nz/forms-guides
+
+Nominate someone to act on your behalf
+You can nominate someone to act on your behalf to help you with your tax and entitlements. You can
+do this in myIR.
+Having a nominated person does not change your responsibilities. You are still personally responsible for
+your tax obligations.
+3                                                                                                                             IR3G INDIVIDUAL RETURN GUIDE
+
+
+
+Contents
+ird.govt.nz.....................................................................................................................................................................................2
+How to get our forms and guides....................................................................................................................................2
+Nominate someone to act on your behalf.................................................................................................................2
+Do you need to complete an IR3 return?.................................................................5
+Children's exempt income...................................................................................................................................................6
+Extension of time......................................................................................................................................................................7
+Are there any penalties?........................................................................................................................................................7
+Income year.................................................................................................................................................................................7
+Individual tax return or Estate income tax return..................................................................................................7
+Using this guide...............................................................................................................8
+Questions 1 to 5 Personal information.........................................................................................................................8
+Question 6 Business industry classification (BIC) code.......................................................................................8
+Question 8 Bank account number..................................................................................................................................9
+Question 9 Adjustments to your income...................................................................................................................9
+Question 10 Non-residents and transitional residents........................................................................................9
+Your income.................................................................................................................. 11
+Question 11 Income with tax deducted................................................................................................................... 11
+Question 12 Schedular Payments................................................................................................................................. 14
+Question 13 New Zealand interest.............................................................................................................................. 15
+Question 14 New Zealand dividends.......................................................................................................................... 17
+Question 15 Māori authority distributions............................................................................................................. 18
+Question 16 Estate or trust income............................................................................................................................ 18
+Question 17 Overseas income........................................................................................................................................ 19
+Question 18 Partnership income.................................................................................................................................. 26
+Question 19 Look-through company (LTC) income.......................................................................................... 27
+Question 20 Shareholder-employee salary.............................................................................................................. 28
+Question 22 Income and expenses from residential property..................................................................... 29
+Boxes 22E to 22I in your return...................................................................................................................................... 32
+Question 23 Income from other rental activities................................................................................................. 34
+Question 24 Self-employed income............................................................................................................................ 34
+Question 25 Income from taxable sales or disposals of property.............................................................. 36
+Question 26 Government subsidy............................................................................................................................... 36
+Question 27 Other income.............................................................................................................................................. 37
+Question 29 Other expenses and deductions....................................................................................................... 38
+Question 31 Net losses brought forward................................................................................................................. 39
+ird.govt.nz                                                                                                                                                                                        4
+
+
+
+
+Your tax credits............................................................................................................ 40
+Question 33 Independent earner tax credit (IETC)............................................................................................ 40
+Question 34 Excess imputation credits brought forward............................................................................... 42
+Question 35 Portfolio Investment Entity calculation........................................................................................ 42
+Tax on taxable income........................................................................................................................................................ 43
+Question 36 Tax calculation............................................................................................................................................ 44
+Excess imputation credits carried forward.............................................................................................................. 45
+Question 37 Early payment discount......................................................................................................................... 47
+Question 38 Refunds and/or transfers....................................................................................................................... 50
+Transfers...................................................................................................................................................................................... 50
+Provisional tax.............................................................................................................. 51
+Question 39 Provisional tax............................................................................................................................................. 51
+Initial provisional tax liability.......................................................................................................................................... 51
+Payment options.................................................................................................................................................................... 52
+Question 40 Foreign rights disclosure........................................................................................................................ 53
+Question 41 Is your return for a part-year?............................................................................................................. 54
+Question 42 Notice of assessment and declaration........................................................................................... 54
+Paying your tax........................................................................................................................................................................ 54
+Your record of payment..................................................................................................................................................... 55
+ACC personal services rehabilitation payments................................................................................................... 56
+If you are an ACC client...................................................................................................................................................... 58
+Accident Compensation Act 2001 (ACC)................................................................................................................ 60
+Services you may need................................................................................................ 62
+Need to speak with us?....................................................................................................................................................... 62
+0800 self-service number................................................................................................................................................... 62
+If you have a complaint about our service.............................................................................................................. 62
+Privacy.......................................................................................................................................................................................... 62
+5                                                                      IR3G INDIVIDUAL RETURN GUIDE
+
+
+Do you need to complete an IR3 return?
+If we've sent you a message to complete your Individual income tax return - IR3 in myIR, or a paper
+copy by post, you must complete the return and send it to us by 7 July 2026, unless you have an
+extension of time or a non-standard balance date. If you do not need to complete a return but you'd
+like to talk to someone about your tax situation, you can call us.
+
+    Note
+    To help you work out if you need to complete an IR3, go to ird.govt.nz/end-of-tax-year or call us on
+    0800 377 774.
+If you received any other income apart from salary, wages, schedular payments, interest, dividends (see
+further information below), and/or taxable Māori authority distributions, you must complete an IR3
+return. There are some exceptions. If you received personal service rehabilitation payments and are an
+ACC client or caregiver (who received payments from the client or ACC), read page 63.
+
+    Note
+    If you had a workplace injury your employer may manage these payments instead of ACC. If you
+    or your caregiver receives these payments, regardless of who makes them, you'll need to read the
+    information on page 63.
+
+Other income includes:
+• self-employed income (see children's exempt income below)
+• income derived overseas - calculated taxable income arising from a withdrawal or transfer from
+   foreign superannuation schemes acquired while a non-resident of New Zealand
+• over $200 in total of income that has not been reported to us such as:
+   – interest derived overseas (if it has had tax deducted or not)
+   – dividends of certain Australian resident listed companies and other overseas investments that are
+      not treated as part of foreign investment funds (FIF) income - see page 22
+   – employment income, schedular payments or employee share scheme income
+   – income from a PIE for example you are 1 of the joint holders of a PIE investment that is not under
+      your IRD number
+• FIF income
+• rental income
+• estate, trust or partnership income
+• royalties
+• cash jobs or ‘under the table’ payments
+• income from illegal enterprises, and
+• income without PAYE deducted, such as shareholder-employee salary or a claim received under a
+   taxable loss of earnings policy.
+ird.govt.nz                                                                                               6
+
+
+Situations requiring an IR3 return include:
+• You left or arrived in New Zealand part-way through the year and earned more than $200 of other
+    income during the year or have New Zealand sourced income while you were not a New Zealand tax
+    resident. You must also provide your New Zealand arrival and departure dates.
+• You are looking after the estate of someone who has died and there is a requirement to complete
+    a final income tax return. You can contact us to find out if a final income tax return or automatic
+    assessment is required.
+• You were declared bankrupt and do not meet the criteria to receive an automatic assessment.
+• You changed your balance date part-way through the year. You must file an IR3 to account for the
+    non-standard income period.
+
+Children's exempt income
+Read this information if for the tax year you:
+• were 14 or under
+• were 15, 16 or 17 and still attending school*, or
+• turned 18 on or after 1 January in the previous tax year and continued to attend school*
+* including a school for people with disabilities, but excluding tertiary institutions.
+The following income is required to have tax taken out before you receive it:
+• salary or wages
+• schedular payments
+• interest
+• dividends, and
+• Māori authority distributions.
+If you only receive these types of income you will not need to complete an IR3. However, if you are
+required to complete an IR3 return this income needs to be included.
+You may receive income that has not had tax taken out before you get it for example:
+• worked as a self-employed person
+• worked around the home of a neighbour or family friend, and that work was not part of a business
+     that they carry on.
+If your total income from these sources is less than $2,340 for the tax year, this income is exempt from tax
+and is not included in your return. You are not required to complete a return just because you earn this
+type of income. If you earn $2,340 or more, the exemption does not apply and you will need to complete
+a return and pay tax on all the income, not just the amount that exceeds the exemption.
+If you have to complete a return but we have not sent you an IR3, you must request and complete it by
+7 July 2025, unless you have an extension of time or a non-standard balance date.
+Contact us to request an IR3 return. You can do this in myIR.
+7                                                                      IR3G INDIVIDUAL RETURN GUIDE
+
+
+Extension of time
+If circumstances beyond your control will prevent you from sending in your return on time, call us on
+0800 377 774 and we may grant you an extension. If you have a tax agent you may have until 31 March
+2026 to complete the return. Contact your agent for more information.
+
+Are there any penalties?
+You may face penalties and prosecution if you:
+• are required to put in a return but do not
+• give false or misleading information (including not showing all your income)
+• leave out details on purpose so the information is misleading
+• complete your return late.
+
+Income year
+The information in this guide is based on the tax year from 1 April 2025 to 31 March 2026. If your income
+year is different you can still use this guide, but work out your income and expenses for your income year.
+
+Individual tax return or Estate income tax return
+Generally, income received up till the time of a person’s death is included in the individual tax return
+with income received after death included in an Estate income tax return.
+However there is a choice whether reportable income (for example salary, benefit, pension or interest)
+received 28 days after a person’s death is all included in this Individual tax return or in an Estate income
+tax return.
+ird.govt.nz                                                                                                   8
+
+
+
+Using this guide
+Did you know you can also complete your return online? Go to ird.govt.nz/myIR
+The form will prepopulate with your personal details and earnings information.
+Before you start filling in the return make sure you have:
+• any interest or dividend statements
+• any taxable Māori authority distribution statements, and
+• any other income details, such as overseas, rental property, farming or business income.
+The questions in this guide are in the same order as the questions on the return.
+Do not use anyone else's preprinted return because it is precoded with their own IRD number.
+
+Questions 1 to 5 Personal information
+This information helps us to contact you. Please make sure we have your details correct. If you have
+changed your name or address, update the information in the spaces provided on the return. You can
+also update your personal information in your myIR account.
+
+Postal address
+If you use your tax preparer’s postal address leave this panel blank. Your tax preparer will let us know if
+they've changed their address.
+If your address is a PO Box number, show your box lobby if you have one. If you are unsure of your box
+lobby please contact New Zealand Post.
+
+Date of birth
+We ask for this so we do not mix up people with the same name.
+
+Question 6 Business industry classification (BIC) code
+We're required to supply the Accident Compensation Corporation (ACC) with a code for your business
+or trading activity, for levy classification and calculation.
+If your BIC code is not preprinted on the return or is different from the preprinted one, enter the correct
+code.
+To work out your main business or trading activity and its code, go to businessdescription.co.nz
+It is important that you choose the code which most accurately reflects your main business or trading
+activity. If you are unable to identify the correct code, call ACC on 0800 222 776 for more help.
+
+ Note
+ Please provide the code only. Do not provide a description. If you do not complete your BIC code,
+ ACC will select one on your behalf. This may mean your ACC levy rate could be incorrect.
+9                                                                        IR3G INDIVIDUAL RETURN GUIDE
+
+
+Question 8 Bank account number
+The fastest and safest way to get any refund is to have it direct credited to your New Zealand bank
+account or other deposit account, for example, a building society account. If your bank account number
+is not preprinted on the return, include it at Question 8.
+If your suffix has only 2 digits, enter them in the first 2 boxes.
+
+Question 9 Adjustments to your income
+If you have a student loan or you’re eligible for Working for Families Tax Credits (WfFTC), you may need
+to include adjustments to your income. This is so we can correctly assess your student loan repayment
+obligation and make sure you receive the right WfFTC entitlement. Find out more about adjusting your
+income at ird.govt.nz/adjust-income
+To let us know about your income adjustments you can:
+• complete it in your myIR account
+• call us on 0800 227 774, or
+• tick 9A on your IR3, complete and attach an Adjust your income - IR215 form to your income tax
+    return.
+If you need a IR215 form, you can download it from ird.govt.nz/forms-guides or call us on 0800 257 773.
+
+What do I need to do to receive my entitlement?
+If you have not already registered for WfFTC, you can find out if you qualify and register online at ird.
+govt.nz/working-for-families
+Once you’re registered, we’ll send you a notice of entitlement with all your family details for you to check.
+Please let us know if anything is incorrect. For more information about the notice of entitlement go to
+ird.govt.nz/noe
+If you’re already registered and you need to file an IR3, we may send you a letter showing your family
+details. You’ll receive this by the beginning of May. Please let us know if any of the details are incorrect.
+
+Question 10 Non-residents and transitional residents
+Non-residents
+If you were away from New Zealand for more than 325 days in any 12-month period and do not have a
+‘permanent place of abode’ in New Zealand, you may be a non-resident. Read our guide New Zealand
+tax residence - IR292 to find out your status. If you were not present in New Zealand and are a
+non-resident for a full year, but you received income from New Zealand, you may need to complete an
+IR3NR return instead.
+ird.govt.nz                                                                                                   10
+
+
+Transitional residents
+If you became a New Zealand tax resident during the year and you've elected not to be treated as a
+transitional resident, you have to complete an IR3 declaring your worldwide income from the date you
+became a New Zealand tax resident.
+Transitional residents do not have to declare their foreign-sourced income except for foreign
+employment income and foreign services income.
+If you were a non-resident for part of the year, complete Question 41 on your return.
+If your return is not for a full year, we'll calculate your tax and income-related tax credits and let you know
+the result - see ird.govt.nz/tte for more information.
+11                                                                  IR3G INDIVIDUAL RETURN GUIDE
+
+
+
+Your income
+If you received family tax credit from Work and Income, salary, wages or schedular payments, the
+information you need to complete Questions 11 and 12 will be on your Summary of Income (SOI),
+which we'll send you in May each year. We send this automatically if we send you an IR3 return.
+Your SOI contains the following information:
+• all your employers throughout the year
+• your total gross income with tax deducted and ACC earners' levy paid
+• any family tax credit paid by Work and Income, and
+• your tax credits for payroll donations you've made through payroll giving.
+
+Question 11 Income with tax deducted
+Did you receive any of these types of income with tax deducted between 1 April 2025 and 31 March
+2026?
+• salary or wages
+• a student allowance
+• any main benefit - unemployment or sickness, transitional retirement, independent youth, domestic
+    purposes, widow's, invalid's or emergency
+• accident compensation payments related to earnings
+• New Zealand Superannuation (NZ Super) either income-tested or non-income tested, or a veteran's
+    pension
+• other pensions, annuities or superannuation (read ‘Pensions’ on page 14)
+• free or discounted shares received under an employee share scheme (previously known as a share
+    purchase agreement). Note: it is up to your employer whether they deduct tax on these or not
+• shareholder-employee salary.
+If you received any of these types of income with tax deducted, you need to copy the totals from your
+SOI to Boxes 11 if they do not already show on your return.
+
+Backdated lump sum income from MSD, ACC or Veteran’s Affairs
+If you received certain backdated lump sum income from MSD, ACC or Veteran’s Affairs, do not include
+these amounts at this question. Instead attach your SOI, showing these amounts, to your return. We will
+include this income in your return and advise you of any change to your tax to pay or refund.
+You can file your return in myIR to include the backdated lump sum income as you file and see your
+result immediately.
+Tax on backdated lump sum payments from MSD is final tax. There is no further tax to pay or refund.
+
+Employee Share Scheme (ESS) benefits
+If you received free or discounted shares through an ESS, the taxable amount will show on your SOI if
+your employer has reported it.
+If it’s not shown, check with your employer whether they’ve provided this information, or if you need to
+enter it at Question 28.
+ird.govt.nz                                                                                                12
+
+
+ESS shares are generally recognised as income 20 days after issue. Your employer may deduction PAYE.
+Whether or not PAYE is deducted, you must still include the income in your tax return for that year.
+If your employer has elected to designate the shares as employee deferred shares, they will advise you and
+the tax will be deferred until an event such as when the company is listed on a stock exchange. Refer to
+ird.govt.nz/tax-ess for more information.
+If you (or an associate) received free or discounted shares under an ESS the taxable value will be included
+on your SOI as long as your employer has provided us with this information.
+In most cases your employer will have provided this information but if they have not, you will need to
+show the taxable value at Question 28.
+
+What to show in your return
+Copy the total amounts from your SOI to the corresponding boxes (11A, 11B, 11C, 11D and 11E) on your
+return if it does not already show.
+
+Amending your income details
+If any of the details on your SOI are incorrect (for example wrong or missing employers), please make the
+changes on your SOI and attach it to your income tax return.
+You only need to attach your SOI to your income tax return if you've made changes to it.
+Transfer the amended totals from your SOI to the corresponding boxes on your return and use the
+worksheet on page 13 to calculate your total tax deducted (11E).
+
+ACC earners' levy
+All employees must pay an ACC earners' levy to cover the cost of non-work related injuries, based
+on their earnings. We collect this on behalf of the Accident Compensation Corporation (ACC). The
+maximum amount of earners' levy is $2,551.59. The earners' levy is set at a rate of 1.67% (1.67 cents in
+the dollar).
+If you need to amend your employment details on your SOI, you'll need to recalculate your earners' levy.
+
+Using employer-provided information
+If you received payslips or other earnings information from your employer, you can use this information
+to complete your return and do not have to wait for your SOI. You do not include schedular payments in
+this calculation.
+You'll need to use your total PAYE deducted in your calculations. This is the amount of PAYE shown on
+your payslips before any tax credits for payroll donations are deducted.
+If you made donations through payroll giving to an organisation that is not on Inland Revenue's
+approved donee organisations list, you will not be able to keep the tax credits you received and you will
+not have paid enough PAYE throughout the year. You'll have either received a letter telling you about
+these extinguished tax credits or they'll show on your summary of income. Put the total PAYE, less the
+amount of your extinguished tax credits, in Box 11A.
+If the amount of total PAYE deducted is not clear from your payslips:
+• contact your employer
+• refer to your SOI for details
+• refer to Earning summary in the My Income tab in myIR, or
+• call us on 0800 227 774.
+13                                                                      IR3G INDIVIDUAL RETURN GUIDE
+
+
+You'll need to calculate your ACC earners' levy liability and deduct it from your total PAYE, using the
+worksheet below.
+
+     Worksheet for ACC earners' levy
+     Copy your total taxable earnings from salary and wages to
+     Box 1. Copy the amount to Box 11B of your return.
+                                                                    1
+
+     Copy your taxable earnings from salary and wages that
+     are not liable for earners' levy to Box 2. See below for a
+                                                                    2
+     list of income not liable. Copy this amount to Box 11C of
+     your return.
+
+     Subtract Box 2 from Box 1. Print the answer in Box 3.
+     If the answer exceeds the maximum liable earnings of
+                                                                    3
+     $152,790, print $152,790 in Box 3.
+
+     This is your liable income for ACC earners' levy
+
+     Multiply Box 3 by 0.0167 (1.67%). Print your answer in
+     Box 4. This is your ACC earners' levy. Copy this amount to
+                                                                    4
+     Box 11D of your return.
+
+     Copy your total PAYE from salary and wages to Box 5.
+     Copy this amount to Box 11A of your return.
+                                                                    5
+
+     Copy your total ACC earners' levy from Box 4 (above) to
+     Box 6.
+                                                                    6
+
+     Subtract Box 6 from Box 5 and print the answer in Box 7.       7
+     This is your total tax deducted. Copy this amount to Box 11E of your return.
+
+
+The following income is not liable for ACC earners' levy
+-    NZ Super                                     -   income from a partnership earned by a non-working
+-    income-tested benefits                           partner in that partnership
+-    non-taxable allowances                       -   pensions from superannuation schemes not registered
+-    student allowances                               with the Financial Markets Authority
+-    veteran's pension                            -   overseas pensions
+-    living alone payments                        -   rents
+-    redundancy payments                          -   estate and trust income
+-    retiring allowances                          -   royalties
+-    jury and witness fees                        -   income attributed to you from a portfolio investment
+-    interest and dividends                           entity (PIE)
+-    taxable Māori authority distributions        -   income arising from a withdrawal from foreign
+-    free or discounted shares received under         superannuation schemes.
+     an employee share scheme
+ird.govt.nz                                                                                               14
+
+
+Pensions
+Do not include the following pensions or annuities in your tax return:
+• non-taxable pensions or annuities from either life insurance funds or superannuation schemes
+   registered with the Financial Markets Authority (for example Government Superannuation)
+• pensions that are completely tax-free, such as war pensions (other than a veteran's pension).
+Any overseas social security pension you receive is usually taxable. Include it at Question 17 (see the
+notes on page 24).
+If you receive a United Kingdom national retirement pension and have joined the special banking
+option operated by Work and Income, only include the New Zealand Super income and tax deducted at
+Question 11A.
+For more information read our guides Overseas pensions and annuity schemes - IR257 or Overseas
+social security pensions - IR258.
+
+Question 12 Schedular Payments
+If you only earned schedular payments during the year, you are not required to file an IR3 return. We
+will calculate your income tax for you, based on the information we hold at that time. We will send you
+a letter, titled “Information required to complete income tax assessment”. This gives you the chance to
+claim any expenses related to your schedular payments.
+
+ACC personal service rehabilitation payments
+If you are an ACC client or caregiver and received ACC personal service rehabilitation payments, read the
+information on page 63 before you complete Question 12.
+
+Box 12A Total tax deducted
+This is the total amount of tax deducted from schedular payments you received during the year.
+The amount in this Box should also include any amount of tax deducted from schedular payments made
+to a close company which has been transferred directly to you as a shareholder-employee.
+
+Box 12C Expenses related to schedular payments
+Show any expenses you can claim against this income here. Do not include it with other expenses at
+Question 29.
+
+Box 12D Net schedular payments
+This is the total gross schedular payments shown at Box 12B, less any expenses being claimed at Box 12C.
+
+Mineral mining tax credit
+Include in Box 12A the amount of refundable tax credit being claimed where a tax loss is incurred on
+disposal of land or claiming rehabilitation expenditure. Include the amount of tax loss in Box 12D.
+15                                                                    IR3G INDIVIDUAL RETURN GUIDE
+
+
+What to show in your return
+Copy the total tax deducted (Box 12A) and gross payments (Box 12B) from your SOI to the same box
+numbers of your return. Add up the expenses related to your schedular payments and print the total in
+Box 12C. Subtract Box 12C from Box 12B and print the result in Box 12D.
+If your employer received and passed on the wage subsidy as part of your schedular payments with tax
+deducted at source no further action is required for this wage subsidy receipt.
+If your employer received the wage subsidy and passed this on to you without tax deducted at source
+you will need to include the amount in the government subsidies box at Question 26.
+
+ Note
+ If you are registered for GST, your gross schedular payment may include GST. Enter the GST-exclusive
+ amount at Question 12B.
+
+Shareholder-employee salary
+If you received a shareholder-employee salary with no PAYE deducted, show the amount at Question 20.
+
+ACC levies
+You'll have to pay ACC levies on schedular payments. ACC will invoice you for these.
+
+Question 13 New Zealand interest
+Did you receive any New Zealand interest between 1 April 2025 and 31 March 2026 from:
+• banks
+• Inland Revenue
+• building and investment societies
+• credit unions
+• securities
+• a partnership, look-through company, estate or trust, or
+• loans you've made.
+Show all the New Zealand interest you received at Question 13B. If the interest is from a partnership,
+look-through company, estate or trust please tick Box 13C.
+If you were charged commission on any of your interest, claim this at Question 29. Read the note about
+expenses on page 39.
+
+Interest on broken term deposits
+If you've broken a term deposit during the year, you may have ‘negative interest’ to account for. This is
+interest you've repaid on the term deposit. It may reduce the amount of interest you need to declare on
+your tax return.
+If you broke the term deposit in full, use the worksheet on page 16 to deduct the negative interest from
+the gross interest amount shown on your RWT withholding certificate or equivalent statement. In all
+other cases, the negative interest is deductible in a later tax return when the term deposit matures.
+ird.govt.nz                                                                                                 16
+
+
+  Worksheet
+  Copy your gross interest from your RWT withholding                1
+  certificate to Box 1.
+  Print any negative interest you've paid in Box 2.                 2
+  Subtract Box 2 from Box 1 and print the answer in Box 3.          3
+  Include this in the amount shown at Box 13B.
+
+RWT
+During the year, RWT will have been deducted from some or all of your interest and you can claim a
+credit for this.
+The interest payer will usually send you a RWT withholding certificate or similar statement which shows
+the gross interest paid and the amount of RWT deducted.
+Add up the amounts from each statement or certificate and print the totals in Boxes 13A and 13B.
+Do not send us your interest statements with the return. Keep these in case we ask for them later.
+
+Interest of $50 or less
+If the interest you received for the year is $50 or less, you may not receive a certificate or statement, but
+you still need to show the gross interest and RWT. Get the details from your bank statements.
+
+Interest on joint accounts
+If you hold a joint account, you must show your share of the interest in your tax return.
+
+Interest from overseas
+If you received interest from overseas, convert your overseas interest and tax credits to New Zealand
+dollars and show the amounts at Question 17. Read the notes about overseas income on page 19.
+
+Farm vendor mortgage or finance bonds
+If you received interest from a farm vendor mortgage or farm vendor finance bonds approved by the
+Rural Banking and Finance Corporation of New Zealand, only half of the interest is taxable. Show the
+RWT deducted and the taxable amount of interest in Boxes 13A and 13B.
+
+Income from financial arrangements
+If you are a party to a financial arrangement, such as government stock, local authority stock, mortgage
+bonds, futures or deferred property settlements, you may have to calculate the income or expenditure
+from the financial arrangement using a spreading method, rather than on a cash basis. To determine
+whether a spreading method must be used, see ‘Financial arrangements’ on page 37.
+If the financial arrangement matures, is sold, remitted or transferred, a ‘wash-up’ calculation, known as a
+base price adjustment, must be made.
+Any RWT will have to be deducted on a cash basis. Show the RWT deducted and any income from the
+financial arrangement in Boxes 13A and 13B.
+17                                                                     IR3G INDIVIDUAL RETURN GUIDE
+
+
+Interest paid or charged by Inland Revenue
+If we paid you interest, include it in Box 13B in the income year you received the interest.
+If you paid us interest, include it as a deduction at Question 29 for the income year the interest is paid.
+
+Question 14 New Zealand dividends
+Dividends are a part of a company's profits that it passes on to its shareholders. Unit trusts are treated as
+companies for income tax purposes and unit trust distributions are treated as dividends.
+Complete Question 14 if you received any New Zealand dividends between 1 April 2025 and 31 March
+2026, including dividends from your local electricity or gas company (but do not include a dividend
+that is a distribution of the trust's capital and is tax-free). The company or unit trust that paid you the
+dividend will send you a dividend statement.
+Include dividends earned by a partnership or estate, or distributed by a trust.
+If you were charged commission on any of your dividends, claim this at Question 29. Read the notes
+about expenses on page 39.
+If you receive dividends from a portfolio investment entity (PIE) that is a listed company and does not
+use your prescribed investor rate, you can decide whether or not to include the dividends in your return.
+
+Credits attached to dividends
+A New Zealand company or unit trust may attach several types of credits to dividends.
+‘Imputation credits’ are credits for part of the tax the company has already paid on its profits so the
+dividends are not taxed twice.
+RWT is deducted from your dividend to bring the total credits withheld up to 33% of the gross dividend.
+If the dividend is from a listed PIE, it should not have RWT deducted.
+
+What to show in your return
+Your dividend statements show the amount:
+• you received (net dividend)
+• of any imputation credit, and
+• of any RWT credits.
+Add all these amounts together to work out your gross dividend.
+Add up all the imputation credits, RWT credits and gross dividend totals and transfer them to the
+relevant boxes at Question 14.
+If the dividends are from a partnership, look-through company, estate or trust, please tick Box 14C.
+Do not send us your dividend statements, keep them in case we ask for them later.
+ird.govt.nz                                                                                                  18
+
+
+Shares and other non-cash dividends
+If you received shares from a taxable bonus issue or a non-cash dividend , include them as income at
+Question 14.
+
+Dividends from overseas
+Please read the notes about overseas income on page 19.
+
+Question 15 Māori authority distributions
+Complete Question 15 if you received taxable Māori authority distributions between 1 April 2025 and
+31 March 2026. The Māori authority that paid you the distribution will send you a Māori authority
+distribution statement.
+
+Credits attached to distributions
+The Māori authority may attach a credit to the distribution it makes to members. This credit will be
+classified as a Māori authority credit and includes tax the Māori authority has already paid on its profits.
+
+What to show in your return
+Your Māori authority distribution statement shows the amount of:
+• the distribution made to you, including which portion is taxable and which portion is not, and
+• the Māori authority credit.
+Transfer these amounts, not including any non-taxable distribution, to the relevant boxes at Question 15.
+For more information read our guide Māori authorities - IR487.
+
+Question 16 Estate or trust income
+If you received estate or trust income that relates to the year 1 April 2025 to 31 March 2026, show it at
+Question 16.
+There are 3 types of estates or trusts:
+• complying
+• foreign, and
+• non-complying.
+Complying trusts are trusts that have been taxed in New Zealand on all their income since the day they
+started.
+Allocations of beneficiary income which the minor beneficiary rule applies to are taxed as trustee income.
+This means the trust is subject to tax on this income at 39 cents in the dollar, and it is included in the
+trustee tax calculation in the trust's IR6 return.
+These distributions should not be included in the minor's individual tax return.
+Reportable income received up to 28 days following a person’s death can be included in either the
+Individual tax return to date of death or in the Estate income tax return.
+Reportable income received up to 28 days following a persons death can either be included in the IR3
+income return to date of death or alternatively in the IR 6 estate income return.
+19                                                                       IR3G INDIVIDUAL RETURN GUIDE
+
+
+All other trusts are non-complying or foreign. Read our guide Trusts' and estates' income tax rules -
+IR288 for more details.
+
+What to show in your return
+Add up the tax paid by the trustee/s and print the total in Box 16A. Print your share of the estate or
+complying trust income in Box 16B.
+But, if your estate or trust income includes:
+• interest with RWT deducted, show this at Question 13 and tick 13C
+• dividends with imputation credits attached, show this at Question 14 and tick 14C
+• taxable Māori authority distributions, show this at Question 15, or
+• overseas income and overseas tax paid, show this at Question 17.
+If you received a wage subsidy payment from the Trust which did not have tax deducted at source you
+will need to include the amount in the government subsidies box at Question 26.
+
+Income from foreign and non-complying trusts
+If you are a beneficiary of a foreign or non-complying trust please complete a Schedule of beneficiary's
+estate or trust income - IR307 form.
+
+Taxable distributions from non-complying trusts
+Copy the amount of taxable distributions from the non-complying trust to Box 16C and attach the IR307
+to your income tax return.
+We separate taxable distributions from non-complying trusts because they're taxed at a different rate.
+If you have this type of income, your tax calculation at Question 36 may not be correct. We'll do this
+calculation for you and send you a notice of assessment.
+
+Question 17 Overseas income
+If you received income from, or while you were overseas, between 1 April 2025 and 31 March 2026, then
+you must complete an Overseas income summary – IR1261 form and submit it with your income tax
+return. Convert all overseas income and tax credits to New Zealand dollars, you can do this by:
+•   using the rates tables on our website ird.govt.nz/managing-my-tax
+•   contacting the overseas section of a trading bank and asking for the exchange rate for the day you
+    received your overseas income.
+Overseas income includes taxable income from withdrawals and transfers from foreign superannuation
+schemes while you were a non-resident of New Zealand. Transitional residents must include any foreign
+employment or service income.
+If you received overseas income from a look-through company (LTC), estate, trust, or partnership you will
+need to confirm the details with them. You must provide all the required information to claim overseas tax
+credits.
+Total the gross amounts of overseas income on your IR1261 and show it at Box 17B on your IR3 return. Total
+the tax credits on your IR1261 and show it at Box 17A on your IR3 return.
+On your Overseas income summary – IR1261 form, you will need to:
+•    complete a separate section for each jurisdiction and for each income type, even if they are from the
+     same jurisdiction. The jurisdiction is the country or territory you have received overseas income from.
+•    Include your claimable overseas tax credits, for more information refer to ‘Tax paid overseas’ on page 22.
+ird.govt.nz                                                                                                                                        20
+                                                      Overseas income summary                                                              IR1261
+                                                                                                                                           March 2023
+
+
+
+ Example
+                                                                          Year ended
+ Mark’s total taxable income is $70,000. This amount includes $5,000 of overseas     31 March
+                                                                                 income  from:
+      Australian
+ • • You  only needBank      A - Interest
+                      to complete   this form$700
+                                               if you(taxed  at 10%*);
+                                                      have received      taxincome.
+                                                                    overseas   paid $70
+ • • Take   a copy forBank
+      Australian       your records  and attach
+                             B - Interest    $550this  completed
+                                                    (taxed        form, as
+                                                             at 10%*);     well
+                                                                         tax    as proof
+                                                                              paid  $55of overseas tax paid and a letter
+     detailing any overseas losses to your IR3 return.
+      Australianyou
+ • • Alternatively   Company       A – this
+                          can complete   Foreign
+                                              form inemployment
+                                                       myIR as part of$3,000
+                                                                       your tax(taxed
+                                                                                return. at 30%); tax paid $900, claimable tax
+      credit
+   • Refer      based
+             to the notesonontotal taxable
+                              the next page forincome     $600.86
+                                                  help with completing this form.
+ • Hong Kong Bank A - Interest $750 with no tax paid
+   Your full name
+ *10% is the maximum tax rate, as per New Zealand’s double tax agreement (DTA) with Australia.
+   Your IRD number                  (8 digit numbers start in the second box.                )
+ Mark’s completed Overseas Income Summary - IR1261:
+
+   Income type                                 1          Interest
+
+   Jurisdiction                                2          Australia
+
+   Gross amount                                3                                   1 2 5 0 0 0
+
+   Tax credit                                  4                                       1 2 5 0 0
+
+
+   Income type                                 1          Foreign employment/Service
+
+   Jurisdiction                                2          Australia
+
+   Gross amount                                3                                  3 0 0 0 0 0
+
+   Tax credit                                  4                                       6 0 0 8 6
+
+
+   Income type                                 1          Interest
+
+   Jurisdiction                                2          Hong Kong
+
+   Gross amount                                3                                       7 5 0 0 0
+
+   Tax credit                                  4
+
+  Income type                                  1
+ Question   17 for Mark:
+   Jurisdiction
+  17
+                                               2
+         Did you receive any overseas income? Complete an Overseas income summary - IR1261 form and attach it to this return.
+
+   GrossNo
+         amount Go to Question 18              3 Yes 
+                                                     �           Print the totals here. See the guide for further details.
+         Total overseas tax paid                                                          Total overseas income
+
+        17A
+   Tax credit                                  4 7 2 5 8 6                                 17B                               5 0 0 0 0 0
+         If your total overseas income includes a withdrawal and/or transfer
+       from
+   Income                               1 see the guide and tick Box 17C
+            a foreign superannuation scheme,
+          type                                                                             17C
+         if applicable.
+  Jurisdiction
+  18                                      2
+        Did you receive any partnership income? Exclude any income/losses shown at Questions 13, 14, 15, 17, 22, 23, 25, or 27 as appropriate.
+         No          Go to Question 19             Yes           Print the totals here. See the guide for further details.
+   GrossTotal
+         amount
+              partnership tax credits          3                                          Total active partnership income
+
+        18A                                                                                18B
+   Tax credit                                  4
+  19     Did you receive any look-through company (LTC) income? Exclude any income/loss shown at Questions 13, 14, 15, 17, 22, 23, 25 and 27.
+                                                                                                                                         RESET FORM
+         No          Go to Question 20             Yes           Print the totals here. See the guide for further details.
+         Total LTC tax credits
+         19A
+21                                                                   IR3G INDIVIDUAL RETURN GUIDE
+
+
+ Note
+ Portable NZ Super and/or portable veteran's pension paid while residing overseas are tax exempt and
+ will not need to be included on your return.
+
+ Note
+ Dividends received from overseas companies that are treated as FIFs (except companies covered by
+ the exclusions listed under foreign rights at Question 40) are not taxable separately. Generally, you
+ would use the default FIF income calculation method (the fair dividend rate), which does not tax
+ dividends separately.
+ The foreign tax deducted from the dividend may be claimed as a credit against the tax payable on the
+ calculated FIF income for that company.
+
+Foreign superannuation withdrawals or transfers
+If you've received a lump sum from a foreign superannuation scheme, have transferred your foreign
+superannuation scheme into a New Zealand or Australian superannuation scheme, or you have
+transferred a superannuation interest to another person you are liable for income tax unless you qualify
+for an exemption. You need to calculate the amount of taxable income from the withdrawal or transfer
+(refer below) and include this income in Box 17B, and tick Box 17C.
+Lump sums received or transferred in the first 4 years of New Zealand tax residence are generally exempt
+from tax, see ‘temporary tax exemption from foreign superannuation withdrawals’ on page 24.
+Lump sums and transfers are taxed using 1 of 2 methods:
+• schedule method (default method) - this means a certain portion of your foreign superannuation
+   withdrawal will be income, based on the number of years you've been a New Zealand tax resident
+   and contributions you've made in that time (certain conditions apply).
+• formula method (alternative method) - can be used if your foreign superannuation scheme is a
+   defined contribution scheme and meets certain requirements. It taxes the actual investment gains
+   that have accrued to your scheme while you've been a New Zealand tax resident.
+KiwiSaver withdrawal facility for tax liability on foreign superannuation withdrawals or
+transfers
+If you transfer a lump sum to a KiwiSaver scheme you may have income tax and student loan repayment
+obligations. You can request a withdrawal of funds from your KiwiSaver account to pay these obligations.
+Your KiwiSaver provider will deal with your application.
+For more information about foreign superannuation withdrawals or transfers see our guide Overseas
+pensions and annuity schemes - IR257 or go to ird.govt.nz/foreign-super
+ird.govt.nz                                                                                               22
+
+
+Foreign investment fund (FIF) income
+If you held rights such as shares, units or an entitlement to benefit in any foreign company, unit trust,
+superannuation scheme or life insurance policy, during the income year you may be required to calculate
+FIF income or loss. Generally, you'll use the fair dividend rate (FDR) or comparative value (CV) method to
+calculate FIF income.
+The main exclusions are:
+• investments in certain Australian resident companies listed on approved indices on the Australian
+   stock exchange, that maintain franking accounts (you can check this on our website)
+• interest in certain Australian unit trusts
+   – limited exemptions for interests in certain venture capital interests that move offshore (for
+      10 income years from the income year in which the company migrates from New Zealand)
+• a 10% or greater interest in a controlled foreign company (CFC).
+The FIF rules generally no longer apply to interests in foreign superannuation schemes unless acquired
+when the holder was a New Zealand tax resident or the interest is grandparented. For more information
+see our guide Overseas pensions and annuity schemes - IR257.
+There's also an exemption from the FIF rules where the total cost of all the investment for FIF purposes is
+below NZ$50,000.
+
+What to show in your return
+After you've converted the amounts to New Zealand dollars, add up the available amounts of overseas
+tax paid and print the total in Box 17A. Add up the gross amounts of overseas income (before tax was
+deducted) and print the total in Box 17B.
+Attach proof of any overseas tax paid to your income tax return.
+If a branch equivalent tax account (BETA) was maintained, complete a Branch equivalent tax account
+return - IR308 and attach it to your IR3 return.
+
+Tax paid overseas
+If you paid tax overseas on any foreign income derived, you may be able to claim it as a credit against
+your New Zealand tax payable. The amount of credit you receive may be restricted by any double
+taxation agreements and is the lesser of the actual amount of tax paid on the overseas income or the
+amount of tax you would pay in New Zealand on the foreign income.
+If you have received Foreign tax Credits (FTC) from a trust, the amount of FTC you can claim as a
+beneficiary, cannot be greater than the notional NZ tax liability that the trust would have incurred had it
+retained that income.
+To claim an overseas tax credit you must supply proof of the tax deducted, for example an overseas tax
+deduction certificate. If you need one, you'll have to request it from the overseas government agency
+concerned. Attach a copy of the certificate to your return.
+Also, if you receive a dividend that is not taxed separately under the FIF rules, you can offset most
+overseas tax credit paid on the dividend against your tax payable.
+For more information about foreign tax credits read A guide to foreign investment funds and the fair
+dividend rate - IR461 pages 19 to 22.
+23                                                                    IR3G INDIVIDUAL RETURN GUIDE
+
+
+Claiming overseas tax paid on overseas dividends FIF income
+You can claim the tax paid up to the amount of New Zealand income tax payable on the FIF income
+associated with the attributing interest that has paid the dividend. If you used the FDR method you can
+use the overseas tax paid to reduce the tax payable on the FDR income associated with that attributing
+interest. Note that Australian franking credits and tax on dividends from the United Kingdom cannot be
+claimed as overseas tax paid.
+
+Where there is no FIF income or a FIF loss
+Tax paid overseas can only be used to cover your liability for income tax payable on your FIF income.
+If there is no New Zealand income tax payable on your FIF investment, no claim can be made for the
+overseas tax paid on any dividends received from that FIF.
+You cannot get a refund of overseas tax paid, or reduce tax payable on any other income.
+For more information read A guide to foreign investment funds and the fair dividend rate - IR461.
+
+Unused overseas tax credits
+Generally, these are forfeited (lost).
+
+Carrying forward any excess or unused overseas tax credits?
+You can not carry forward unused overseas credits where you have used the FDR, CV, deemed rate of
+return or cost methods to calculate FIF income or loss.
+
+New Zealand tax credits (imputation or RWT) deducted from overseas
+dividends
+You can claim New Zealand tax credits on overseas dividends as follows:
+• If the credits are RWT, they are used to offset tax payable with any excess refundable.
+• If they're imputation credits, they are used to reduce tax payable. If your dividend exceeds your FIF
+   income, the amount of imputation credit you can claim is calculated on the basis of your FIF income.
+   If your FIF income exceeds your dividend, you can claim the entire imputation credit attached to the
+   dividend.
+•    Any excess imputation credit can not be carried forward to the next year or converted to a loss.
+The full amount of these New Zealand tax credits can be entered in the return even where the FIF
+income is reduced to zero or there is an FIF loss.
+These credits will only be attached to Australian company or unit trust dividends.
+If you've shown a tax credit and there is no income in the associated panel, you'll need to include a note
+in your return setting out the details.
+
+Temporary tax exemption from foreign income
+If you are currently claiming the four-year temporary tax (transitional resident) exemption for certain
+types of foreign-sourced income, you do not need to declare this income in Box 17B, unless it is foreign
+employment or services income. When your tax exemption expires, you must include all your worldwide
+income when you complete your income tax return.
+Go to ird.govt.nz/tte for further information about the temporary tax exemption qualifying criteria and
+types of exempt foreign-sourced income.
+ird.govt.nz                                                                                               24
+
+
+Temporary tax exemption from foreign superannuation withdrawals
+This four-year exemption period is similar to the temporary tax exemption from foreign income and
+applies to foreign superannuation withdrawals during the period. The exemption does not require you to
+be non-resident for a minimum period.
+This exemption applies if you:
+• first acquired your interest in a foreign superannuation scheme while a non-resident for New Zealand
+     tax purposes, and
+• have not previously had this exemption.
+Foreign superannuation withdrawals during the four-year exemption period do not need to be declared
+as income in Box 17B.
+Go to ird.govt.nz/income-tax/income-tax-for-individuals/types-of-individual-income/foreign-
+superannuation for further information about the foreign superannuation temporary exemption or read
+our guide Overseas pensions and annuity schemes - IR257.
+
+Australian dividends from non-FIF companies
+If you received Australian dividends, your dividend statements may show all or some of the following:
+• the franked/unfranked amount
+• Australian withholding tax
+• imputed credit or franking credits, or
+• New Zealand imputation credits.
+Add up the amounts of Australian withholding tax deducted and print the total in Box 17A. Dividends
+paid by Australian companies may have a New Zealand imputation credit.
+To calculate the gross dividend, add together the franked and unfranked amounts, along with the
+New Zealand imputation credits and print the total in Box 17B. Do not include any Australian imputed
+or franking credits. Claim New Zealand imputation credits in Box 14.
+
+Overseas pensions
+If you received an overseas social security pension, convert the amount into New Zealand dollars. Print
+the total in Box 17B.
+You may also have received other types of overseas pensions, such as foreign private annuities or foreign
+investment funds. For more information, read the note about foreign rights disclosure on page 53. Under
+most of the tax treaties New Zealand has with other jurisdictions, you cannot claim a tax credit for tax
+deducted overseas on pensions. If you paid tax on the pension overseas, generally you need to claim a
+refund or tax credit from the overseas tax authority, not from Inland Revenue in New Zealand.
+For more information, read our guides Overseas pensions and annuity schemes - IR257 and Overseas
+social security pensions - IR258 or go to ird.govt.nz/dta
+
+Specific dividends
+If you received dividends that are treated as interest or that are from an overseas company through an
+agent or trustee, who has deducted RWT in New Zealand, show the tax credits and overseas income in
+Boxes 17A and 17B. Show New Zealand RWT deducted in Box 14A.
+Attach a copy of the dividend statement to your return.
+25                                                                    IR3G INDIVIDUAL RETURN GUIDE
+
+
+ Note
+ If you've shown a tax credit and there is no income in the associated panel, you'll need to include a
+ note in your return setting out the details.
+
+Investments in Portfolio Investment Entities (PIEs)
+All attributed portfolio investment entity (PIE) income received by New Zealand resident individuals will
+be checked to make sure it has been taxed at the right prescribed investor rate (PIR) for the full year.
+Because PIE income is taxed differently to your other taxable income, your annual income tax calculation
+now includes a separate PIE calculation. This is to work out whether you have paid the right amount
+of tax on your PIE income based on the PIR you should have used. To find out what PIR you should be
+using, go to ird.govt.nz/pir
+If you did not use the correct PIR for the full year and the outcome of the calculation is;
+• you did not pay enough tax, the difference is added to your tax on taxable income in Box 36.
+• you paid too much tax, the difference is used to reduce your tax to pay and any remaining credit
+     refunded as part of calculating residual income tax at Box 36A.
+Page 43 has a worksheet to help you with the PIE calculation.
+
+Working for Families (WfF) or student loan
+There are 2 types of PIE income - locked-in and non-locked-in.
+Locked-in funds are a superannuation fund or retirement savings scheme, such as KiwiSaver, that limits
+your access to the funds until you reach a specified retirement age. As these funds are not available for
+your daily living they are not included as income for both WfF and student loan purposes.
+If you can access your funds at any time, the PIE income must be included for both WfF and student loan
+purposes. To do this, you’ll need to complete the Adjust your income - IR215 form and attach it to your
+Individual tax return - IR3.
+For more information go to ird.govt.nz/situations
+
+Income from overseas residential rental property
+Income and deductions from overseas residential rental property that is subject to the residential
+property deduction rules in subpart EL of the Income Tax Act 2007 are recorded in Question 22.
+However, the amount of tax paid on the overseas rental income is recorded in Question 17.
+To ensure quick processing of your income tax return, please include a note outlining the breakdown of
+the overseas rental income and deductions, and the amount of tax paid.
+ird.govt.nz                                                                                            26
+
+
+Question 18 Partnership income
+Show your share of income from the partnership's trade or business from 1 April 2025 to 31 March 2026
+in Box 18B, unless it includes:
+• interest and any RWT - show this at Question 13 and tick 13C
+• dividends and any credits - show this at Question 14 and tick 14C
+• overseas income and overseas tax paid - show this at Question 17
+• income and expenses from residential property including rental and bright-line income - show these
+    at Question 22
+• other rental income - show this at Question 23
+• government subsidies - show this at Question 26, or
+• other income and, if your share of this income:
+    – is received in recognition of your capital investment in the partnership and you did not take any
+       active part in the day-to-day operation or management of the business (for example you were a
+       sleeping partner), or
+    – is generated from other investment activity (for example sale of shares), show this at Question 27.
+Partnership income earned as a result of active involvement is liable for ACC levies, which will be
+invoiced by ACC.
+
+ Note
+ Generally, where the partnership has a different balance date, you may choose to include your
+ share of the partnership income in the income year where the partnership balance date falls, or to
+ apportion it to the income year(s) it was earned in.
+ You must use the same method every year until either the partnership changes their balance date, or
+ you leave the partnership.
+
+Losses from limited partnerships
+If you are claiming a loss from a limited partnership and you need help working out the amount you can
+claim, go to ird.govt.nz/partnerships
+
+Expenses
+You may be able to claim expenses against your share of the partnership income that was not claimed
+in the partnership's IR7 return, for example interest on capital borrowed to purchase a share in the
+partnership. Claim these expenses at Question 29.
+27                                                                    IR3G INDIVIDUAL RETURN GUIDE
+
+
+Question 19 Look-through company (LTC) income
+If you received any tax credits and/or income from an LTC write the details at Question 19.
+Do not include:
+• interest and any RWT - show this at Question 13 and tick 13C
+• dividends and any credits - show this at Question 14 and tick 14C
+• Māori authority distributions and credits - show these at Question 15
+• any overseas income - show this at Question 17, along with qualifying tax credits attached
+• income and expenses from residential property including rental and bright-line income - show these
+     at Question 22
+• other rental income - show this at Question 23, or
+• government subsidies - show this at Question 26.
+
+ Note
+ The LTC will normally supply information about non-allowable deductions and any other information
+ required to complete your return.
+The loss limitation rule limits the amount of deductions an LTC owner (shareholder) can claim if the
+amount exceeds the ‘owner's basis’ (equity) in the LTC.
+The loss limitation rule only applies to an LTC which is in a partnership or joint venture which includes
+another LTC.
+For most LTC owners, you can now claim the full amount of your prior years' non-allowable deductions
+brought forward this year. This will not apply if the loss limitation rule continues to apply to limit the
+amount claimable.
+
+ Example
+ Daniel is an owner of an LTC which is not in a partnership or joint venture that includes another LTC.
+ Daniel has a net loss of $7,000.00 from the LTC.
+ Daniel also has prior years' non-allowable deductions brought forward of $5,000.00.
+ Daniel has no tax credits from the LTC for the year.
+ Daniel's tax return should show these amounts in the following boxes:
+ • 19A: $0.00
+ • 19B: $7,000.00-
+ • 19C: $0.00
+ • 19D: $5,000.00
+ • 19E: $12,000.00-
+
+What to show in your return
+Add up all other tax credits received from the LTC and print the total in Box 19A.
+Add up all LTC income, deduct expenses not already included elsewhere and print in Box 19B. If a loss,
+put a minus sign in the last box.
+ird.govt.nz                                                                                              28
+
+
+Add up all non-allowable deductions this year and print in Box 19C.
+There should not be non-allowable deductions this year unless the loss limitation rule applies.
+Add up all prior year non-allowable deductions claimed this year and print in Box 19D.
+You'll be able to claim the full amount of non-allowable deductions brought forward from last year if the
+loss limitation rule no longer applies.
+If you have an amount in Box 19C, add this to Box 19B and put the total in Box 19E.
+If you have an amount in Box 19D, subtract this from Box 19B and put the total in Box 19E.
+If you do not have any amounts in Box 19C or Box 19D, copy the amount from Box 19B to 19E.
+Box 19E is your adjusted LTC income.
+You can find more information about LTCs in our guide Look-through companies - IR879.
+
+Question 20 Shareholder-employee salary
+If, as a shareholder-employee, you received a salary between 1 April 2025 and 31 March 2026 with PAYE
+deducted, include the amounts at Question 11A.
+If a wage subsidy was received and fully applied to these wages, the wage subsidy amount does not also
+need to be included at Q26.
+If the wage subsidy was not fully applied to these wages, the excess wage subsidy (not applied to the
+salary with tax deducted at source) must be included at Q27.
+If, as a shareholder-employee, your shareholder-employee's salary or director's fees had no PAYE
+deducted, include the amount in Box 20. If a wage subsidy was received include that separately at Q26.
+If you did not receive a shareholder-employee salary but may in the future, tick Box 20A.
+If you are not a shareholder employee and you received director's fees with no tax deducted, show the
+income at Question 27. If a wage subsidy was received by the business for your role as director which did
+not have tax deducted include that separately at Q26.
+Over-payments of AIM provisional tax that relate to shareholder employee salary accruals are allowed to
+be used to meet the shareholder's tax liability on that salary at the end of the income year. Include the
+amount of any AIM tax credits transferred to you at Box 20B.
+The company that paid your salary or fees will be able to tell you exactly how much to show in your return.
+
+Box 20C Qualifying for In-work tax credit (IWTC)
+In-work tax credit (IWTC) is a payment for families who are normally in paid work.
+You can not receive in-work tax credit if you receive an income-tested benefit or student allowance.
+You’ll keep receiving the in-work tax credit payments for up to 2 weeks during an unpaid break from
+work. For example, changing jobs, leaving employment, or unpaid time such as school holidays.
+If you are already registered for WfF, and now meet the requirements for IWTC you'll need to tick
+Box 20C of your IR3.
+If you have not already registered for WfF and you qualify, go to our website ird.govt.nz/working-for-
+families and register online.
+29                                                                       IR3G INDIVIDUAL RETURN GUIDE
+
+
+ACC earners' levy
+Shareholder-employee remuneration or director's fees without PAYE deducted are liable for ACC earners'
+levy. The company should deduct earners' levy from your remuneration or director's fees when declared.
+ACC will invoice the company for this.
+
+Question 22 Income and expenses from residential property
+This question applies to owners of residential property, including overseas property, that have:
+•    income subject to the residential property deduction rules
+•    net income (profit) from a bright-line sale
+•    income in relation to a loan in a foreign currency
+•    depreciation recovery income from disposed assets
+•    net income from the taxable disposal of a residential property outside the residential property
+     deduction rules because it is held on revenue account.
+
+Residential property deduction rules
+Most residential rental properties are subject to the residential property deduction rules (also known as
+the ring-fencing rules). When they apply, your residential rental deductions generally cannot be more
+than your residential property income.
+If your deductions are more than your income, the difference must be carried forward to the next year
+you earn income from your residential property, including income from properties held on revenue
+account.
+Any rental income or loss and net income or loss from a taxable disposal is fully excluded from the rules
+if the property is:
+• the main home
+• subject to the mixed-use asset rules (for example, a holiday home rented out part-time and not used
+     for at least 62 days in the income year, or 62 working days in the income year if it is usually only used
+     on working days), or
+• certain employee accommodation.
+For these types of property, any rental income or loss is shown at Box 23 and net income or net loss from
+a taxable disposal shown in Box 25B.
+Any rental net loss and net loss from a taxable disposal is partially excluded from the rules if it is for:
+• property that will always be taxed on sale, being revenue account property of a person in the
+   business of building, developing or dealing in land, or
+• other revenue account property the person has notified us they want the exclusion to apply to.
+For these types of property any rental net loss is shown at Box 23 and taxable disposal net loss shown at
+Box 25B.
+The residential property deduction rules also apply if you borrowed money to acquire an interest in
+certain entities that have significant rental property holdings - a residential land-rich entity - and you
+have interest expenditure on the borrowed money.
+Residential land-rich entity - a close company, partnership or look-through company that holds more
+than 50% of its assets by value in residential land, directly or indirectly. These entities come under the
+interposed entities rules as part of the residential property deduction rules.
+ird.govt.nz                                                                                                30
+
+
+For more information about the interposed entity rules, see page 60 of the Tax Information Bulletin
+Vol 31 No.8 September 2019.
+Read our Rental income - IR264 guide for more information on:
+• when the rules apply
+• how to calculate your income
+• the amount of deductions you can claim this year, and
+• the amount of any excess deductions that must be carried forward.
+
+Completing your return
+You will use question 22 to record residential income and deductions that are subject to the residential
+property deduction rules.
+Tick the method you have used to calculate your residential property income and deductions.
+You can use 1 of the following methods:
+• Portfolio basis - combine income and deductions for all rental properties in the portfolio.
+• Individual, property-by-property basis - income and deductions of individual property calculated
+   separately to other property. You need to maintain separate records for each property to choose this
+   option.
+• Combination of the individual basis and portfolio basis - choose to apply different methods to
+   different property. Some properties are held in a portfolio and others are held on an individual basis.
+If you are an owner of a look-through company (LTC) and have attributed residential income and/or
+residential rental deductions, you need to use the same method the LTC uses (portfolio or individual
+property basis) for the residential properties owned by the LTC. If you are a partner in a partnership and
+have attributed residential income and/or residential rental deductions, you do not need to use the same
+method the partnership uses.
+For LTCs and partnerships, the residential property income and deductions calculations are made at
+the owner or partner level as they may have other residential income and deductions that need to
+be included. An LTC or partnership does not need to calculate its net residential income and excess
+deductions. Instead, the LTC or partnership's residential income and deductions are attributed to the
+owners or partners, who then calculate their net residential income and any excess deductions and enter
+those amounts on their income tax return. An LTC must complete the IR7L form and a partnership must
+complete the IR7P form to attribute amounts to the owners or partners.
+You need to calculate and identify the amounts for Boxes 22A to 22I using the method you have chosen
+for your rental properties. For the portfolio basis, the allowable deductions from all of the properties in
+your portfolio can be offset against income you earn from all of the properties in the portfolio.
+Calculate your rental income and deductions as usual, as shown at Boxes 4 and 13 on the Rental income
+- IR3R form.
+You can then enter these figures in the Residential property deductions worksheets - IR1226 to help
+calculate the figures required to be entered in your return. You can print a copy off our website ird.govt.
+nz/forms-guides
+Write the total gross residential rental income from the portfolio and/or individual property in Box 22A.
+Do not include rental income or losses from properties excluded from the residential property deduction
+rules. Enter those amounts in Question 23 instead.
+31                                                                      IR3G INDIVIDUAL RETURN GUIDE
+
+
+Box 22B Net bright-line profit
+The bright-line test needs to be considered when none of the other land taxing rules at Question 25
+apply to the disposal of the property.
+The bright-line test taxes profit made on the sale of residential property (including overseas property)
+when it is sold within a certain period of time (bright-line period) and no exclusions or rollover relief
+apply. Your intention or purpose for purchasing or selling the property is not relevant.
+For property sold on or after 1 July 2024, the bright-line test looks at whether your bright-line end date
+for the property is within 2 years of your bright-line start date.
+For a standard purchase of property, the bright-line period starts from the date the property’s title is
+transferred to you (generally the settlement date). For a standard sale, the bright-line period ends when
+you enter into a binding sale and purchase agreement to sell the property. Different rules apply for other
+types of purchase (for example, off the plans) and for other types of sale or disposal (for example, when
+property is gifted).
+For property sold before 1 July 2024, the sale will come under the bright-line test if the following apply:
+•    You acquired the property on or after 29 March 2018
+•    You are selling it within 5 years or before 1 July 2024 (whichever comes first).
+Generally, the bright-line test does not apply to a sale of property that has been your main home when
+your use meets certain criteria. Business premises and farmland are also excluded. Rollover relief is
+available for certain types of ownership transfers.
+If the sale of the property is taxable under the bright-line test, any interest previously denied under the
+interest limitation rules is treated as if it were part of the cost of the property in the year of sale.
+For more information about the bright-line test, go to:
+•    ird.govt.nz/bright-line
+•    Bright-line property tax - IR1229 for property sold from 1 July 2024
+•    Bright-line property tax - IR1227 for property sold before 1 July 2024.
+You can find our forms and guides at ird.govt.nz/forms-guides
+You can also use the Property tax decision tool on our website to work out if you need to pay tax on the
+sale of your property. Go to ird.govt.nz/bright-line
+
+Completing your return
+Income and losses for property taxable under the bright-line test are treated differently in your income
+tax return.
+Include your share of the net income (profit) from the sale of the property in Box 22B.
+If you have a bright-line loss, do not include it in your income tax return. Instead keep your own record of
+all your bright-line losses. The loss must be carried forward to a later income year where it can be used to
+offset income from other taxable land sales, including bright-line.
+Complete a Bright-line property sale information - IR833 form for each bright-line property sold or
+disposed of and include it with your return. The form explains how to calculate the resulting profit or
+loss.
+ird.govt.nz                                                                                                   32
+
+
+Complete the form even if the details have been included in a Financial statements summary - IR10 or
+set of accounts, unless the income will be included in your return as part of your business income as a
+property speculator, property dealer, developer or builder.
+
+Box 22C Other residential income
+Write the total other residential income in Box 22C. This includes the total from the following amounts:
+•   income in relation to a loan denominated in a foreign currency from the portfolio and/or individual
+    property
+• all depreciation recovery income from assets disposed of from the portfolio and/or individual
+    property
+• net income from the taxable disposal of a residential property outside the residential property
+    deduction rules because it is held on revenue account.
+Write any net tax losses from disposals of rental properties that are excluded from the residential
+property deduction rules in Box 25B.
+
+Box 22D Total combined residential income
+The amount in Box 22D is the total amount of Box 22A, Box 22B and Box 22C.
+
+    Note
+    If you are a partner in a partnership or owner of a look-through company and have been attributed
+    residential income at Box 26G on the IR7P or IR7L, include your share of that in proportion to your
+    share in the partnership or effective look-through interest in the LTC in the following relevant boxes:
+    •   Gross residential rental income Box 22A
+    •   Net bright-line profit (excluding losses) Box 22B
+    •   Other residential income Box 22C.
+    The amount in Box 22D will then include the total of your attributed residential income at Box 26G
+    on the IR7P or IR7L.
+
+Boxes 22E to 22I in your return
+Write the total eligible deductions for the year for all ring-fenced residential rental properties in
+Residential rental deductions Box 22E.
+If you are a partner in a partnership or owner of a look-through company and have been attributed
+residential rental deductions shown at Box 26M on the IR7P or IR7L, include that here at Box 22E.
+Do not include purchase costs, capital improvements or costs incurred when disposing of the property
+here. They are included when calculating the net income for taxable disposals. This is the total before
+adjusting for excess deductions.
+Write the total excess deductions brought forward from last year in Box 22F.
+33                                                                         IR3G INDIVIDUAL RETURN GUIDE
+
+
+Write the total residential rental deductions claimed this year in Box 22G. This amount cannot exceed
+the lesser of the following:
+•    Total combined residential income Box 22D
+•    Residential rental deduction Box 22E plus Excess residential rental deductions brought forward Box
+     22F.
+The amount cannot exceed the above unless you have sold an individual property or the last property in
+a residential portfolio and the sale was taxable.
+The amount in Box 22H should equal Total combined residential income Box 22D minus Residential
+rental deductions claimed this year Box 22G.
+Any losses are counted as zero unless the loss is the result of either:
+•     excess deductions released from either a taxable disposal of a property held on the individual basis,
+      or a taxable disposal of all properties or the last property held in a portfolio, or
+•     claimable interest paid on your investment in a residential land-rich entity. Refer to the Rental
+      income - IR264 guide.
+Write the amount of all excess deductions for the year to be carried forward to next year in Box 22I.
+
+    Note 1
+    If you sell or dispose of an individual property and the sale is not taxable, or you sell or dispose of
+    the last property in a portfolio and at least 1 of the sales in the portfolio was not taxable, any excess
+    deductions will transfer to another property or portfolio and carried forward to a future year in which
+    you earn income from a residential rental property (including properties on revenue account).
+
+    Note 2
+    If you sell or dispose of an individual property and the sale is taxable, or you sell or dispose of the last
+    rental property in a portfolio and the sale of all your rental properties in a portfolio were taxable, any
+    remaining loss/excess deductions are released and can be offset against other income. However, this
+    does not include any excess deductions transferred to the portfolio/property.
+
+    Note 3
+    If you want to claim that a property is held on revenue account where the sale may be taxable, you need
+    to notify us of the details of the property. You will be stating the sale will be a taxable sale when the
+    property is disposed of. You must be able to separately identify the deductions relating to the property.
+For more information read the Rental income - IR264 guide.
+Residential land-rich entities
+If you have an investment in a land rich entity, include:
+•     interest relating to the residential rental activity you can claim this year under the residential
+      property deduction rules in Box 22G and any remaining amount carried forward in Box 22I
+•     a note attached to your income tax return advising the above amounts relate to an investment in a
+      land rich entity, to ensure quick processing of your return
+•     the amount of interest paid that does not relate to the residential rental property in Box 23.
+ird.govt.nz                                                                                                  34
+
+
+Question 23 Income from other rental activities
+Show income you received from other rental activities between 1 April 2025 and 31 March 2026 at Question 23.
+Only include net residential rental income or losses not included at Question 22 and commercial rental
+income in Box 23. This includes rents from:
+• a bach or holiday home that comes within the mixed-use asset rules
+• the main home
+• rental properties held on revenue account, such as part of a business dealing in land or building
+    residences, or
+• a commercial property.
+Prepare a summary of the details for each rental property. You can use either:
+• the Rental income - IR3R form, which asks for all the information we need, or
+• your own summary.
+If you need an IR3R form, you can print a copy from ird.govt.nz/forms-guides
+If you prepare your own summary, refer to the IR3R form or the Rental income - IR264 guide to find out
+what to include.
+
+What to show in your return
+Add up the net rents (total rents after expenses) and write the total in Box 23. Attach the IR3R, or your
+summary, to your income tax return.
+Keep your receipts with your records in case we ask to see them later.
+
+Question 24 Self-employed income
+If you received self-employed income between 1 April 2025 and 31 March 2026, show your net income at
+Question 24.
+If you received the wage subsidy, show the total wage subsidy amount received at Question 26 (this
+amount must be separated from your self-employed income).
+
+Schedular payment income
+Do not show any schedular payment income at Question 24. This income is declared at Question 12. If
+you are an ACC client or caregiver and received ACC personal service rehabilitation payments, read the
+information on page 56 before you complete Question 12.
+If you received a wage subsidy from your employer without tax deducted refer to Question 12 and 26,
+show this amount in Question 26.
+You can claim expenses and deductions against many schedular payments at Question 12C - see page 14.
+
+Attribution rules
+The attribution rule may apply where an individual provides services to an associated person (company,
+trust, partnership).
+In particular, it can apply where the associated person sells those services on, principally to a third party.
+To find out how to apply this rule, please read Interpretation statement 19/02 ‘Income tax – attribution
+rule for income from personal services’.
+35                                                                     IR3G INDIVIDUAL RETURN GUIDE
+
+
+Prepare a summary of details
+You can use any of the following:
+• your financial records
+• the Farming income - IR3F form for agricultural businesses
+• the Business income - IR3B form for other businesses
+• the Financial statement summary - IR10 form.
+The Financial statement summary - IR10 is a short form of the financial statements of a business. Use
+an IR10 and speed up processing of the return. We do not need a set of accounts if you use the IR10. You
+still need to complete a set of financial accounts and keep them in case we ask for them later. For help
+with completing the IR10, see our IR10 guide.
+Keep your receipts with your records in case we ask to see them too.
+
+Providing childcare services in a home
+Based on the Education (Home-Based Care) Order 1992 and/or the Licensing Criteria for Home-
+Based Education and Care Services 2008, Inland Revenue's Determination DET 09/02: Standard-Cost
+Household Service for Childcare Providers sets out the types of expenditure generally incurred
+(standard cost) by individuals providing childcare services in their home.
+If you are a childcare provider who's registered for GST, this determination does not apply to you.
+Individuals providing childcare services in their homes may use the standard costs (set out in the
+determination) or their actual costs and income for calculating their tax. If your childcare activities began
+part-way through the year, calculate your tax from that date using either the standard costs or actual
+costs. See our Tax Information Bulletin (TIB) Vol 17, No 4 (May 2005) for details.
+If you use the standard cost method and received the wage subsidy refer to ird.govt.nz/covid-19/
+business-and-organisations for information on how to calculate this including the wage subsidy.
+Show your childcare income at Question 24 if:
+• the determination applies to you, and your childcare taxable income is greater than nil, after
+   standard costs have been deducted, or
+• you keep full records of your childcare income and actual expenses, and you make a taxable profit or
+   loss after expenses have been deducted.
+If you need help deciding whether you need to declare childcare income using standard costs, contact us.
+
+ Note
+ You can not offset any loss calculated using standard costs (see the determination) against other
+ income in any income year.
+
+Childcare services not under the Education (Home-Based Care) Order 1992
+These childcare providers can not use the determination. They must keep full records of actual income
+and expenses and are liable for tax on their total income after actual expenses are deducted for childcare
+services provided.
+At Question 24 show any childcare taxable income or loss after expenses have been deducted.
+
+ACC levies
+Income from self-employment is liable for ACC levies which ACC will invoice you for.
+ird.govt.nz                                                                                                36
+
+
+Question 25 Income from taxable sales or disposals of property
+Include all income and tax losses from land sales or disposals of other property not included at Question 22.
+Profits from land sales are taxable if you bought a property (including overseas property) for the purpose
+of reselling it or are in the business of buying and selling land and/or buildings.
+The profits may also be taxable if you:
+• are a builder and improved a property before selling it
+• developed or subdivided land and sold sections
+• had a change of zoning on your property and sold it within ten years of buying it, or
+• sold a mixed-use asset.
+Write the total profit or loss from the sale or disposal of other property in Box 25B.
+Net profit from the sale of a property taxable under the bright-line test is included in Box 22B. The only
+exception is the sale of a mixed-use asset that is taxable under the bright-line test, include this in Box 25B
+instead. Do not include any net loss from the sale of a property taxable under the bright-line test.
+For more information on the land sale rules, go to ird.govt.nz/buying-selling or our guide Tax and your
+property transactions - IR361. You can find our forms and guides at ird.govt.nz/forms-guides
+
+Box 25A Residential land withholding tax (RLWT) credit
+If you are an ‘offshore RLWT person’ and have sold or transferred residential property located in
+New Zealand, RLWT may have been deducted from the sale price. You should have received a statement
+on the completion of the sale process showing the amount of RLWT deducted. You can claim a credit
+for any RLWT deducted. Show the amount of RLWT deducted, less any RLWT paid back to you and/or
+transferred to outstanding amounts during the income year.
+If there was more than 1 amount of RLWT deducted, show the combined amount, less any RLWT paid
+back to you and/or transferred to outstanding amounts during the income year.
+Attach a note showing the name of your withholder(s) to the return.
+
+Question 26 Government subsidy
+The government subsidy box is used to report the TOTAL Covid-19 wage subsidy, wage subsidy
+extension, wage subsidy resurgence and wage subsidy March 2026 payments received by an individual
+where tax was not deducted at source and passed on to Inland Revenue e.g. received by the employer
+and passed on as salary/wages with normal PAYE etc deductions.
+The resurgence support payment (RSP) is not subject to income tax and therefore does not need to be
+included in this box as income. Where the RSP has been received you need to reduce your expenditure
+claims to the extent of the total RSP’s you received.
+If your employer received the wage subsidy on your behalf and continued to pay your salary/wages or
+contractor payments, and these have been reported in the gross earnings or schedular payments fields,
+you are not required to include the amounts in this box.
+If you received any wage subsidy payment that has not been dealt with via payroll as noted above, for
+example customers that received the wage subsidy payments due to loss of self-employed income,
+shareholder salary or partnership/LTC income; you will need to report it in this box.
+Full details, including various scenarios that apply to wage subsidy receipts and what amount to report
+can be found at ird.govt.nz/covid-19/business-and-organisations
+37                                                                       IR3G INDIVIDUAL RETURN GUIDE
+
+
+Question 27 Other income
+If you received any other income between 1 April 2025 and 31 March 2026, show it at Question 27.
+This may include:
+• the sale of non-FIF shares or other property
+• financial arrangements
+• cash jobs, payments made 'under the table', tips, bartering or income from an illegal enterprise
+• any share of partnership income as a result of capital investment
+• free or discounted shares received under an employee share scheme if your employer has not
+     provided us with this information as per instructions in Question 11.
+If you are not sure if your income is taxable, contact us.
+
+Income from the sale of non-FIF shares or other property
+The profits are taxable if you bought:
+• and sold shares or other property as a business
+• shares or other property for the purpose of resale, or
+• shares or property to make a profit.
+This does not apply to shares that are FIFs. Write the total profit in Box 27. Attach the details of your
+income and expenses from these sales to your return.
+
+Sale or disposal of assets
+If you sold or disposed of a depreciated asset for more than its adjusted tax value, contact us or refer to our
+Depreciation - IR260, General depreciation rates - IR265 or Historic depreciation rates - IR267 guides.
+
+Losses from the sale of shares or other property
+If you made a loss and can show that if you'd made a profit, it would have been taxable, you may be able
+to claim the loss as a deduction.
+
+Financial arrangements
+If you are a party to a financial arrangement, you must account for income from those arrangements
+on an accrual basis. Financial arrangements include government stock, futures contracts and deferred
+property settlements, excluding short-term agreements for sale and purchase of property.
+A cash-basis person does not need to use the accrual method to calculate income. From the 2025–26
+income year, you qualify as a cash-basis person if:
+• on every day in the income year the absolute value of all financial arrangements added together is
+    $2,000,000 or less
+• the absolute value of your income and expenditure in the income year under all financial
+    arrangements is $200,000 or less, and
+If you held the financial arrangement prior to the 2025-26 income year, different thresholds applied.
+Note the ‘absolute value’ is the value of an amount whether it is positive or negative.
+ird.govt.nz                                                                                                  38
+
+
+Sale or maturity of financial arrangements
+Whether or not the exemption from the spreading method applies, you must do a ‘wash-up’ calculation
+in certain circumstances. For example:
+• a financial arrangement matures, is sold, remitted or transferred
+• there is an absolute assignment of the financial arrangement
+• a party to a financial arrangement is released from making all remaining payments under the
+     Insolvency Act 1967, the Companies Act 1993 or the laws of a country or territory other than
+     New Zealand, or
+• you cease to be a resident of New Zealand.
+The calculation ensures that the total gains or losses from the financial arrangement are brought to
+account. This applies in every case - you do not have to be in the business of buying or selling financial
+arrangements, or have bought them for the purpose of resale, as you would with shares.
+When calculating the income or expenditure on sale, use our Sale or disposal of financial arrangements
+- IR3K form.
+
+Income from cash jobs, tips, ‘under the table’ payments, bartering or an
+illegal enterprise
+If you received any other type of income that did not have tax deducted from it, show it in Box 27.
+Attach the details of your income and any expenses to your return.
+
+Share of partnership income as a result of capital investment
+If your share of partnership income is received in recognition of your capital investment in the
+partnership and you did not take any active part in the day-to-day operation or management of the
+business (for example, you were a sleeping partner), show your share of partnership income in Box 27.
+
+Question 29 Other expenses and deductions
+If you paid any of these expenses, between 1 April 2025 and 31 March 2026, you can claim them in
+Box 29.
+• a fee to someone for completing your tax return
+• commission on interest or dividend income (but not bank fees - they're a private expense)
+• additional expenses incurred in earning partnership income, for example interest on capital
+     borrowed to purchase a share in the partnership
+• interest on money you borrowed to buy shares or to invest - as long as the investment will produce
+     some taxable income
+• premiums on loss of earnings insurance (income protection), provided the benefit from the
+     insurance policy is taxable, or
+• interest paid to Inland Revenue for late payment of tax, only if the interest is not already included as
+     a deduction in your accounts
+• Do not include expenses from self-employed income here - see Question 24 Self-employed income
+     on page 34.
+39                                                                   IR3G INDIVIDUAL RETURN GUIDE
+
+
+ACC personal service rehabilitation payments
+If you are an ACC client and received ACC personal service rehabilitation payments and have
+retained some of these, you may claim the payments you've made to your caregiver as a deduction at
+Question 12C. Read the information on page 56 before you complete Question 12C.
+
+Schedular income expenses
+If you incurred expenses while earning income that has had tax from schedular payments deducted,
+you claim these at Question 12C, not here.
+
+Other expenses
+For other expenses, attach the details to your return. Include your name and IRD number.
+You cannot claim expenses against income from:
+• salary and/or wages
+• election day services
+• casual agricultural work, or
+• commissions, if you are also paid a salary or retainer from the same employer.
+You can still claim expenses for having your tax return completed for you and loss of earnings insurance
+premiums from these income sources.
+
+ Note
+ If you are GST-registered you must deduct any GST included in any expenses. GST-registered people
+ claim the GST portion of their expenses in their GST return, not the IR3.
+
+ACC levies
+ACC will take into account all expenses shown in Box 29 when calculating any ACC levies due.
+
+Question 31 Net losses brought forward
+You can find the amount of net loss you have to bring forward on the loss carried forward letter we sent
+you after your last year’s return acknowledgement or notice of assessment. Add up all net losses to be
+brought forward and print the total in Box 31A. Print the amount you can claim this year in Box 31B.
+ird.govt.nz                                                                                                         40
+
+
+Your tax credits
+Tax credits can reduce the tax you have to pay on your income.
+
+Other tax credits
+Donation tax credits are claimed separately on a Tax credit claim form - IR526 or you can submit a
+receipt for donations in myIR. Go to ird.govt.nz/donations for more information.
+
+Question 33 Independent earner tax credit (IETC)
+You can calculate your IETC:
+• by using the worksheets provided in this section, or
+• by calling our self-service line - see page 62.
+
+IETC
+The IETC is a tax credit if your annual net income* is between $24,000 and $70,000.
+Your annual net income is shown at Box 30 ‘Income after expenses’ in your return.
+If you are eligible for IETC, but earn over $66,000, your annual entitlement to IETC abates (decreases) by
+13 cents for every dollar earned above that amount.
+You’ll be entitled to IETC for any months during the year:
+• you were a New Zealand tax resident
+• you or your partner were not entitled to Working for Families (or received an overseas equivalent)
+     and you did not receive:
+     – main benefit
+     – NZ Super
+     – a veteran's pension, or
+     – an overseas equivalent of any of the above.
+You are a tax resident if you lived in New Zealand for more than 183 days in the last 12 months or have
+a permanent place of abode in New Zealand. For more information, read our guide New Zealand tax
+residence - IR292.
+To work out the months you are entitled to IETC, use the total number of whole months the criteria
+applied to.
+If you did not meet the above criteria for even 1 day of any month you will not be entitled to IETC at
+all for that month, so do not include it in your calculation.
+*	Net income means your total income from all sources, less any allowable deductions or current year losses (not
+   including any losses brought forward).
+
+Calculating your IETC
+Enter the start and end dates when you had any overseas income that excludes you from being eligible
+for IETC at Box 33B on your return.
+If the overseas income continued past the end of the year enter the end date for the income as
+31/03/2026.
+41                                                                    IR3G INDIVIDUAL RETURN GUIDE
+
+
+If you have more than 1 date range for the overseas excluded income, attach a note telling us of the date
+ranges. You'll also need to include any dates you were not a New Zealand tax resident.
+Tick the boxes below for each month (between 1 April 2025 and 31 March 2026) you were entitled to the
+IETC for the full month.
+
+     A        M        J        J       A        S        O       N       D        J        F       M
+
+
+
+ Total number of months eligible                         Box A
+                                                         Add the number from Box A to Box 33C of your
+                                                         return.
+
+
+     Use this worksheet to calculate your IETC entitlement
+
+     Enter your income from Box 32, of your return, in Box A          A
+
+     Calculate abatement
+     If your income in Box A is more than $66,000 continue to Box B, otherwise enter $520 in Box D and
+     continue to Box E
+
+     Subtract $66,000 from Box A and enter it in Box B                B
+
+
+     Multiply Box B by 0.13 and enter the amount in Box C             C
+
+
+     Subtract Box C from $520 and put the amount in Box D             D
+
+     Enter your number of months eligible for IETC (from Box A
+                                                                      E
+     near the top of the page)
+
+     Multiply Box D by Box E and enter the amount in Box F            F
+
+
+     Divide Box F by 12 and enter the amount in Box G                 G
+
+                                                                          This is your IETC. Copy it to
+                                                                          Box 33 of your return.
+ird.govt.nz                                                                                                 42
+
+
+Question 34 Excess imputation credits brought forward
+If you had excess imputation credits in your previous year’s tax return, they are not refundable and must
+be brought forward and claimed against this year's tax payable.
+
+Where to find your excess imputation credits to bring forward
+You can find the amount on the excess imputation credits carried forward letter we sent you after your
+previous year’s return acknowledgement or notice of assessment.
+If you have excess imputation credits to bring forward but did not receive confirmation of the amount,
+you can get a copy of your letter in myIR or contact us.
+
+What to show in your return
+Enter the excess imputation credits brought forward to this year in Box 34 of your return. Also enter this
+amount in Box 8 of your tax calculation on page 47 in this guide.
+
+Question 35 Portfolio Investment Entity calculation
+To find out what PIR you should have used, go to ird.govt.nz/pir
+You will need your Summary of income, access to your details in myIR, or the investor statements from
+your PIEs. These will show your taxable PIE income or loss, PIE tax paid or refunded to the PIE and the PIR
+they used.
+
+If you closed your PIE investment during the year
+If you exit certain PIEs (Quarterly PIE) part-way through a quarter, they may calculate your PIE tax
+liability at the end of that quarter using a zero rate of tax, or they may voluntarily pay the tax using your
+PIR. Your investor statement will show the income you earned up to the end of the quarter and any tax
+credits. Any remaining balance you have at the end of the quarter is also treated as a tax credit.
+
+PIE losses and tax credits
+If you have any credits, include them in Box 2 in the worksheet below. If you had a PIE loss the PIE would
+have claimed a tax refund for you. Show the tax refund amount as a negative in box 2. If you have both
+tax credits and negative amounts, reduce the negative by the amount of any additional tax credits.
+
+PIE worksheet
+Copy the Total PIE deductions and Total PIE Income/Loss from your Summary of Income, details in myIR
+or your investor statements to boxes 35A and 35B of your return. Then copy box 35A to Box 2 and 35B to
+Box 1 in the worksheet below.
+43                                                                    IR3G INDIVIDUAL RETURN GUIDE
+
+
+ Use this worksheet to complete your PIE calculation
+                                                                                   Show a PIE loss as a
+ Total PIE income/loss             1                                               negative
+
+                                                                                   Show PIE tax refunded as
+ Total PIE deductions              2                                               a negative
+
+                                                                             To confirm your corrrect PIR go
+ Correct PIR                       3                     %                   to ird.govt.nz/pir
+
+ Correct tax on PIE income
+                                   4
+ Multiply Box 1 by Box 3
+
+ PIE calculation outcome
+                                   5
+ Deduct Box 2 from Box 4
+
+Copy the amount in Box 5 to Box 35C of your return, if you are entitled to a refund of PIE tax enter a
+minus sign at the end of the cents box.
+If your PIE calculation outcome in Box 5 is a debit, add it to your tax on taxable income in the worksheet
+in the next section.
+
+
+Calculating your tax
+Tax on taxable income
+You can calculate your tax:
+• on our website ird.govt.nz/tools-calculators
+• by using the worksheet below, or
+• by calling us on our 0800 self-service line - see page 62.
+Find your taxable income in the following table, use the values (A, B and C) to complete the worksheet
+below.
+
+     If your taxable income is:     Income threshold              Tax rate                      Tax
+                                          (A)                       (B)
+                                                                                                (C)
+
+         $0.00 to $15,600                   $0                     .1050                        $0
+
+        $15,601 to $53,000                $15,600                  .1750                    $1,638.00
+
+        $53,501 to $78,100                $53,500                   .30                     $8,270.50
+
+        $78,101 to $180,000               $78,101                   .33                     $15,650.50
+
+        $180,001 and over                $180,000                   .39                     $49,277.50
+ird.govt.nz                                                                          44
+
+
+ Use this worksheet to calculate your tax on taxable income
+ Copy your taxable income from Box 32 of your return to           1
+ box 1.
+ Copy your Income threshold (A) from the table above to           2
+ Box 2.
+ Subtract Box 2 from Box 1. Print the answer in Box 3.            3
+ Copy your Threshold tax rate (B) from the table above to         4
+ Box 4.
+ Multiply Box 3 by Box 4. Print the answer in Box 5.              5
+
+ Copy your Threshold tax (C) from the table above to Box 6.       6
+
+ Add Box 5 and Box 6. Enter the answer in Box 7.                  7
+ If Box 36C of your return is a positive amount of tax to pay     8
+ enter that in Box 8, if not enter 0.
+ Add Box 7 and Box 8. Print the answer in Box 9.                  9
+ This is the tax on your taxable income. Copy it to Box 2 in the table below.
+
+Question 36 Tax calculation
+ Use this worksheet to work out the amount of tax to pay or amount to be refunded.
+ Copy your taxable income from Box 32 of your return to
+ Box 1. If the amount is a loss, print ‘0.00’.
+                                                                  1             00
+ Work out the tax on taxable income from the worksheet
+ above. Print your answer in Box 2.                               2
+ Copy this amount to Box 36 of your tax return.
+ Copy your tax credit from Box 33 of your return to Box 3.        3
+ Subtract Box 3 from Box 2. Print your answer in Box 4.
+ If Box 3 is larger than Box 2 print ‘0.00’.
+                                                                  4
+ Copy your overseas tax paid, if any, from Box 17A of your
+ return to Box 5.
+                                                                  5
+ Subtract Box 5 from Box 4. Print your answer in Box 6.
+ If Box 5 is larger than Box 4 print ‘0.00’, then read Tax paid   6
+ overseas on page 22 in this guide.
+ Copy your imputation credits, if any, from Box 14 of your
+ return to Box 7.
+                                                                  7
+ Copy your excess imputation credits brought forward from
+ Box 34 of your return to Box 8.
+                                                                  8
+45                                                                    IR3G INDIVIDUAL RETURN GUIDE
+
+
+ Add up your total imputation credits from Boxes 7 and 8,
+ and print the total in Box 9.
+                                                                      9
+ Subtract Box 9 from Box 6. Print the answer in Box 10.
+ If Box 9 is larger than Box 6 print ‘0.00’, then read excess         10
+ imputation credits carried forward on page 42.
+
+ If Box 35C is an amount of overpaid PIE tax print in Box 11.         11
+ Copy your tax credit subtotal from Box 21A of your return
+ to Box 12.
+                                                                      12
+
+ Add Box 11 and Box 12. Print the answer in Box 13.                   13
+
+ Subtract Box 13 from Box 10. Print your answer in Box 14.            14
+ If Box 13 is larger than Box 10, the result is a credit. If Box 10            Credit       Debit
+                                                                    (Tick one)
+ is larger than Box 13, the result is a debit.
+ Box 14 is your residual income tax. Copy this amount to Box 36A of your tax return.
+
+ Print any 2026 provisional tax paid in Box 15.                       15
+ If Box 14 is a credit, add Box 15. Print the answer in Box 16.
+ This is your refund.
+                                                                   16
+ If Box 14 is a debit, subtract Box 15 from Box 14. Print your
+ answer in Box 16. This is your tax to pay. (If Box 15 is larger (Tick one)     Refund      Tax to pay
+ than Box 14 the difference is your refund.)
+ Please copy the answer in Box 16 above to Box 36B of your tax return.
+
+Excess imputation credits carried forward
+Imputation credits are treated differently from RWT. If you received dividends from a New Zealand
+company that gave you imputation credits or an Australian company that gave you New Zealand
+imputation credits, you may have excess imputation credits to carry forward. This will only happen if
+your total imputation credits (including any excess imputation credits brought forward from last year)
+are greater than your total tax payable.
+Use the worksheet below to work out the excess imputation credits that must be carried forward to next
+year’s tax return. We'll send you a letter confirming the amount.
+
+     Worksheet
+     Copy your total imputation credits from Box 9 in the         1
+     worksheet above to Box 1.
+
+     Copy your total tax payable from Box 6                       2
+     of your tax calculation on page 44 in this guide to Box 2.
+
+     Subtract Box 2 from Box 1. Print your answer in Box 3.       3
+ird.govt.nz                                                                                              46
+
+
+  This is your excess imputation credits amount to carry forward.
+
+
+Student loan
+We'll work out how much of your student loan you need to repay, based on your income. If you have
+an end-of-year repayment obligation we'll send you a notice showing how much is due. If you want to
+calculate the amount yourself, either use the worksheet provided here or go to ird.govt.nz/calculators
+and use our student loan repayment calculator.
+
+Interest-free student loan
+If you've lived in New Zealand for 6 months (183 days) or more, your student loan is interest-free.
+Even if you have not been in New Zealand for 6 months, you may qualify for an interest-free student loan
+if you meet the criteria for an exemption.
+Go to our website ird.govt.nz/sl-interest-free for more details.
+
+End of year repayment obligation
+Repayment deductions from salary or wages are generally considered your final obligation on that
+income and do not form part of your end-of-year repayment obligation.
+Income from casual agricultural work and election day work does not have student loan deductions.
+This income is excluded as salary and wage income and becomes part of adjusted net income.
+If you have a loss from an investment or business activity, any income or deductions are excluded in
+calculating your adjusted net income. If you have separate business or investment activities which are
+normally carried out in association with each other, you can offset a loss from 1 business or investment
+activity against other like income. For example, Rory has an overall loss from his landscaping business of
+$7,500. He has also made a profit from his lawnmowing service of $50,000. The activities are carried out
+in association with each other, so Rory can claim the $7,500 loss against the $50,000 profit.
+Income adjustments are now required to be part of your adjusted net income. For a full list of the
+adjustments required go to ird.govt.nz/adjust-income
+You'll only have an end-of-year repayment obligation if you:
+• have adjusted net income of $500 or more with a total income (including salary or wages) of $24,128
+    (annual repayment threshold plus $500) or more, or
+• had an interim assessment for the year.
+
+ Note
+ Adjusted net income is your annual gross income, excluding salary or wages and less annual total
+ deductions you may claim. If you have a loss from an investment or business activity, neither the
+ income or the deductions from that activity are included in calculating your adjusted net income. If
+ you have separate business or investment activities which are normally carried out in association with
+ each other, a loss from 1 business or investment activity can be offset against other like income.
+Annual total deductions are the expenses and deductions you can claim for the tax year.
+
+ Note
+47                                                                     IR3G INDIVIDUAL RETURN GUIDE
+
+
+ If you are required to complete an Adjust your income - IR215 form, you cannot use this worksheet
+ to calculate your repayment obligation. Once we have received your IR3 and your IR215 we will send
+ your end-of-year repayment obligation.
+
+
+ Use this worksheet to calculate your 2026 repayment.
+
+ Annual repayment threshold.                                           1          24,128 00
+ Copy any gross salary or wage income (excluding casual
+ agricultural or election day income) from Box 11B of your             2
+ return to Box 2.
+
+ If Box 2 is more than Box 1 print $0.00 in Box 3, otherwise
+ subtract Box 2 from Box 1 and print the result in Box 3.
+                                                                3
+ This is your unused repayment threshold you can use against your other income.
+
+ Enter your income after expenses from Box 30 of your return
+ (excluding any losses), less any salary and wage income from          4
+ Box 2 in Box 4.
+ Subtract Box 3 from Box 4. If the result is less than $500.00
+ print $0.00 in Box 5. Otherwise, print the result in Box 5 (this      5
+ is your total liable income).
+ Multiply the amount in Box 5 by 0.12 (12%).                           6
+ This is your end-of-year payment obligation for the 2026 tax year.
+
+ Print any 2026 voluntary repayments made to Inland
+ Revenue in Box 6A.
+                                                                      6A
+ Print any 2026 interim payments made to Inland Revenue in
+ Box 6B.
+                                                                      6B
+
+ Add Boxes 6A and 6B together and print the result in Box 7.           7
+
+ Subtract Box 7 from Box 6 and print your answer in Box 8.             8
+ If Box 7 is less than Box 6, the difference is your end-of-year
+ loan repayment.                                                                  Loan repayment
+                                                                     (Tick one)
+ If Box 7 is larger than Box 6, the difference is your end-of-year                Overpayment
+ overpayment.
+
+Question 37 Early payment discount
+An early payment discount is available for people who:
+• are either self-employed or a partner in a partnership
+• are new in business
+• derive income mainly from the business
+ird.govt.nz                                                                                              48
+
+
+•     have no obligation to pay provisional tax in their current tax year
+•     made payments within the corresponding income year up to their balance date, for example a
+      standard balance date taxpayer, who has made a payment or payments on or before 31 March 2026
+      as income tax for the period 1 April 2025 to 31 March 2026
+•     elect by 31 March of the following year, for example a taxpayer electing for the year ending 31 March
+      2026, must elect on or before 31 March 2027.
+For more information about early payment discount, work through the flow chart on the following page
+or go to ird.govt.nz/early-payment-discount
+
+Do you qualify for an early payment discount?
+    Terms we use
+    Provisional tax - this is tax paid in instalments during the year, based on what you expect your
+    income to be, or what it was last year.
+    Assessable income - income that is not exempt income or excluded income (for example a
+    government grant to a business). Assessable income includes undeclared business income you may
+    have earned (for example cash jobs).
+    Year - as referred to in the diagram below, year means the standard tax year from 1 April to 31 March,
+    unless you have an approved different balance date, in which case your income year will end then.
+    If you have any questions about your entitlement to the discount, please contact us.
+49                                                                         IR3G INDIVIDUAL RETURN GUIDE
+
+
+ Are you self-employed or in a partnership                                           Have you made a
+ and                                                     Yes                         voluntary payment
+ you do not use a company or trust to run                       No                   of income tax for the
+ your business                                                                       2026 year on or before
+ and                                                                                 31 March 2026?
+ most of your income is from your business -
+ not interest, dividends, rents or benefits?
+                                                                                           Yes
+       No
+
+                                                                                     Were you liable
+ You do not qualify
+                                                             Yes                     for provisional tax
+                                                                                     during 1 April 2019 to
+                                                                                     31 March 2026?
+      Yes
+                  Did you earn assessable income from a business in a                      No
+                  four-year period since you last paid provisional tax?
+      No          For example:
+                   Year 0.          Year Year Year Year        Year 5.               Have you ever paid
+                                                                               Yes   provisional tax?
+ You qualify       You last paid    1    2    3    4           Eligible
+ for an early      provisional                                 for early
+                   tax              No assessable income       payment
+ payment                            from a business during                                 No
+ discount. To                                                  discount
+                                    this period
+ apply, tick
+ the box at
+ Question 37      Did you earn assessable income from a business in a          Yes   Have you ever claimed
+ on your tax      four-year period since you last claimed the early payment          the early payment
+ return.          discount? For example:                                             discount?
+
+                      You claimed   Year Year Year Year        Year 5.
+      No              an early      1    2    3    4           Eligible                    No
+                      payment                                  for early
+                      discount      No assessable income       payment
+                                    from a business during     discount
+      Yes                           this period                                      You qualify for an early
+                                                                                     payment discount. To
+                                                                                     apply, tick the box at
+ You do not qualify                                                                  Question 37 on your
+                                                                                     tax return.
+ird.govt.nz                                                                                                  50
+
+
+Question 38 Refunds and/or transfers
+If you are entitled to a refund, you can:
+• transfer all or part of it to your student loan
+• transfer all or part of it to cover someone else's income tax or student loan
+• transfer all or part of it to next year’s provisional tax, or
+• have it direct credited to your nominated account shown at Question 8.
+If you've made payments towards your 2027 provisional tax and, after completing this return, you have
+less or no provisional tax to pay, the over payment can be included in the amount we refund or transfer.
+Attach a note to your return to request this.
+
+
+
+Direct credit
+If you choose direct credit you get your refund faster and you can withdraw your money as soon as it is
+credited because there's no clearance time.
+We pay any refund over $1.00 direct into your New Zealand bank account or other deposit account, for
+example a building society account as soon as we've processed your return. Make sure your correct bank
+account number is printed at Question 8 on the front page of your return.
+
+Transfers
+If you'd like your refund transferred to another account or to arrears being paid off through an
+instalment arrangement, you'll need to tell us the date you'd like it transferred.
+The date you can choose depends on what tax has been overpaid and whose account you want the
+credit transferred to.
+
+Requesting transfers on your return
+You can ask us to transfer a refund to another account by filling out the boxes on page 5 of your return.
+If you ask for a transfer on your return, we will transfer your refund at 1 of the following dates:
+Transfer to your own account or an account of someone associated to you, the later of:
+• the day after your balance date (or 1 April if your balance date is before 31 March), or
+• the due date in the destination account.
+Transfer to an account of someone not associated to you:
+• the day after your return was completed.
+If you do not tell us the date you'd like your credit transferred, we will transfer it at a date we think gives
+you the greatest advantage. If you'd like the credit transferred at a different date, you can contact us and
+ask for the transfer date to be changed (including if we've transferred your credit to cover a debt).
+51                                                                      IR3G INDIVIDUAL RETURN GUIDE
+
+
+Associated taxpayers
+The following are associated taxpayers for the purposes of transferring overpaid tax:
+• a company you are a shareholder-employee in
+• a partner in the same partnership
+• a relative (for example child, parent)
+• spouse or partner, or
+• a trustee of a family trust you are a beneficiary of.
+
+Transfers requiring a separate note attached to the return
+Situations such as requesting a transfer at a future date, transfer to arrears being paid off by an instalment
+arrangement and transfers at a different date will require you to attach a separate note to your return
+advising the following specific details.
+• The amount you want transferred.
+• The account you want it transferred to, for example name, IRD number, tax type and period end
+    date (and if it is another person, whether they're associated).
+• The date you'd like the credit transferred.
+• If it is to be transferred to debt covered by an instalment arrangement.
+Special rules apply if the return period has had tax pooling funds transferred in.
+
+
+Provisional tax
+Question 39 Provisional tax
+Provisional tax is generally payable because you earned income during the year that either:
+• was not taxed, or
+• was taxed at the wrong rate.
+It is usually payable in 3 instalments during the year (28 August 2026, 15 January 2027, 7 May 2027),
+unless:
+• you have a non-standard balance date
+• you pay GST on a 6-monthly basis, or
+• you use the GST ratio method to calculate provisional tax.
+Where an instalment date falls on a weekend or a public holiday, payments made or returns filed on the
+next working day will be treated as being received on the instalment date,
+If your residual income tax (RIT) (Box 36A of your return) is more than $5,000, you’ll need to pay
+provisional tax for the following year.
+For more information read our guides Provisional tax - IR289 or Penalties and interest - IR240.
+
+Initial provisional tax liability
+Special rules apply when interest may be charged for an initial provisional tax liability.
+You will have an initial provisional tax liability if:
+• you begin to derive income from a taxable activity during the tax year
+ird.govt.nz                                                                                                    52
+
+
+•     your RIT in any of the 4 preceding tax years did not exceed $5,000 ($2,500 for the 2019-20 and earlier
+      years), and
+•     your RIT for the current year is $60,000 or more.
+If this applies to you, read our guide Provisional tax - IR289.
+The date you cease employment determines when interest will be charged from.
+You are not liable to pay provisional tax in the year you have an initial provisional tax liability. You may
+make voluntary payments to reduce your interest liability.
+Interest rules if you have an initial provisional tax liability
+Special rules apply to when interest may be charged for an initial provisional tax liability. If this applies to
+you, read our guide Provisional tax - IR289.
+
+Payment options
+You have 3 options for paying provisional tax - the standard option ‘S’, the estimation option ‘E’ or the
+ratio option ‘R’.
+
+Standard option
+Under this option, your 2027 provisional tax is the same as your 2026 RIT (if it is more than $5,000) plus 5%.
+Copy this amount to Box 39B of your return and print ‘S’ in Box 39A. Divide the amount by 3 to get the
+amount you must pay for each instalment - record this on page 55. If you are filing your return after
+28 August, your instalment amounts may be different.
+
+    Note
+    If you think your income for next year will be more than this year income, you can make voluntary
+    payments over and above the amount you have to pay under the standard option.
+
+    Use this worksheet to calculate your 2027 provisional tax using the standard option ‘S’
+
+    Copy your RIT from Box 36A of your return to Box 1.               1
+
+    Multiply Box 1 by 0.05 (5%). Print your answer in Box 2.          2
+
+    Add Box 1 and Box 2. Print your answer in Box 3.
+    Box 3 is your 2027 provisional tax.
+                                                                      3                               00
+    Copy this amount to Box 39B of your return and print ‘S’ in Box 39A.
+    Divide the amount in Box 3 by 3 to get the amount you must pay for each instalment. Record this
+    on page 55.
+If you are completing your return after 28 August, your instalment amounts may be different.
+53                                                                     IR3G INDIVIDUAL RETURN GUIDE
+
+
+Estimation option
+Anyone can estimate provisional tax. If you expect your RIT for next year to be lower than this year,
+estimating will keep you from paying more than you have to.
+If you choose to estimate, your estimate must be fair and reasonable at the time you make it and at each
+instalment date.
+You can be charged a penalty and/or interest if you do not take reasonable care when you estimate your
+provisional tax.
+
+     Use this worksheet to calculate your 2027 provisional tax using the estimation option ‘E’
+
+     Enter your estimated 2027 taxable income in Box 1.            1
+
+     Work out the tax on the amount in Box 1.
+     Enter your answer in Box 2. You can find the rates on our     2
+     website
+
+     Enter your estimated 2027 credits, such as tax credits,       3
+     PAYE deducted, in Box 3.
+
+     Subtract Box 3 from Box 2. Print your answer in Box 4.        4
+     Box 4 is your 2027 provisional tax.
+
+     Copy this amount to Box 39B of your return and print ‘E’ in Box 39A.
+     Divide the amount in Box 4 by 3 to get the amount you must pay for each instalment. Record this
+     on page 55.
+
+Ratio option
+If you are GST-registered you may qualify to use the ratio option to calculate your provisional tax.
+You must apply to use the ratio option, before the beginning of the income year you want to use it in.
+If you've already elected to use the ratio option and want to continue using it, enter R at Box 40A.
+Read our guide Provisional tax - IR289 for more information about the ratio option.
+
+Question 40 Foreign rights disclosure
+If you calculated controlled foreign company (CFC) or foreign investment fund (FIF) income at
+Question 17, you may be required to complete an additional disclosure form for that investment. The
+types of foreign investment that may not require an additional disclosure are investments in countries
+New Zealand has a double tax agreement with as at 31 March 2026 and have used the comparative value
+or fair dividend rate method.
+Full details of the disclosure requirements are available in the April issue of our Tax Information Bulletin
+(TIB).
+If you need help making a disclosure please call 0800 377 774.
+ird.govt.nz                                                                                                    54
+
+
+What to show in your return
+At Question 17 of your return include:
+• any income and tax credits from a CFC or FIF, and
+• any claim for BETA credits.
+See page 19 to find out how to convert your overseas income and tax credits to New Zealand dollars.
+For further information about CFCs and FIFs, go to ird.govt.nz
+
+Question 41 Is your return for a part-year?
+Read the situations listed in Question 41. If any apply to you, tick the ‘Yes’ option and then tick the
+situation that applies and fill in the start and end dates of the return period.
+If you were a tax resident for the full year, but only worked part of the year, please tick the ‘No’ option.
+If you ticked ‘Yes’, this means that your return is not for a full year. We'll calculate your tax and
+income-related tax credits and let you know what they are.
+Where the Return is for a deceased person, from the 2025-26 income year, reportable income received up
+to 28 days following a person’s death can either be included in this return or alternatively in an IR6 estate
+income return.
+
+Question 42 Notice of assessment and declaration
+You must read the declaration and sign the return as being true and correct.
+
+Self-assessment
+You have to assess your liability as part of your return filing obligations. We may amend your assessment
+if a correction is required.
+If you dispute our assessment please go to ird.govt.nz/disputes for more information. The 4-month
+period for you to issue a notice of proposed adjustment (NOPA) to your self-assessment will start on the
+date Inland Revenue receives your return.
+
+Paying your tax
+If you have tax to pay, you must pay it by 7 February 2027. If you have an agent and a standard or late
+balance date you may have until 7 April 2027 to pay. If you think this may apply to you, contact your
+agent for more information. You can pay earlier if you want to.
+
+How to make payments
+Go to ird.govt.nz/pay to find out about paying by:
+• direct debit
+• credit or debit card, or
+• internet banking.
+55                                                                   IR3G INDIVIDUAL RETURN GUIDE
+
+
+Late payment
+We may charge you a late payment penalty if you miss a payment or it is late. We'll also charge you
+interest if you do not make your tax payment by the due date.
+If you can not pay your tax by the due date, please contact us. We'll look at your payment options, which
+may include an instalment arrangement, depending on your circumstances.
+Go to ird.govt.nz/penalties for more information.
+
+Your record of payment
+When you've worked out how much you have to pay, write the amounts on the schedule below. Keep it
+as a record so you do not miss a payment.
+The dates on the schedule apply for a 31 March balance date. If your balance date is different or you are
+registered for GST on a six‑monthly filing frequency or if you have a tax agent, your payment dates may
+be different too. If you are not sure, check with your tax agent or contact us.
+
+ Payment schedule
+ These dates may vary if you have a non-standard balance date, if you have a
+ tax agent or if you are registered for GST on a 6-monthly filing frequency.
+
+ Amount                                                     Date payable
+
+ 2026 income year
+
+ Tax to pay (Box 36B of your return)
+                                                            7 February 2027
+
+
+ 2027 income year
+
+ Total provisional tax (Box 39B of your return)
+
+
+ First instalment (one-third)
+                                                            28 August 2026
+
+ Second instalment (one-third)
+                                                            15 January 2027
+
+ Third instalment (one-third)
+                                                            7 May 2027
+ird.govt.nz                                                                                            56
+
+
+Adjusting an income tax return already completed
+If you want to amend or adjust an income tax return that has already been completed, please send us a
+Notice of proposed adjustment - IR770 (NOPA) through the disputes resolution process. Do not send
+us another return.
+
+ACC personal services rehabilitation payments
+If you've had a workplace injury your employer may manage these payments rather than ACC. If you or
+your caregiver receive these payments, regardless of whether ACC or your employer makes them, you'll
+need to read this information before you complete your return.
+Any ACC personal service rehabilitation payments paid by ACC or your employer direct to the client or
+caregiver, are schedular payments and will have tax deducted before the payments are made.
+If you received these payments you may not be required to complete an IR3, let us know and we’ll
+update our records.
+For backdated lump sum income for ACC personal service rehabilitation payments see page 11.
+
+Do I need to complete?
+Are you a caregiver receiving payments from ACC, or a caregiver paid by a client?
+If this is your only income, you are not required to complete an IR3 and can receive an automatic income
+tax assessment instead. However, you may have another reason to complete an IR3 - see page 5 for more
+information.
+Are you a client who received these payments from ACC and then passed on those payments to your
+caregiver?
+You are not required to complete an IR3 if:
+• you have no other income
+• you have no other reason to complete - see page 5.
+Note the above rules apply whether or not you've passed these payments on to your caregiver.
+If you are not required to complete, please call us on 0800 377 774 and we'll update our records.
+If you are a client or caregiver who is required to complete, read the information on the following
+pages before you complete Questions 12 and 28.
+
+Question 12 Schedular payments
+If you are a caregiver paid directly by ACC
+Use the income from schedular payments information on your Summary of Income (SOI) to help you
+complete your IR3. If you have not received an SOI, call us on 0800 377 774 and we'll send you a copy.
+If you have not given ACC your IRD number, include any payments that are not on your SOI in your IR3.
+Enter the amount of tax deducted in Box 12A. Enter the total gross payments in Box 12B.
+If you are a caregiver paid by the ACC client
+Using the records you've kept on the amount of personal service rehabilitation payments you received
+throughout the year, work out the gross payments to show in your return.
+57                                                                     IR3G INDIVIDUAL RETURN GUIDE
+
+
+Calculating your gross payments
+     Worksheet 1. Calculating your gross payments that had 10.5% tax deducted
+     Print in Box 1 the total amount of payments received that     1
+     had 10.5% tax deducted.
+
+     Divide Box 1 by 0.895.
+                                                                   2
+     Print the answer in Box 2. This is the gross payment.
+
+If any of your payments had the 45% no-notification tax rate applied, you will need to complete the
+following worksheet.
+
+     Worksheet 2. Calculating your gross payments that had 45% tax deducted
+     Print in Box 3 the total amount of payments received that     3
+     had 45% tax deducted.
+
+     Divide Box 3 by 0.55
+                                                                   4
+     Print the answer in Box 4. This is the gross payment.
+
+Total gross payments amount for the year
+     Worksheet 3. Calculating your total gross payment
+
+     Add Boxes 2 and 4 together and print the answer in Box 5.     5
+     This is the gross payment received for the year. Copy it to Box 12B of your return.
+
+ Note
+ If you are registered for GST, your gross schedular payment may include GST. Enter the GST-exclusive
+ amount at Question 12B.
+Calculating your tax deducted
+     Worksheet 4. Calculating your available tax credit
+
+     Add Boxes 1 and 3 together and print the answer in Box 6.     6
+
+     Subtract Box 6 from Box 5 and print the answer in Box 7.      7
+
+
+ Note
+ If the payments you received did not have tax deducted from them or you received any other income
+ that did not have tax deducted from it, print it in Box 24 of your return. Attach the details of your
+ income to your return.
+ird.govt.nz                                                                                             58
+
+
+If you are an ACC client
+If you've kept all payments and have not paid any of the money received from ACC to your caregiver(s),
+use the amounts from schedular payments information on your SOI.
+Enter the tax on schedular payments in Box 12A and enter the total gross payments in Box 12B.
+If you have not received your SOI, you can get these details from myIR or call us on 0800 377 774 and we
+will send you a copy.
+If you have not provided ACC with your IRD number, include any payments that are not on your SOI in
+your IR3.
+If you've passed on all the income to your caregiver(s) you do not need to include these from your SOI at
+Question 12. This is because these payments, when they're all passed to your caregiver(s) throughout the
+year, are considered exempt income to you.
+You will not need to put any amount in Boxes 12A or 12B.
+If you've been reimbursed by ACC for amounts that you've paid to caregiver(s) before 1 April 2025 you
+will not need to put any amount in Box 12B but you'll include the tax on schedular payments from your
+SOI in Box 12A.
+If you've kept some of the income, you'll include the total gross payments from your SOI at Box 12B but
+claim any of these payments you've passed on to your caregiver(s) as a deduction at Question 12C. Read
+Question 12C Expenses related to schedular payments below.
+If you have not given ACC your IRD number, include any payments that are not on your SOI in your IR3.
+Use worksheet 4 ‘Calculating your available tax credit’ on page 57 to determine your tax deductions. This
+total will be added at Question 12A. You'll also need to complete worksheets 1 to 3 on page 59 before
+you can calculate your available tax credit.
+
+Question 12C Expenses related to schedular payments
+If you've kept some of the income
+To help determine your allowable deduction, you'll first need to determine your caregiver's gross payments.
+Complete worksheets 1 to 3 and include the amount from Box 5 at Box 12C of your IR3 return.
+Attach a copy of the payments you made to your caregiver(s) with your IR3.
+59                                                                    IR3G INDIVIDUAL RETURN GUIDE
+
+
+Calculating your deduction
+     Worksheet 1. Calculating the gross payments you have passed to your caregiver that
+     had 10.5% deducted
+     Print in Box 1 the total amount you paid to your caregiver   1
+     that had 10.5% tax deducted.
+
+     Divide Box 1 by 0.895. Print the answer in Box 2.            2
+     This is the gross payment you made to your caregiver.
+
+If any of your payments had the 45% no-notification tax rate applied you'll need to complete the
+following worksheet.
+
+     Worksheet 2. Calculating the gross payments you have passed to your caregiver that
+     had 45% tax deducted
+     Print in Box 3 the total amount you paid to your caregiver   3
+     that had 45% deducted.
+
+     Divide Box 3 by 0.55. Print the answer in Box 4.             4
+     This is the gross payment you made to your caregiver.
+
+Your allowable deduction
+     Worksheet 3. Calculating your allowable deduction
+
+     Add Boxes 2 and 4 together and print the answer in Box 5.    5
+     This is the allowable deduction. Include this amount in Box 12C of your return.
+
+Attach a copy of the payments you made to your caregiver(s) with your IR3.
+Use worksheet 4 on the next page to calculate the tax deducted, which you'll need to include at
+Question 12A.
+ird.govt.nz                                                                                       60
+
+
+Calculating your tax deducted
+  Worksheet 4. Calculating your available tax credit
+
+  Copy the amount from Box 5 on worksheet 3 to Box 1.           1
+
+  Add Boxes 1 and 3 on page 59. Print the answer in Box 2.      2
+
+  Subtract Box 2 from Box 1 on this worksheet and print
+  the answer in Box 3. This is your caregiver's available tax   3
+  credits.
+
+  Copy your total tax deducted amount from your SOI to          4
+  Box 4.
+
+  Subtract Box 3 from Box 4. Print the answer in Box 5.         5
+  This is the total tax deducted available to you. Copy it into Box 12A of your return.
+
+More information
+If you have any questions about your tax go to ird.govt.nz
+
+Accident Compensation Act 2001 (ACC)
+Under the Accident Compensation Act 2001, Inland Revenue is required to provide earnings information
+from your IR 3 return to the Accident Compensation Corporation (ACC). ACC will begin invoicing
+self-employed levies from September. ACC gets the information from IR3 returns as follows:
+• Question 11A Gross earnings with PAYE deducted and earnings not liable for ACC earners' levy
+• Question 12 Schedular payments
+• Question 17 Overseas income (foreign employment income and foreign services income only)
+• Question 18 Share of partnership income (‘active’ income) from the partnership's trade or business
+• Question 19 Look-through company (LTC) active income
+• Question 20 Shareholder-employee salary with no tax deducted
+• Question 24 Self-employed income
+• Question 27 Other income
+• Question 29 Other expenses.
+61                                                                    IR3G INDIVIDUAL RETURN GUIDE
+
+
+Shareholder-employees
+Other income
+In addition to your shareholder's remuneration, you may also have received other income liable for
+ACC levies, such as self-employed income. ACC will take your shareholder-employee remuneration into
+account if invoicing for additional levies.
+
+Maximum earnings from multiple companies
+The maximum amount of ACC earners' levy deductions is $2,551.59. You may be due for a refund from
+ACC if your shareholder-employee remuneration is from 2 or more companies and the combined total is
+over $152,790. Find out more about the refund process at acc.co.nz/multiple-employer-adjustment
+
+Mixed income
+Mixed income earners are those who have a combination of employee (including shareholder-employee
+remuneration without PAYE deducted) and self-employed earnings. If you are in this situation you have
+to pay ACC levies on both sources of income, up to the maximum. ACC will invoice you for the amount
+you'll have to pay.
+
+Current year losses
+If you were in full-time employment and have recorded a loss, or your earnings are below the minimum
+earnings threshold, you are still liable for ACC levies. These will be calculated at the minimum level.
+
+IR56 taxpayers
+If you are a private domestic worker, you've already paid ACC earners' levy on your IR56 income as part of
+your PAYE.
+ACC will invoice you as an employer for other levies payable on your IR56 income. If you also receive
+other income liable for ACC levies, we'll pass this information to ACC to invoice levies on this income.
+ACC will make allowance for levies paid as an employer.
+
+Further information
+If you have any queries about ACC or levies payable, go to acc.co.nz/for-business or contact the
+ACC Business Service Centre:
+    Live chat business.acc.co.nz
+    Phone      0800 222 776
+    Email      business@acc.co.nz
+ird.govt.nz                                                                                               62
+
+
+
+Services you may need
+Need to speak with us?
+Have your IRD number ready and call us on one of these numbers.
+General tax, tax credits and refunds                                                          0800 775 247
+Employer enquiries                                                                            0800 377 772
+General business tax                                                                          0800 377 774
+Overdue returns and payments                                                                  0800 227 771
+We're open 8am to 6pm Monday to Friday. We record all calls.
+Our self-service lines are open 7 days a week - except between 5am and 6am each day. They offer a range
+of automated options, especially if you are enrolled with voice ID.
+Find out more at ird.govt.nz/contact-us
+
+0800 self-service number
+Our 0800 self-service numbers are open 7 days a week - except between 5am and 6am each day. Make
+sure you have your IRD number ready when you call.
+For access to your account-specific information, you'll need to be enrolled with voice ID or have a PIN.
+Order forms, guides and returns                                                             0800 257 773
+All other services                                                                          0800 257 777
+When you call, confirm what you want from the options given. If you need to talk with us, we'll re-direct
+your call to someone who can help you.
+
+If you have a complaint about our service
+We're committed to providing you with a quality service. If there's a problem, we'd like to know about it
+and have the chance to fix it.
+If you disagree with how we've assessed your tax, you may need to follow a formal disputes process.
+Find out more about making a complaint, and the disputes process, at ird.govt.nz/disputes
+
+Privacy
+Meeting your tax obligations means giving us accurate information so we can assess your tax and
+entitlements under the Acts we administer. We may charge penalties if you do not.
+We may also exchange information about you with:
+• some government agencies
+• another country, if we have an information supply agreement with them, and
+• Statistics New Zealand (for statistical purposes only).
+You can ask for the personal information we hold about you. We'll give the information to you and
+correct any errors, unless we have a lawful reason not to. Find our full privacy policy at ird.govt.nz/
+privacy
+
