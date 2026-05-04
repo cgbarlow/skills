@@ -3,8 +3,9 @@
 A personal Claude Code marketplace bundling skills and plugins I rely on
 day-to-day — driving Iris architecture knowledge, filing NZ taxes,
 tracking timesheet hours, converting PDFs to ebooks, coaching my own
-prompts, plus the [Campaign Mode](https://github.com/cgbarlow/campaign-mode)
-quest framework and its [Six Animals](https://github.com/cgbarlow/simons-six-animals)
+prompts, coaching a 13-year-old through math homework, plus the
+[Campaign Mode](https://github.com/cgbarlow/campaign-mode) quest
+framework and its [Six Animals](https://github.com/cgbarlow/simons-six-animals)
 advisory council.
 
 ## What's in here
@@ -17,10 +18,11 @@ advisory council.
 | [`pdf-to-ebook`](skills/pdf-to-ebook) | Converts a PDF to ebook formats (epub, mobi, azw3) via Calibre. |
 | [`agentic-coach`](skills/agentic-coach) | Interactive prompt-engineering coach — elevates vague prompts via Socratic dialogue, multiple transformation styles, and guided learning. |
 | [`flow-coach`](skills/flow-coach) | Interactive [claude-flow](https://github.com/ruvnet/claude-flow) orchestration coach — swarm topology, agent deployment, memory configuration, SPARC workflows. |
+| [`math-coach`](skills/math-coach) | Coaching companion for a 13-year-old advanced math student — refuses to give answers, hooks interest with basketball / anime / advanced-math connections, catches him when he has skipped the workbook instructions. |
 | [`six-animals`](https://github.com/cgbarlow/simons-six-animals) | Six psychologically-grounded team-role agents (Bear, Cat, Owl, Puppy, Rabbit, Wolf) plus Simon as educator/supervisor. Prerequisite for the full Campaign Mode experience. |
 | [`campaign-mode`](https://github.com/cgbarlow/campaign-mode) | Quest-based extension for AI-assisted work. Three NPC agents (Gandalf, Dragon, Guardian) provide mentorship, adversarial testing, and quality gates. |
 
-The first six plugins ship from this repository — each one is a skill
+The first seven plugins ship from this repository — each one is a skill
 directory under [`skills/`](skills) that the marketplace lists as a
 separately-installable plugin. The last two are listed for convenience
 and source from their own repos.
@@ -34,7 +36,7 @@ and source from their own repos.
    ```
    https://github.com/cgbarlow/skills
    ```
-3. **Install plugins** — find and install whichever plugins you want from the marketplace. Each one is independent — install just `iris`, just `timesheet`, or all eight.
+3. **Install plugins** — find and install whichever plugins you want from the marketplace. Each one is independent — install just `iris`, just `timesheet`, or all nine.
 
 ### Claude Code CLI
 
@@ -54,6 +56,7 @@ and source from their own repos.
    /plugin install pdf-to-ebook@cgbarlow-skills
    /plugin install agentic-coach@cgbarlow-skills
    /plugin install flow-coach@cgbarlow-skills
+   /plugin install math-coach@cgbarlow-skills
    /plugin install campaign-mode@cgbarlow-skills
    /plugin install six-animals@cgbarlow-skills
    ```
@@ -72,14 +75,15 @@ triggers. List loaded skills any time with `/skills`.
 ```
 skills/
 ├── .claude-plugin/
-│   └── marketplace.json     # the marketplace (lists 8 plugins)
+│   └── marketplace.json     # the marketplace (lists 9 plugins)
 └── skills/
     ├── iris/{SKILL.md, README.md, evals/}
     ├── ir3-tax-return/
     ├── timesheet/
     ├── pdf-to-ebook/
     ├── agentic-coach/
-    └── flow-coach/
+    ├── flow-coach/
+    └── math-coach/
 ```
 
 Each marketplace entry lists the skill via `"skills": ["./skills/<name>"]`,

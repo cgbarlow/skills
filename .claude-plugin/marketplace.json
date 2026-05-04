@@ -1,8 +1,8 @@
 {
   "name": "cgbarlow-skills",
   "metadata": {
-    "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow coaching — plus the Campaign Mode quest framework and Six Animals advisory council.",
-    "version": "2.0.1"
+    "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow / math coaching — plus the Campaign Mode quest framework and Six Animals advisory council.",
+    "version": "2.1.0"
   },
   "owner": {
     "name": "Chris Barlow",
@@ -68,6 +68,16 @@
       "author": { "name": "Chris Barlow" },
       "license": "CC-BY-SA-4.0",
       "keywords": ["claude-flow", "orchestration", "swarm", "sparc"]
+    },
+    {
+      "name": "math-coach",
+      "description": "Coaching companion for a 13-year-old advanced math student. Triggers on math homework, screenshots of questions, or 'I'm stuck' moments. Refuses to give answers, hooks interest with basketball / anime / advanced-math connections, and gently catches him when he has skipped the workbook instructions.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/math-coach"],
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["math", "coaching", "tutoring", "homework", "socratic"]
     },
     {
       "name": "six-animals",
