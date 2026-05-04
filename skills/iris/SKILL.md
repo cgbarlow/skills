@@ -21,24 +21,42 @@ mode split for you.
 
 ## 1. When this skill applies (and when it doesn't)
 
-**Triggers** — use the CLI when the user:
+### MCP-first rule (read this before reaching for the CLI)
+
+**If `mcp__*__Iris__*` tools are loaded in the current session, ALWAYS
+use those — never the CLI.** The MCP tools are typed, validated, run
+server-side, work in every Claude surface (Cowork, Desktop chat,
+claude.ai web), and don't need a shell. The CLI exists for environments
+where there's a real local shell *and* no MCP is configured — namely
+Claude Code in a terminal or in Desktop "Code" mode.
+
+| Environment | Best path |
+|---|---|
+| Claude Code CLI / Desktop "Code" tab | iris-cli (this skill, full body below) |
+| Cowork — Desktop or web | `mcp__claude_ai_Iris__*` tools (don't read further; pick the right MCP tool for the user's intent) |
+| Standard Claude Desktop chat / claude.ai web | `mcp__claude_ai_Iris__*` tools |
+
+The iris-cli sandbox in Cowork is ephemeral, slow to boot, sometimes
+fails outright, and doesn't have iris-cli pre-installed. The MCP
+sidesteps every one of those failure modes.
+
+### CLI triggers
+
+If MCP isn't available, this skill is the right answer when the user:
 - Mentions an Iris diagram, element, package, set, or collection.
 - Wants to search or browse an Iris repository.
 - Wants to ask Iris's AI a question grounded in one or more sets
   (with optional file contexts).
 - Wants to export an Iris artefact as JSON or Markdown.
-- Types any `iris …` command verbatim.
+- Types any `iris …` command verbatim — even when MCP is loaded the
+  user has explicitly asked for the CLI; respect that.
 
-**Skip** — don't use this skill when:
+### Skip entirely
+
 - The user is asking about *iris* the flower, *iris* the eye anatomy,
   or *Iris* the Greek goddess. (The repo's eye favicon makes the
   context obvious in conversation but worth a beat of judgement
-  before reaching for the CLI.)
-- An **iris-mcp** server is configured in this Claude session and
-  exposes the same operations — those tools are typed, validated,
-  and don't require a shell. Prefer them. The CLI is the right tool
-  when the user is in a terminal, in a CI script, or when no MCP is
-  loaded. Both backends end up calling the same iris-api.
+  before reaching for either CLI or MCP.)
 
 ---
 

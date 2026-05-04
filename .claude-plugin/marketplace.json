@@ -2,7 +2,7 @@
   "name": "cgbarlow-skills",
   "metadata": {
     "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow coaching — plus the Campaign Mode quest framework and Six Animals advisory council.",
-    "version": "2.0.0"
+    "version": "2.0.1"
   },
   "owner": {
     "name": "Chris Barlow",
