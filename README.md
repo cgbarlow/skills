@@ -49,14 +49,14 @@ repos.
    ```
 3. **Install the plugin you want** (one at a time, or repeat for multiple):
    ```
-   /plugin install iris@skills-marketplace
-   /plugin install ir3-tax-return@skills-marketplace
-   /plugin install timesheet@skills-marketplace
-   /plugin install pdf-to-ebook@skills-marketplace
-   /plugin install agentic-coach@skills-marketplace
-   /plugin install flow-coach@skills-marketplace
-   /plugin install campaign-mode@skills-marketplace
-   /plugin install six-animals@skills-marketplace
+   /plugin install iris@cgbarlow-skills
+   /plugin install ir3-tax-return@cgbarlow-skills
+   /plugin install timesheet@cgbarlow-skills
+   /plugin install pdf-to-ebook@cgbarlow-skills
+   /plugin install agentic-coach@cgbarlow-skills
+   /plugin install flow-coach@cgbarlow-skills
+   /plugin install campaign-mode@cgbarlow-skills
+   /plugin install six-animals@cgbarlow-skills
    ```
 4. **Reload** so the new skills are picked up by your current session:
    ```
