@@ -1,8 +1,0 @@
-{
-  "name": "agentic-coach",
-  "description": "Interactive prompt engineering coach that elevates vague prompts through Socratic dialogue, multiple transformation styles, and guided learning.",
-  "version": "0.1.0",
-  "author": {
-    "name": "Chris Barlow"
-  }
-}
