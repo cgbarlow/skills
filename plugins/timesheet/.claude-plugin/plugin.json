@@ -1,8 +1,0 @@
-{
-  "name": "timesheet",
-  "description": "Interactive timesheet entry \u2014 collects work description, date, start/end times via prompts, calculates hours, appends to .campaign/timesheet.md.",
-  "version": "0.1.0",
-  "author": {
-    "name": "Chris Barlow"
-  }
-}

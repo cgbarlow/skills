@@ -1,8 +1,0 @@
-{
-  "name": "ir3-tax-return",
-  "description": "File a New Zealand individual IR3 income tax return for the 2026 tax year by driving the Inland Revenue myIR portal.",
-  "version": "0.1.0",
-  "author": {
-    "name": "Chris Barlow"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "name": "pdf-to-ebook",
-  "description": "Convert a PDF file to ebook formats (epub, mobi, azw3/Kindle) using Calibre.",
-  "version": "0.1.0",
-  "author": {
-    "name": "Chris Barlow"
-  }
-}

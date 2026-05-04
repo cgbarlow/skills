@@ -1,8 +1,0 @@
-{
-  "name": "iris",
-  "description": "Drive the iris-cli command-line tool to search, browse, ask AI questions, and export content from an Iris architecture-knowledge repository (https://github.com/cgbarlow/iris).",
-  "version": "0.1.0",
-  "author": {
-    "name": "Chris Barlow"
-  }
-}
