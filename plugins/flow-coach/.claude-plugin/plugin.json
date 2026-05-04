@@ -1,0 +1,8 @@
+{
+  "name": "flow-coach",
+  "description": "Interactive claude-flow orchestration coach that guides users through swarm topology selection, agent deployment, memory configuration, and SPARC workflows.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chris Barlow"
+  }
+}
