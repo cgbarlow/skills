@@ -1,8 +1,0 @@
-{
-  "name": "skills",
-  "description": "Personal skill collection for Claude Code: iris (drive the iris-cli architecture-knowledge tool), ir3-tax-return (file an NZ IR3 via myIR), timesheet (interactive time tracking), pdf-to-ebook, agentic-coach, flow-coach.",
-  "version": "0.1.0",
-  "author": {
-    "name": "Chris Barlow"
-  }
-}

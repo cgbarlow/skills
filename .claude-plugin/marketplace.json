@@ -1,7 +1,7 @@
 {
   "name": "skills-marketplace",
   "metadata": {
-    "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow coaching.",
+    "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow coaching — plus the Campaign Mode quest framework and Six Animals advisory council.",
     "version": "1.0.0"
   },
   "owner": {
@@ -10,17 +10,98 @@
   },
   "plugins": [
     {
-      "name": "skills",
-      "description": "Personal skill collection: iris, ir3-tax-return, timesheet, pdf-to-ebook, agentic-coach, flow-coach. Installable as a single Claude Code plugin.",
+      "name": "iris",
+      "description": "Drive the iris-cli command-line tool to search, browse, ask AI questions, and export content from an Iris architecture-knowledge repository (https://github.com/cgbarlow/iris). Triggers on iris/diagram/element/package/set/collection language and on `iris …` commands; walks install (uv tool), the SQLite-vs-Supabase login split, and the read/export/ask command surface.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cgbarlow/skills.git",
+        "path": "plugins/iris"
+      },
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["iris", "architecture", "cli", "diagrams"]
+    },
+    {
+      "name": "ir3-tax-return",
+      "description": "File a New Zealand individual IR3 income tax return for the 2026 tax year by driving the Inland Revenue myIR portal in the browser. Pauses for RealMe sign-in, refuses to click final Submit without explicit fresh consent, grounded in the official IR3G (March 2026) guide.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cgbarlow/skills.git",
+        "path": "plugins/ir3-tax-return"
+      },
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["nz", "tax", "ir3", "ird", "myir", "browser-automation"]
+    },
+    {
+      "name": "timesheet",
+      "description": "Interactive timesheet entry — collects work description, date, and start/end times via prompts, calculates hours, and appends rows to `.campaign/timesheet.md`. Supports clock-in / clock-out shortcuts.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cgbarlow/skills.git",
+        "path": "plugins/timesheet"
+      },
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["timesheet", "time-tracking", "hours", "campaign"]
+    },
+    {
+      "name": "pdf-to-ebook",
+      "description": "Convert a PDF file to ebook formats (epub, mobi, azw3/Kindle) using Calibre.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cgbarlow/skills.git",
+        "path": "plugins/pdf-to-ebook"
+      },
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["pdf", "ebook", "epub", "kindle", "calibre"]
+    },
+    {
+      "name": "agentic-coach",
+      "description": "Interactive prompt-engineering coach that elevates vague prompts through Socratic dialogue, multiple transformation styles, and guided learning.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cgbarlow/skills.git",
+        "path": "plugins/agentic-coach"
+      },
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["prompt-engineering", "coaching", "agentic"]
+    },
+    {
+      "name": "flow-coach",
+      "description": "Interactive claude-flow orchestration coach that guides users through swarm topology selection, agent deployment, memory configuration, and SPARC workflows.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cgbarlow/skills.git",
+        "path": "plugins/flow-coach"
+      },
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["claude-flow", "orchestration", "swarm", "sparc"]
+    },
+    {
+      "name": "six-animals",
+      "description": "Six psychologically-grounded team role agents (Bear, Cat, Owl, Puppy, Rabbit, Wolf) plus Simon as educator/supervisor. Prerequisite for the full Campaign Mode experience.",
       "source": {
         "source": "url",
-        "url": "https://github.com/cgbarlow/skills.git"
+        "url": "https://github.com/cgbarlow/simons-six-animals.git"
       },
-      "author": {
-        "name": "Chris Barlow"
-      },
+      "author": { "name": "Dr. Simon McCallum" },
       "license": "CC-BY-SA-4.0",
-      "keywords": ["skills", "iris", "tax", "timesheet", "pdf", "coaching"]
+      "keywords": ["team-roles", "collaboration", "animals", "agents"]
+    },
+    {
+      "name": "campaign-mode",
+      "description": "Quest-based extension for AI-assisted work. Three NPC agents (Gandalf, Dragon, Guardian) provide mentorship, adversarial testing, and quality gates for structured campaigns.",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/cgbarlow/campaign-mode.git"
+      },
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["quest", "campaign", "npcs", "mentorship", "adversarial-testing", "quality-gates"]
     }
   ]
 }
