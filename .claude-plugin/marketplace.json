@@ -1,0 +1,26 @@
+{
+  "name": "skills-marketplace",
+  "metadata": {
+    "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow coaching.",
+    "version": "1.0.0"
+  },
+  "owner": {
+    "name": "Chris Barlow",
+    "url": "https://github.com/cgbarlow"
+  },
+  "plugins": [
+    {
+      "name": "skills",
+      "description": "Personal skill collection: iris, ir3-tax-return, timesheet, pdf-to-ebook, agentic-coach, flow-coach. Installable as a single Claude Code plugin.",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/cgbarlow/skills.git"
+      },
+      "author": {
+        "name": "Chris Barlow"
+      },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["skills", "iris", "tax", "timesheet", "pdf", "coaching"]
+    }
+  ]
+}

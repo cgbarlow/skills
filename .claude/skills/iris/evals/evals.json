@@ -1,0 +1,35 @@
+{
+  "skill_name": "iris",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use the iris CLI to log in to https://iris-api-gtb3.onrender.com — my username is admin and password is hunter2.",
+      "expected_output": "Skill should attempt `iris login --url https://iris-api-gtb3.onrender.com --username admin --password hunter2`, hit the Supabase 404, then explain the --token workaround (mint PAT via curl + Supabase JWT). Should NOT silently fail or invent a PAT.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I just installed iris-cli with `uv tool install --from git+https://github.com/cgbarlow/iris#subdirectory=cli iris-cli` but `iris` isn't found.",
+      "expected_output": "Skill should diagnose the `~/.local/bin not on PATH` warning and suggest `uv tool update-shell` + reload shell. Should NOT suggest pipx or alternative installers as the first move.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Using iris, search for any element named Payments and export the owning set as Markdown so I can commit it to our wiki.",
+      "expected_output": "Skill should chain `iris search Payments [--json]` → identify the set the matching element belongs to → `iris export set <id> --format markdown -o <path>`. Should suggest `--json` for the search step since output is being parsed.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Ask iris which services in the default set own customer PII, and stream the answer.",
+      "expected_output": "Skill should run `iris ask \"Which services in the default set own customer PII?\" --set default --stream`. Should NOT default to --no-stream and should NOT add --json for an interactive ask.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "I want to use iris from a CI pipeline against UAT — what URL should I configure as IRIS_URL?",
+      "expected_output": "Skill should set IRIS_URL to the iris-api backend host `https://iris-api-gtb3.onrender.com` and explain that the SvelteKit frontend (iris-uat.chrisbarlow.nz) and iris-mcp (iris-mcp.onrender.com) are NOT correct — the CLI hits /api/* directly.",
+      "files": []
+    }
+  ]
+}
