@@ -5,8 +5,10 @@ day-to-day — driving Iris architecture knowledge, filing NZ taxes,
 tracking timesheet hours, converting PDFs to ebooks, coaching my own
 prompts, coaching a 13-year-old through math homework, plus the
 [Campaign Mode](https://github.com/cgbarlow/campaign-mode) quest
-framework and its [Six Animals](https://github.com/cgbarlow/simons-six-animals)
-advisory council.
+framework, its [Six Animals](https://github.com/cgbarlow/simons-six-animals)
+advisory council, and the
+[Mitchell Agentic Sprint](https://github.com/cgbarlow/mitchell-agentic-sprint)
+validation pipeline.
 
 ## What's in here
 
@@ -21,10 +23,11 @@ advisory council.
 | [`math-coach`](skills/math-coach) | Coaching companion for a 13-year-old advanced math student — refuses to give answers, hooks interest with basketball / anime / advanced-math connections, catches him when he has skipped the workbook instructions. |
 | [`six-animals`](https://github.com/cgbarlow/simons-six-animals) | Six psychologically-grounded team-role agents (Bear, Cat, Owl, Puppy, Rabbit, Wolf) plus Simon as educator/supervisor. Prerequisite for the full Campaign Mode experience. |
 | [`campaign-mode`](https://github.com/cgbarlow/campaign-mode) | Quest-based extension for AI-assisted work. Three NPC agents (Gandalf, Dragon, Guardian) provide mentorship, adversarial testing, and quality gates. |
+| [`mitchell-agentic-sprint`](https://github.com/cgbarlow/mitchell-agentic-sprint) | AI-led 6-step sprint that takes an AI builder's idea from rough notion to investor-conversation-ready artefacts. Adversarial by default. Depends on `six-animals` + `campaign-mode`. |
 
 The first seven plugins ship from this repository — each one is a skill
 directory under [`skills/`](skills) that the marketplace lists as a
-separately-installable plugin. The last two are listed for convenience
+separately-installable plugin. The last three are listed for convenience
 and source from their own repos.
 
 ## Quick Start
@@ -36,7 +39,7 @@ and source from their own repos.
    ```
    https://github.com/cgbarlow/skills
    ```
-3. **Install plugins** — find and install whichever plugins you want from the marketplace. Each one is independent — install just `iris`, just `timesheet`, or all nine.
+3. **Install plugins** — find and install whichever plugins you want from the marketplace. Each one is independent — install just `iris`, just `timesheet`, or all ten.
 
 ### Claude Code CLI
 
@@ -59,7 +62,10 @@ and source from their own repos.
    /plugin install math-coach@cgbarlow-skills
    /plugin install campaign-mode@cgbarlow-skills
    /plugin install six-animals@cgbarlow-skills
+   /plugin install mitchell-agentic-sprint@cgbarlow-skills
    ```
+
+   For the **Mitchell Agentic Sprint** specifically, you need all three of `six-animals`, `campaign-mode`, and `mitchell-agentic-sprint` — the Sprint depends on the other two for its NPC infrastructure.
 4. **Reload** so the new skills are picked up by your current session:
    ```
    /reload-plugins
@@ -75,7 +81,7 @@ triggers. List loaded skills any time with `/skills`.
 ```
 skills/
 ├── .claude-plugin/
-│   └── marketplace.json     # the marketplace (lists 9 plugins)
+│   └── marketplace.json     # the marketplace (lists 10 plugins)
 └── skills/
     ├── iris/{SKILL.md, README.md, evals/}
     ├── ir3-tax-return/
