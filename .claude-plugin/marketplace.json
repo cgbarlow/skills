@@ -2,7 +2,7 @@
   "name": "cgbarlow-skills",
   "metadata": {
     "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow / math coaching — plus the Campaign Mode quest framework, the Six Animals advisory council, and the Mitchell Agentic Sprint validation pipeline.",
-    "version": "2.2.0"
+    "version": "2.2.1"
   },
   "owner": {
     "name": "Chris Barlow",
@@ -103,7 +103,8 @@
     },
     {
       "name": "mitchell-agentic-sprint",
-      "description": "AI-led 6-step sprint that walks an AI builder through validating one idea — vertical, buyers, framework, positioning — to a sales deck, outreach plan, and pre-seed investor deck. Adversarial by default; output is artifacts, not product. Depends on six-animals + campaign-mode.",
+      "version": "0.2.0",
+      "description": "AI-led 6-step sprint that walks an AI builder through validating one idea — vertical, buyers, framework, positioning — to a sales deck, outreach plan, and pre-seed investor deck. Adversarial by default; output is artifacts, not product. v0.2.0 adds the 🧢 Mitchell profile for the Gandalf NPC. Depends on six-animals + campaign-mode.",
       "source": {
         "source": "url",
         "url": "https://github.com/cgbarlow/mitchell-agentic-sprint.git"
