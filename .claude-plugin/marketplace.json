@@ -1,8 +1,8 @@
 {
   "name": "cgbarlow-skills",
   "metadata": {
-    "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow / math coaching — plus the Campaign Mode quest framework, the Six Animals advisory council, and the Mitchell Agentic Sprint validation pipeline.",
-    "version": "2.2.4"
+    "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow / math coaching, DoView outcomes-theory answer and diagram retriever — plus the Campaign Mode quest framework, the Six Animals advisory council, and the Mitchell Agentic Sprint validation pipeline.",
+    "version": "2.3.0"
   },
   "owner": {
     "name": "Chris Barlow",
@@ -100,6 +100,26 @@
       "author": { "name": "Chris Barlow" },
       "license": "CC-BY-SA-4.0",
       "keywords": ["quest", "campaign", "npcs", "mentorship", "adversarial-testing", "quality-gates"]
+    },
+    {
+      "name": "doview-outcomes-answer",
+      "description": "Answer outcomes-theory questions strictly from Dr Paul Duignan's DoView Planning and Outcomes Theory Handbook (2025). Faithful adaptation of Prompt A v1.1.9 from https://www.doviewplanning.org/bookai. Triggers on outcomes-theory questions, requests for a DoView analysis, asks to critique a strategy/proposal/plan/policy/programme through an outcomes lens, or mentions of outcomes theory/outcomes systems/DoView Boards/theory-of-change. Produces the prompt's required formal Summary + Full standalone structure with raw-visible URLs, no markdown links, the outcomes-system definition rule, and an image-retrieval seed list. Pairs with doview-image-retriever.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/doview-outcomes-answer"],
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["outcomes-theory", "doview", "strategy", "evaluation", "duignan", "theory-of-change"]
+    },
+    {
+      "name": "doview-image-retriever",
+      "description": "Retrieve and faithfully reproduce DoView Planning handbook diagrams to accompany an outcomes-theory answer. Faithful adaptation of Prompt B v1.1.9 from https://www.doviewplanning.org/bookai with a Mermaid-first overlay — retrieves Mermaid blocks from the doview-book Markdown edition (https://github.com/cgbarlow/doview-book) first, falling back to upstream PNG/image-file URLs for diagrams that don't translate cleanly to Mermaid. Triggers after a doview-outcomes-answer response when the user asks to see the diagrams, requests the visual model, or says 'show me the picture'. Never redraws, simplifies, or substitutes images.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/doview-image-retriever"],
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["outcomes-theory", "doview", "diagrams", "mermaid", "image-retrieval", "duignan"]
     },
     {
       "name": "mitchell-agentic-sprint",

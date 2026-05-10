@@ -1,0 +1,65 @@
+{
+  "skill_name": "doview-outcomes-answer",
+  "evals": [
+    {
+      "id": 1,
+      "name": "strategy-doc-missing-theory-of-change",
+      "prompt": "Our council just published this strategy doc: 'Our Vision: a thriving, inclusive city. Our Priorities: 1) Housing affordability, 2) Climate resilience, 3) Vibrant neighbourhoods. We will invest $50m over three years and measure success through community surveys and progress reports.' From an outcomes-theory perspective, what's wrong with this and how should it be restructured?",
+      "expected_output": "A formal response beginning with the required preliminary sentence, containing exactly two standalone sections (Summary + Full), citing relevant DoView tools (e.g. A1, B7, B14, D5) each followed by their full raw-visible URL, ending with the full handbook reference and an Image-retrieval seed list for Prompt B.",
+      "assertions": [
+        {"text": "Starts with the exact preliminary sentence 'I have prepared a summary response and a full response. These are both standalone so you can send them to anyone.'"},
+        {"text": "Contains a section heading starting '1. Summary response to'"},
+        {"text": "Contains a section heading starting '2. Full response to'"},
+        {"text": "At least one DoView tool reference appears with its raw visible URL (https://doviewplanning.org/<tool>doviewtool) immediately after the tool name"},
+        {"text": "Contains zero markdown link syntax with URLs (i.e. no '](http' substring)"},
+        {"text": "Contains the full book reference 'Duignan, P. (2025). DoView Planning and Outcomes Theory Handbook'"},
+        {"text": "Contains the 'Image-retrieval seed list for Prompt B' heading"},
+        {"text": "Contains zero instances of 'I would', 'you could', 'a better answer is', or 'a sentence you could use'"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "kpi-selection-question",
+      "prompt": "We're rolling out a new programme to reduce family homelessness. The funder wants us to pick 5 KPIs we'll report against each quarter. What does outcomes theory say about choosing those KPIs — what are the risks and how should we think about it?",
+      "expected_output": "A formal response with Summary + Full sections, citing relevant tools (likely D5, D6, D10, D11, possibly B15), the outcomes system definition (since the answer will use the phrase), and a clear explanation that outcomes theory frames KPI selection as a technical outcomes problem.",
+      "assertions": [
+        {"text": "Starts with the required preliminary sentence"},
+        {"text": "Contains '1. Summary response to' and '2. Full response to' section headings"},
+        {"text": "Mentions 'outcomes system' and includes the formal definition starting 'An outcomes system is to purposeful action what an accounting system is to financial activity'"},
+        {"text": "Cites at least one D-series tool (Indicators and Frameworks) with raw visible URL"},
+        {"text": "Ends with full handbook reference and Image-retrieval seed list"},
+        {"text": "No first-person or drafting-advice wording"},
+        {"text": "Presents DoView as 'an applied' / 'a practical' form of outcomes theory, not as the primary theory"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "attribution-claim-critique",
+      "prompt": "A grant report says: 'We delivered 12 workshops on healthy eating. School-aged obesity in the catchment fell 8% over the year. The workshops worked.' Critique this attribution claim through an outcomes lens.",
+      "expected_output": "A formal response identifying this as a technical outcomes problem (attribution at a controllable-output level vs uncontrollable-outcome level), citing relevant tools (likely B16, D5, D13, G5, G11, G12), and explaining what outcomes theory says about when impact evaluation is needed.",
+      "assertions": [
+        {"text": "Starts with the required preliminary sentence"},
+        {"text": "Contains both Summary and Full sections"},
+        {"text": "Identifies the issue as a 'technical outcomes problem' explicitly or uses 'violates the outcomes theory principle' phrasing"},
+        {"text": "Cites at least one G-series tool (evaluation) with raw visible URL"},
+        {"text": "Uses outcomes-theory framing language (e.g. 'Outcomes theory points out that…', 'Outcomes theory says that…')"},
+        {"text": "Ends with full handbook reference + Image-retrieval seed list"}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "what-is-a-doview-board",
+      "prompt": "Someone on the leadership team just asked 'what's a DoView Board and why are we using one'. Give them an outcomes-theory-grounded answer.",
+      "expected_output": "A formal response that explains DoView Boards as an applied practical form of outcomes theory (not as the primary theory), uses the required phrasing about 'a specific type of outcomes model that is drawn to conform to the principles of outcomes theory', and cites foundational tools (likely A1, B2, B7, B8, B9, D1).",
+      "assertions": [
+        {"text": "Starts with the required preliminary sentence"},
+        {"text": "Contains Summary + Full sections"},
+        {"text": "Describes DoView as a practical applied form of outcomes theory, not as the primary theory"},
+        {"text": "Mentions the 'This-Then' explanation of DoView outcomes models"},
+        {"text": "Includes the statement 'a specific type of outcomes model that is drawn to conform to the principles of outcomes theory'"},
+        {"text": "Cites at least one A or B-series tool with raw visible URL"},
+        {"text": "Ends with full handbook reference + Image-retrieval seed list"}
+      ]
+    }
+  ]
+}
