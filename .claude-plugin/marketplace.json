@@ -2,7 +2,7 @@
   "name": "cgbarlow-skills",
   "metadata": {
     "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow / math coaching — plus the Campaign Mode quest framework, the Six Animals advisory council, and the Mitchell Agentic Sprint validation pipeline.",
-    "version": "2.2.3"
+    "version": "2.2.4"
   },
   "owner": {
     "name": "Chris Barlow",
@@ -103,8 +103,8 @@
     },
     {
       "name": "mitchell-agentic-sprint",
-      "version": "0.3.1",
-      "description": "AI-led 6-step sprint that walks an AI builder through validating one idea — vertical, buyers, framework, positioning — to a sales deck, outreach plan, and pre-seed investor deck. Adversarial by default; output is artifacts, not product. v0.3.1 reframes the NotebookLM bolt-on as a power-user opt-in (Claude-only synthesis is now the recommended default; NotebookLM setup is documented as local-machine commands for users who specifically want it). Depends on six-animals + campaign-mode.",
+      "version": "0.3.2",
+      "description": "AI-led 6-step sprint that walks an AI builder through validating one idea — vertical, buyers, framework, positioning — to a sales deck, outreach plan, and pre-seed investor deck. Adversarial by default; output is artifacts, not product. v0.3.2 makes explicit that the NotebookLM bolt-on is Claude Code CLI only and does NOT work in Claude Cowork (Cowork users use Claude-only synthesis, which works fully). Depends on six-animals + campaign-mode.",
       "source": {
         "source": "url",
         "url": "https://github.com/cgbarlow/mitchell-agentic-sprint.git"
