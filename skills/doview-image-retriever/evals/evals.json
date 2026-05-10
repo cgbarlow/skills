@@ -1,0 +1,58 @@
+{
+  "skill_name": "doview-image-retriever",
+  "evals": [
+    {
+      "id": 1,
+      "name": "mermaid-available-A01",
+      "prompt": "Previous doview-outcomes-answer response cited Tool A1 (The Five Steps in DoView Planning) — https://doviewplanning.org/a1doviewtool — and Tool B16 (Do Not Silo Steps Under Outcomes Explainer) — https://doviewplanning.org/b16doviewtool. The Image-retrieval seed list at the end of that response included https://doviewplanning.org/book, https://doviewplanning.org/a1doviewtool, and https://doviewplanning.org/b16doviewtool. Now retrieve the relevant diagrams.",
+      "expected_output": "An image-retrieval response that begins with the IMAGE DISPLAY LIMITATION WARNING, then for each tool: cites the tool's page URL raw-visible, retrieves the Mermaid block from the corresponding chapter tool.md (A01 and B16) verbatim, includes the image-file URL fallback, ends with the full handbook reference.",
+      "assertions": [
+        {"text": "Begins with the IMAGE DISPLAY LIMITATION WARNING starting 'This image-retrieval response attempts to display the most relevant original images...'"},
+        {"text": "Contains the heading 'Relevant images from the DoView Planning and Outcomes Theory Handbook, Duignan, P. (2025),' followed by raw-visible https://doviewplanning.org/book"},
+        {"text": "Contains at least one verbatim ```mermaid fenced block from the cited chapter tool.md (A01 — cyclic flow A→B→C→D→E→A)"},
+        {"text": "Every tool URL appears as raw visible plain text starting with https://"},
+        {"text": "No markdown link syntax for URLs (no '](http' substring outside the explicit image embed lines)"},
+        {"text": "Ends with the full handbook reference + raw-visible https://doviewplanning.org/book"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "png-fallback-C04",
+      "prompt": "Previous doview-outcomes-answer response cited Tool C4 (Large Real-World DoView Visual Alignment Example) — https://doviewplanning.org/c4doviewtool. The Image-retrieval seed list includes https://doviewplanning.org/book and https://doviewplanning.org/c4doviewtool. Retrieve the relevant diagram.",
+      "expected_output": "An image-retrieval response that recognises C04 doesn't translate cleanly to Mermaid (the chapter tool.md notes this) and falls back to the upstream PNG/image-file behaviour — image-file URL + markdown image embed line + raw-visible Page URL.",
+      "assertions": [
+        {"text": "Begins with the IMAGE DISPLAY LIMITATION WARNING"},
+        {"text": "Includes raw-visible Page URL https://doviewplanning.org/c4doviewtool"},
+        {"text": "Does NOT invent a synthetic Mermaid block for C04 (which carries the 'does not translate cleanly to Mermaid' note)"},
+        {"text": "Includes an image-file URL (or notes inability to obtain one) and the markdown image embed line if URL available"},
+        {"text": "Ends with the full handbook reference"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "subchapter-G02A",
+      "prompt": "Previous response cited Tool G2A (Evaluating Individual Components or Streams Within an Initiative or Program) — https://doviewplanning.org/g2adoviewtool. Retrieve the diagram.",
+      "expected_output": "A response that correctly maps the upstream URL g2adoviewtool to the chapter folder G02A (zero-padded subchapter) and retrieves the Mermaid block from g02atool.md.",
+      "assertions": [
+        {"text": "Begins with the IMAGE DISPLAY LIMITATION WARNING"},
+        {"text": "Correctly identifies the chapter as G02A (not G2A) when locating the doview-book copy"},
+        {"text": "Includes raw-visible https://doviewplanning.org/g2adoviewtool"},
+        {"text": "Includes a verbatim Mermaid block if g02atool.md has one"},
+        {"text": "Ends with full handbook reference"}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "multiple-tools-prioritised",
+      "prompt": "Previous response cited five tools: A1, B7, B16, D5, G6. Image-retrieval seed list includes all five plus https://doviewplanning.org/book. Retrieve the relevant diagrams.",
+      "expected_output": "A response that applies the IMAGE PRIORITISATION RULE — does not blindly include every image; selects the most relevant based on the upstream prioritisation criteria (DoView Boards/diagrams over decorative; tools that directly illustrate the technical outcomes problem in the previous answer).",
+      "assertions": [
+        {"text": "Begins with the IMAGE DISPLAY LIMITATION WARNING"},
+        {"text": "Includes Mermaid blocks for the tools selected"},
+        {"text": "If fewer than 5 tools are included, the remaining tool URLs are listed at the end of the response as raw-visible plain-text URLs (per the prioritisation rule)"},
+        {"text": "No tool URL appears as a markdown link"},
+        {"text": "Ends with full handbook reference"}
+      ]
+    }
+  ]
+}
