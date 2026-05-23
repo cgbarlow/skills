@@ -1,0 +1,61 @@
+{
+  "query": "carrots",
+  "count": 3,
+  "products": [
+    {
+      "name": "Carrots Loose",
+      "brand": "",
+      "sku": "135344",
+      "price": 0.99,
+      "sale_price": null,
+      "is_special": false,
+      "unit": "Each",
+      "selected_purchasing_unit": null,
+      "size": "",
+      "package_type": null,
+      "cup_price": 2.20,
+      "cup_measure": "1kg",
+      "availability": "In Stock",
+      "category": "Fresh Foods & Bakery",
+      "in_stock": true,
+      "supports_dual_pricing": true,
+      "average_weight_per_unit": 0.15
+    },
+    {
+      "name": "Pams Carrots Pre-Packed",
+      "brand": "Pams",
+      "sku": "200001",
+      "price": 2.50,
+      "sale_price": null,
+      "is_special": false,
+      "unit": "Each",
+      "selected_purchasing_unit": null,
+      "size": "1.5kg",
+      "package_type": "bag",
+      "cup_price": 1.67,
+      "cup_measure": "1kg",
+      "availability": "In Stock",
+      "category": "Fresh Foods & Bakery",
+      "in_stock": true,
+      "supports_dual_pricing": false
+    },
+    {
+      "name": "Baby Carrots",
+      "brand": "Pams",
+      "sku": "200002",
+      "price": 3.50,
+      "sale_price": null,
+      "is_special": false,
+      "unit": "Each",
+      "selected_purchasing_unit": null,
+      "size": "200g",
+      "package_type": "bag",
+      "cup_price": 17.50,
+      "cup_measure": "1kg",
+      "availability": "Out of Stock",
+      "category": "Fresh Foods & Bakery",
+      "in_stock": false,
+      "supports_dual_pricing": false
+    }
+  ]
+}

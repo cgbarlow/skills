@@ -1,0 +1,38 @@
+{
+  "query": "obscure-seasonal-item",
+  "count": 2,
+  "products": [
+    {
+      "name": "Obscure Seasonal A",
+      "brand": "BrandA",
+      "sku": "300001",
+      "price": 5.00,
+      "sale_price": null,
+      "is_special": false,
+      "unit": "Each",
+      "size": "500g",
+      "cup_price": 10.00,
+      "cup_measure": "1kg",
+      "availability": "Out of Stock",
+      "category": "Pantry",
+      "in_stock": false,
+      "supports_dual_pricing": false
+    },
+    {
+      "name": "Obscure Seasonal B",
+      "brand": "BrandB",
+      "sku": "300002",
+      "price": 4.50,
+      "sale_price": null,
+      "is_special": false,
+      "unit": "Each",
+      "size": "500g",
+      "cup_price": 9.00,
+      "cup_measure": "1kg",
+      "availability": "Out of Stock",
+      "category": "Pantry",
+      "in_stock": false,
+      "supports_dual_pricing": false
+    }
+  ]
+}
