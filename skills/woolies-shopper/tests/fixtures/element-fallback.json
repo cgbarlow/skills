@@ -1,0 +1,11 @@
+{
+  "id": "22222222-2222-2222-2222-222222222222",
+  "name": "Pork mince",
+  "data": {
+    "attributes": [
+      {"name": "Quantity", "type": "string", "scope": "instance", "value": "500g", "notes": ""},
+      {"name": "Product", "type": "string", "scope": "instance", "value": "Pams Pork Mince 500g (preferred)", "notes": "woolies:STOCKOUT | confirmed:2026-03-15"},
+      {"name": "Product", "type": "string", "scope": "instance", "value": "Anchor Pork Mince 500g", "notes": "woolies:222001 | confirmed:2026-03-15"}
+    ]
+  }
+}

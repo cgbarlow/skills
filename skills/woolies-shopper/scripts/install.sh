@@ -97,6 +97,41 @@ if [ "$(uname -s)" = "Linux" ]; then
     fi
 fi
 
+# ── jq (needed by shop.sh / phase2_bulk_add.sh) ───────────────────────
+if ! command -v jq >/dev/null 2>&1; then
+    warn ""
+    warn "jq is required by shop.sh (the phased orchestrator added in v0.2.0)."
+    warn "Install commands:"
+    warn "  macOS:    brew install jq"
+    warn "  Debian:   sudo apt install -y jq"
+    warn "  Fedora:   sudo dnf install -y jq"
+    warn ""
+    warn "Re-run this script once jq is installed."
+    exit 2
+fi
+echo "  jq       → $(jq --version 2>/dev/null || echo 'unknown')"
+
+# ── iris CLI (needed by shop.sh phase 2 to read aggregated lists, walk
+#    Ingredient element attributes, and write back resolved SKUs) ─────
+if ! command -v iris >/dev/null 2>&1; then
+    warn ""
+    warn "iris CLI is required by shop.sh phase 2 + phase 3 writeback."
+    warn "Install with: uv tool install iris-cli  (or pipx install iris-cli)"
+    warn "Then run: iris login"
+    warn ""
+    warn "shop.sh will refuse to run until iris CLI is authenticated."
+    warn "(woolies-only workflows that don't use shop.sh still work without it.)"
+    exit 2
+fi
+if ! iris whoami >/dev/null 2>&1; then
+    warn ""
+    warn "iris CLI installed but not authenticated."
+    warn "Run: iris login"
+    warn ""
+    exit 2
+fi
+echo "  iris     → authenticated"
+
 # ── Final health check ────────────────────────────────────────────────
 echo ""
 bold "Running woolies doctor…"
@@ -109,3 +144,4 @@ fi
 
 echo ""
 bold "✓ woolies-shopper install complete."
+bold "Entry point: ./scripts/shop.sh  (runs the full phased pipeline)"

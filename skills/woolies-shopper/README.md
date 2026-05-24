@@ -1,69 +1,90 @@
 # woolies-shopper
 
-A Claude skill that drives the weekly Woolworths NZ online grocery shop. Reads an aggregated shopping list from your [Iris](https://github.com/cgbarlow/iris) knowledge base via the Iris MCP server, then populates a Woolworths NZ trolley using the local [`woolies` CLI](https://github.com/mcinteerj/woolies-nz-cli). You review and submit the order yourself in the browser — the skill stops at "trolley populated", deliberately.
+A Claude skill + bash orchestrator that runs your weekly Woolworths NZ online grocery shop. Reads an aggregated shopping list from your [Iris](https://github.com/cgbarlow/iris) knowledge base via the Iris MCP server, then populates a Woolworths NZ trolley using the local [`woolies` CLI](https://github.com/mcinteerj/woolies-nz-cli). You review and submit the order yourself in the browser — the workflow stops at "trolley populated", deliberately.
 
-Primary host: **Claude Cowork** (desktop, with `/schedule` for a weekly cadence). The same skill also runs in Claude Code if you prefer the terminal.
+**v0.2.0 architecture (May 2026)**: the workflow is now a three-phase bash pipeline (`scripts/shop.sh`) where the bulk-add phase runs LLM-free against cached SKUs. Only the OCR (phase 1) and exception-resolution (phase 3) phases call Claude, and only when needed.
 
-## What it does
+## Entry point
 
-1. **Preflight** — checks that `woolies-nz-cli` is installed and you're logged into Woolworths.
-2. **Reads your shopping list** — fetches an aggregated meal-plan-derived shopping list from Iris (the output of `iris aggregate`).
-3. **Searches + picks SKUs** — for each line, runs `woolies search` and picks the best in-stock match using a deterministic ruleset (size match → brand hint → loose-produce preference → unit-price tiebreak). Asks you when the choice is genuinely ambiguous; offers substitutions when something is out of stock.
-4. **Adds to your trolley** — one `woolies cart add` per resolved line.
-5. **Summarises** — shows you what was added, substituted, skipped, or out of stock, and tells you to open woolworths.co.nz to review and submit.
+```sh
+./scripts/shop.sh
+```
+
+That's it. The script walks you through the three phases. Run it from a regular terminal — no Claude Code session required (phase 1 spawns its own).
+
+## What happens
+
+1. **Preflight** — checks `woolies` is installed and logged in, `iris` CLI is authenticated, and `jq` / `claude` are on PATH.
+2. **Phase 1 (interactive Claude Code, ~1 min)** — Claude prompts you to upload a photo of this week's meal plan; OCRs it; creates the meal plan in Iris via the MCP; runs `iris aggregate` to produce the rolled-up shopping list; emits the diagram id back to the master script and exits.
+3. **Phase 2 (pure bash, ~30 s for a 30-item shop)** — reads the aggregated list, looks up each Ingredient element via the `iris` CLI, walks its Product attribute rows in preferred order, and for each Product with a cached `woolies:NNN` SKU in its notes, calls `woolies cart add`. Refreshes the `confirmed:YYYY-MM-DD` date on each Product attribute on success. Anything that can't be resolved (no cached SKU, all cached SKUs OOS, no Product attributes, no provenance) goes to `exceptions.json` for phase 3. Zero Claude tokens consumed.
+4. **Phase 3 (interactive Claude Code, only if exceptions exist)** — spawns a fresh Claude session and invokes the woolies-shopper skill (re-scoped in v0.2.0 as the exception resolver). Claude searches Woolies for each unresolved item, picks via `scripts/pick.py`, asks you about ambiguous picks or out-of-stock substitutions, cart-adds, and writes any newly-discovered SKU back to the relevant Product attribute's notes so the next shop hits the cache.
+5. **Summary** — tells you to open woolworths.co.nz to review and submit. State + logs live in `$SHOP_STATE_DIR` (default `/tmp/shop-<timestamp>/`).
+
+## The cache
+
+Each Iris Ingredient element has one or more **Product** attributes — one per real-world buyable variant. The skill writes resolved Woolworths SKUs into each Product's `notes` field using a parseable convention:
+
+```
+woolies:269671 | confirmed:2026-05-24
+```
+
+Phase 2 reads this convention to skip search entirely. Phase 3 maintains it (writes new SKUs after resolving exceptions; refreshes the `confirmed:` date on successful re-use). Steady state: weekly shops where most items are repeats run almost entirely in phase 2, with minimal phase 3 work.
+
+The cache-hit fast path requires:
+- Iris ≥ **v6.31.0** ([ADR-217](https://github.com/cgbarlow/iris/blob/main/docs/adrs/ADR-217-Aggregate-Output-Provenance.md)) — the aggregation engine emits `<!-- iris:element=<uuid> -->` HTML comments on each line when `include_provenance: true` is set on the aggregation profile.
+- Your shopping-list aggregation profile to have `include_provenance: true`. Flip it in the Iris UI or via `iris aggregation-profile update`.
+
+Without those, the orchestrator falls back gracefully: every line is treated as an exception and phase 3 handles them all. Slower but still works.
 
 ## First-time install
 
 ```sh
-# From inside the skill directory:
 ./scripts/install.sh
 ```
 
 The installer:
-
 - Checks Python 3.11+ is on PATH.
 - Installs `woolies-nz-cli==0.1.1` via `pipx` (pulls `click`, `httpx`, `camoufox` transitively).
 - On Linux, detects missing GTK/NSS system libs Camoufox needs at runtime, and **prints** the exact `apt`/`dnf` command for you to run yourself (the installer never sudos).
+- Checks for `jq` (required by `shop.sh`) and the `iris` CLI (required for the cache lookup + writeback). Prints install commands if either is missing.
 - Runs `woolies doctor` at the end to confirm everything is wired up.
 
-Then sign in to Woolworths once:
+Then sign in once (each):
 
 ```sh
-woolies login
+woolies login   # interactive, spawns Camoufox; ~25 s + ~300 MB browser DL first run
+iris login      # interactive, mints + saves a PAT
 ```
 
-That spawns the Camoufox browser (~25 s, plus a one-time ~300 MB browser download on first run), prompts for your email + password, and caches cookies for several weeks. After that, every cart operation is a ~1 s HTTPS call.
+After that, every cart operation is ~1 s of HTTPS.
 
-For unattended use (e.g. a Cowork scheduled task) set `WOOLWORTHS_USERNAME` and `WOOLWORTHS_PASSWORD` in your environment, or configure `password_command` per the upstream CLI's README.
+For unattended use (e.g. wrapping `shop.sh` in cron), set `WOOLWORTHS_USERNAME` + `WOOLWORTHS_PASSWORD` in your environment, or configure `password_command` per the upstream CLI's README.
 
-## Iris MCP
+## What the skill alone does
 
-The skill assumes you have the Iris MCP server configured in your client (Cowork, Claude Code, etc). Without it, the skill will tell you it can't find the shopping list and stop. See [Iris MCP setup](https://github.com/cgbarlow/iris/blob/main/docs/mcp.md).
+If you invoke the skill **without** `shop.sh` — for example, to find a Woolies SKU for one specific ingredient — it will resolve that single line and (optionally) write the SKU back to the relevant Iris Ingredient element. It will NOT walk a full shopping list. For the full weekly shop, use `shop.sh`.
 
-## How it picks
+## What this workflow doesn't do
 
-The picker (`scripts/pick.py`) is small and deterministic. Given a `woolies search --json` payload and a desired (qty, unit, optional size hint, optional brand hint), it:
-
-1. Drops out-of-stock candidates. If every candidate is out of stock it returns the top 2 OOS as substitutions for you to consider.
-2. Applies your size and brand hints — but treats them as preferences, so a too-narrow hint doesn't wipe out the candidate pool.
-3. For Kilogram requests, or fractional quantities, restricts to dual-priced (loose-produce) candidates only. For Each requests on items that have a loose form (e.g. "3 carrots"), prefers the loose SKU over a packaged bag — recipe-driven shopping is almost always asking for loose produce by count.
-4. Sorts by cup price (per-unit-of-measure price), so different sizes compare fairly.
-5. If the top two candidates are within 10 % of each other on cup price, returns `{"ambiguous": true, …}` and the skill asks you to choose. Override the threshold in the `--want` JSON via `tie_threshold`.
-
-Tested against recorded fixtures in `tests/fixtures/` — run `python3 -m unittest discover -s tests` to verify.
-
-## What it doesn't do
-
-- **Doesn't place the order.** You eyeball the trolley and click Submit.
-- **Doesn't handle delivery slots, payment, or address changes.** Those stay on woolworths.co.nz.
-- **Doesn't apply boosts / loyalty specials.** The upstream CLI doesn't expose them as of v0.1.1.
-- **Doesn't learn your preferences over time.** Brand and size hints come from your Iris `Ingredient` element-template stamps — refine them there, not here.
+- **Place the order.** You review the trolley on woolworths.co.nz and click Submit.
+- **Handle delivery slots, payment, or address changes.** Those stay on woolworths.co.nz.
+- **Apply boosts / loyalty specials.** The upstream CLI doesn't expose them.
+- **Run scheduled / on a cron.** Out of scope; wrap `shop.sh` in your own cron line.
+- **Automate the photo upload.** Phase 1 is an interactive Claude session today; async photo ingestion (file watcher, email-in, Dropbox) is tracked at [#13](https://github.com/cgbarlow/skills/issues/13).
 
 ## Disclaimer
 
-This skill drives an unofficial CLI against Woolworths' internal API. Use of automated access may violate Woolworths' Terms of Service. The upstream CLI's [README](https://github.com/mcinteerj/woolies-nz-cli) is explicit about this; consider using a dedicated Woolworths account for automated runs.
+This workflow drives an unofficial CLI against Woolworths' internal API. Use of automated access may violate Woolworths' Terms of Service. The upstream CLI's [README](https://github.com/mcinteerj/woolies-nz-cli) is explicit about this; consider using a dedicated Woolworths account for automated runs.
 
-The skill author and the upstream CLI author accept no liability for account suspensions, rate limiting, or blocked access.
+Neither the skill author nor the upstream CLI author accept any liability for account suspensions, rate limiting, or blocked access.
+
+## Tests
+
+```sh
+cd skills/woolies-shopper
+python3 -m unittest discover -s tests       # picker (10 cases, unchanged from v0.1.0)
+bash tests/test_phase2.sh                   # phase 2 bash integration test
+```
 
 ## License
 

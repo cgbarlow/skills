@@ -1,0 +1,9 @@
+{
+  "id": "44444444-4444-4444-4444-444444444444",
+  "name": "Unknown thing",
+  "data": {
+    "attributes": [
+      {"name": "Quantity", "type": "string", "scope": "instance", "value": "1", "notes": ""}
+    ]
+  }
+}

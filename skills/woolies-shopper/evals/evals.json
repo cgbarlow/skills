@@ -3,40 +3,41 @@
   "evals": [
     {
       "id": 1,
-      "name": "shop-from-current-meal-plan",
-      "prompt": "It's Saturday morning — please do the weekly Woolworths shop. Use the most recent aggregated shopping list from my Iris 'meal-plans' set (the diagram named 'Week of 2026-05-25 — shopping list'). Walk me through any ambiguous picks or out-of-stocks; when you're done give me a summary so I can review and submit in the browser.",
-      "expected_output": "Skill runs preflight (./scripts/doctor.sh), reads the named diagram via the Iris MCP, parses ~15-30 items, calls woolies search + scripts/pick.py per line, prompts the user via AskUserQuestion only when the picker returns ambiguous/out-of-stock, and ends with a table of added/skipped/substituted items + an instruction to open woolworths.co.nz to review and submit. The skill does NOT attempt to place the order.",
+      "name": "phase3-exception-list-passed-by-master",
+      "prompt": "Resolve these Woolworths shopping exceptions from a phased shop pipeline. The state dir is /tmp/shop-2026-05-24-0800; exceptions are: [{\"reason\":\"all_cached_skus_failed\",\"name\":\"Carrots\",\"element_id\":\"33333333-3333-3333-3333-333333333333\",\"quantity\":3,\"unit\":\"Each\"},{\"reason\":\"no_products\",\"name\":\"Unknown thing\",\"element_id\":\"44444444-4444-4444-4444-444444444444\",\"quantity\":1,\"unit\":\"Each\"}]. Use the woolies-shopper skill. For each: search woolies, pick a SKU (use scripts/pick.py), ask me about ambiguities, cart-add, and write the resolved SKU back to the relevant Product attribute's notes via iris update element.",
+      "expected_output": "Skill walks the exception list. For 'all_cached_skus_failed' → calls woolies search + scripts/pick.py, presents an ambiguity to the user via AskUserQuestion if pick.py flags it, cart-adds the chosen SKU, calls iris_attr_update to REPLACE the preferred Product attribute's SKU (with confirmation that this is the right action vs. adding a new Product row). For 'no_products' → tells the user the Ingredient has no Product attribute yet, offers to add one with the resolved SKU. Writes the resolved log to phase3-result.json.",
       "assertions": [
-        {"text": "Calls ./scripts/doctor.sh at preflight before any other woolies command"},
-        {"text": "Reads the aggregated shopping list via an Iris MCP get_diagram or list_diagrams + get_diagram call"},
-        {"text": "Calls scripts/pick.py with --want JSON containing qty, unit, and optional hints — never picks a SKU itself"},
-        {"text": "Uses AskUserQuestion only when the picker returns ambiguous=true or out_of_stock=true"},
-        {"text": "Ends with woolies cart list --json and a summary table"},
-        {"text": "Does NOT attempt cart checkout or order submission"},
-        {"text": "Hands off to the user with an instruction to open woolworths.co.nz to review"}
+        {"text": "For all_cached_skus_failed reason, the skill replaces the preferred Product attribute's SKU (not silently adds a new Product row) unless the user explicitly asks for the substitute to be kept as an alternate"},
+        {"text": "For no_products reason, the skill asks the user before adding a brand-new Product attribute row to the Ingredient element"},
+        {"text": "All writeback notes use the format 'woolies:NNN | confirmed:YYYY-MM-DD' with today's date"},
+        {"text": "Uses scripts/pick.py for the search→SKU selection (does not pick SKUs itself from raw woolies search output)"},
+        {"text": "Calls scripts/lib/iris_attr_update.sh helpers (not raw iris update element invocations) for writeback"},
+        {"text": "Writes a phase3-result.json log of each resolved exception (sku, name, action taken: added/substituted/skipped)"},
+        {"text": "Does NOT attempt to run phase 2 itself or walk the full shopping list — only resolves the exceptions passed in"}
       ]
     },
     {
       "id": 2,
-      "name": "first-run-not-installed",
-      "prompt": "Do my Woolies shop — I have a meal plan called 'this week' in Iris.",
-      "expected_output": "Skill runs ./scripts/doctor.sh, sees reason='not_installed', walks the user through running ./scripts/install.sh, surfaces any Linux system-lib install instructions verbatim if the installer exits 2, then continues only after the user confirms install is complete and woolies login succeeded.",
+      "name": "no-provenance-known-limitation",
+      "prompt": "Resolve this exception: {\"reason\":\"no_provenance\",\"name\":\"Mystery item\",\"element_id\":\"\",\"quantity\":1,\"unit\":\"Each\"}. Use the woolies-shopper skill.",
+      "expected_output": "Skill searches woolies for 'Mystery item', picks a SKU, cart-adds it, and tells the user it CANNOT write the resolved SKU back to Iris because there's no element_id (no_provenance reason — the aggregation profile didn't have include_provenance: true). Surfaces the recommendation to flip include_provenance: true on the shopping-list aggregation profile in Iris.",
       "assertions": [
-        {"text": "Reads doctor.sh JSON output and branches on reason='not_installed'"},
-        {"text": "Instructs the user to run ./scripts/install.sh (does not attempt to install woolies via pip directly)"},
-        {"text": "Tells the user about the woolies login step and ~25s Camoufox download on first run"},
-        {"text": "Does NOT proceed to search/cart operations until preflight is green"}
+        {"text": "Cart-adds the resolved SKU successfully"},
+        {"text": "Does NOT attempt to write back to Iris (no element_id to write to)"},
+        {"text": "Explicitly tells the user this is a no_provenance limitation"},
+        {"text": "Recommends flipping include_provenance: true on the shopping-list aggregation profile"}
       ]
     },
     {
       "id": 3,
-      "name": "stock-out-with-substitution",
-      "prompt": "Do my shopping. Use meal plan diagram id `mp-2026-05-25`. If anything is out of stock, suggest a substitute but don't pick anything without asking me.",
-      "expected_output": "Skill processes the list, and on any line where scripts/pick.py returns out_of_stock=true it uses AskUserQuestion to offer the top 2 OOS candidates as substitution alternatives (or 'skip'), then either calls woolies cart add with the user's chosen alternative SKU or omits the line from the cart. Reports each substituted item in the final summary.",
+      "name": "user-asks-do-my-shopping-in-bare-claude",
+      "prompt": "Do my Woolies shop for this week — meal plan diagram is in my Iris 'meal-plans' set.",
+      "expected_output": "Skill recognises this is the full-shop entry point (not an exception resolution), points the user at running ./scripts/shop.sh from a terminal instead of attempting the workflow inside Claude. Briefly explains why (faster + cheaper because phase 2 doesn't need Claude). Offers to invoke just the skill for a single-item lookup if the user wants something quick instead.",
       "assertions": [
-        {"text": "Detects scripts/pick.py returning out_of_stock=true and asks the user before any substitution"},
-        {"text": "Never auto-substitutes without explicit user choice"},
-        {"text": "The summary table marks substituted items clearly (showing both original and chosen SKU)"}
+        {"text": "Does NOT attempt to read the meal plan or run the full workflow"},
+        {"text": "Points the user at running ./scripts/shop.sh from a terminal"},
+        {"text": "Explains the orchestrator-vs-skill split in one or two sentences"},
+        {"text": "Offers the single-SKU-lookup alternative for users who want a quick one-off"}
       ]
     }
   ]
