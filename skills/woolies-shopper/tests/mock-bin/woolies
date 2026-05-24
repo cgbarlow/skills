@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Mock `woolies` CLI for phase2 tests. Succeeds for cached SKUs except
+# the sentinel "STOCKOUT", which always fails (to exercise the fallback-
+# to-next-Product code path). Logs each call to $MOCK_WOOLIES_LOG.
+
+set -uo pipefail
+
+: "${MOCK_WOOLIES_LOG:?MOCK_WOOLIES_LOG must be set}"
+
+echo "woolies $*" >> "$MOCK_WOOLIES_LOG"
+
+if [ "$1 $2" = "cart add" ]; then
+    sku="$3"
+    if [ "$sku" = "STOCKOUT" ]; then
+        echo "mock woolies: SKU $sku is out of stock" >&2
+        exit 1
+    fi
+    echo "Added SKU $sku to mock cart"
+    exit 0
+fi
+
+echo "mock woolies: unsupported invocation '$*'" >&2
+exit 2

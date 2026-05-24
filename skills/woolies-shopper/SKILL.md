@@ -1,122 +1,118 @@
 ---
 name: woolies-shopper
-description: Do the weekly Woolworths NZ online grocery shop. Reads an aggregated shopping list from the Iris MCP server, then drives the local `woolies` CLI (https://github.com/mcinteerj/woolies-nz-cli) to populate a Woolworths NZ trolley for the user to review and submit in the browser. Use this whenever the user asks to "do the shopping", "shop from a meal plan", "fill the Woolies cart", "build a Woolworths order", or refers to a Woolies / Woolworths NZ / Countdown-NZ online shop, even if they don't explicitly name this skill. Pairs with the Iris meal-plan + `aggregate` workflow; this skill is the cart-builder step that replaces the slow Chrome-extension approach.
+description: Resolve exceptions in a Woolworths NZ online grocery workflow — handle out-of-stock items, find SKUs for newly-added grocery items, and write resolved SKUs back to the Product attribute notes of Iris Ingredient elements so the next shop hits the cache. Triggered automatically by `shop.sh` phase 3 when the bash bulk-add can't resolve a line; also triggers directly when the user asks to "find a Woolies SKU for this ingredient", "deal with this out-of-stock item", "find a substitute for X at Woolworths", or "resolve these woolies shopping exceptions". For the full weekly shop, the user should run `./scripts/shop.sh` from the terminal — this skill is the exception resolver, not the orchestrator. If the user asks to "do the shopping" or similar generic phrasing in a bare Claude session, point them at `shop.sh` first; only invoke this skill directly when they're explicitly working on exceptions or a single SKU lookup.
 ---
 
-# woolies-shopper
+# woolies-shopper (v0.2.0 — exception resolver)
 
-Drive the weekly grocery shop end-to-end: pull an aggregated shopping list out of Iris via the Iris MCP server, find the right Woolworths NZ SKUs for each line, add them to the user's trolley via the local `woolies` CLI, and hand the user back a populated trolley to review and submit in their browser.
+The narrow job of this skill: take one or more Woolworths shopping exceptions — a line that couldn't be cart-added by the deterministic bash bulk-add phase — and resolve each one by searching, picking, asking the user when needed, cart-adding, and writing the resolved SKU back to the Iris Ingredient element's Product attribute notes for next time.
 
-This skill **does not place the order**. It stops at "trolley populated"; the user opens woolworths.co.nz and clicks the final Submit themselves. That boundary is deliberate — a human eyeballs the final cart before any money moves.
+**This skill is NOT the entry point for the full weekly shop.** That's `./scripts/shop.sh` in the same skill directory — a master bash orchestrator that runs three phases: (1) Claude Code session for OCR + meal plan + aggregation, (2) pure-bash bulk-add against cached SKUs, (3) this skill for exception resolution. If a user types "do my Woolies shop" into a bare Claude session, your first reply should point them at `shop.sh` from the terminal rather than running the whole workflow inside Claude — the orchestrator is faster and cheaper.
+
+The exception payload `shop.sh` hands you (in phase 3) looks like:
+
+```json
+{
+  "exceptions": [
+    {"reason": "all_cached_skus_failed", "name": "Carrots", "element_id": "33333333-...", "quantity": 3, "unit": "Each"},
+    {"reason": "no_products", "name": "Unknown thing", "element_id": "44444444-...", "quantity": 1, "unit": "Each"},
+    {"reason": "no_provenance", "name": "Mystery item", "element_id": "", "quantity": 1, "unit": "Each"}
+  ],
+  "count": 3
+}
+```
 
 ## Hosts
 
-- **Claude Cowork** is the primary host. Cowork's desktop UX + `/schedule` for cadence-based runs is the natural fit for a weekly task.
-- **Claude Code** runs the same skill unchanged. Use it when the user prefers the terminal.
-- Claude Desktop (chat-only) is **not** a supported host — it can't shell out to the local CLI.
+This skill runs in **Claude Code** when invoked by `shop.sh` phase 3 (the master script spawns `claude -p "…"` with the exception payload). It can also run in **Claude Cowork** if the user invokes it manually for a one-off SKU lookup. Claude Desktop (chat-only) is not supported — the skill shells out to the local `iris` and `woolies` CLIs.
 
-## Preflight (always run first)
+## Preflight
 
-1. Run `./scripts/doctor.sh`. It emits one JSON line; parse it.
-2. If `ok: true` — continue to step "Locate the shopping list".
-3. If `reason: "not_installed"` — walk the user through `./scripts/install.sh`. The script is idempotent and never sudos; if it needs system libraries it prints the exact apt/dnf command and exits 2 so the user can run it themselves.
-4. If `reason: "not_logged_in"` — ask the user to run `woolies login` (interactive, ~25 s; spawns a Camoufox browser the first time and downloads a ~300 MB binary on first invocation). Then re-run doctor.
-5. If `reason: "doctor_reported_problem"` — surface the `hint` to the user verbatim. Most common cause is a Woolworths-side selector change; the upstream CLI's README has the troubleshooting matrix.
+Run `./scripts/doctor.sh` first if you haven't been invoked by `shop.sh` (which has already done its own preflight). The doctor emits one JSON line:
 
-## Locate the shopping list (Iris MCP)
+- `{"ok": true, ...}` — continue.
+- `{"reason": "not_installed", ...}` — instruct the user to run `./scripts/install.sh`.
+- `{"reason": "not_logged_in", ...}` — instruct the user to run `woolies login` (interactive, ~25 s).
+- `{"reason": "doctor_reported_problem", ...}` — surface the `hint` verbatim.
 
-The shopping list lives in Iris as the markdown body of an aggregated diagram produced by `iris aggregate` (or by the `aggregate` Iris MCP tool). Two ways to find it:
+You also need the `iris` CLI authenticated for the SKU writeback step — `iris whoami` should succeed. If not, ask the user to run `iris login`.
 
-- **The user gave you a diagram id.** Call the Iris MCP `get_diagram` tool with that id.
-- **The user said "use the current meal plan" or similar.** Ask which Iris set holds their meal plans (use `list_collections` / `list_sets` if needed), then `list_diagrams` filtered to that set, sorted by `updated_at`. The most recent aggregated shopping-list diagram (data shape `{"content": "<markdown>"}`) is the target.
+## Resolving each exception
 
-Confirm the diagram name with the user before processing it, especially if you had to disambiguate.
+For each entry in the exceptions payload:
 
-## Parse the aggregated list
-
-The aggregated markdown is a flat list of items. Each line has been deduplicated and summed by `iris aggregate`. Expect lines roughly like:
-
-```
-- Pork mince — 1kg
-- Chilli beans (Watties Mild) — 2 × 420g
-- Carrots — 3
-- Milk (Anchor) — 2L
-```
-
-Extract `(name, qty, unit, optional brand, optional size)` tuples. The parser doesn't need to be exhaustive — if a line is ambiguous, leave it for the user to confirm at the picking step.
-
-Map units sensibly to the picker's two-valued unit:
-
-- `kg`, `g`, `l`, `ml` → `unit: "Kilogram"` (convert g → kg, ml → l if applicable); `qty` is the numeric magnitude in the larger unit.
-- bare count, `each`, `× N`, `pcs` → `unit: "Each"`.
-
-Anything you can't parse, ask the user.
-
-## Search + pick (per line)
-
-For each parsed item, run two commands:
+### 1. Search Woolworths
 
 ```bash
-woolies search "<name>" --json --limit 5
+woolies search "<exception.name>" --json --limit 5
 ```
 
-Pipe its stdout to:
+### 2. Pick the best SKU
+
+Pipe the search output to `scripts/pick.py`:
 
 ```bash
-python3 scripts/pick.py --want '{"qty": N, "unit": "Each|Kilogram", "size_hint": "...", "brand_hint": "..."}'
+woolies search "<name>" --json --limit 5 | \
+  python3 scripts/pick.py --want '{"qty": <quantity>, "unit": "<unit>", "size_hint": "...", "brand_hint": "..."}'
 ```
 
-The picker handles the ranking rules (in-stock filter, size match, brand preference, dual-priced loose produce → loose, cup-price tiebreak with a 10 % ambiguity threshold). It returns one of four shapes:
+The picker returns one of four shapes (unchanged from v0.1.0):
 
-- **`{"sku", "name", "size", "quantity", "unit"}`** — unambiguous winner. Add it directly.
-- **`{"ambiguous": true, "candidates": [...]}`** — top candidates are close enough that the user should pick. Show them via `AskUserQuestion` (Cowork/Claude Code both support it) and proceed with their choice.
-- **`{"out_of_stock": true, "candidates": [...]}`** — no in-stock match. Offer the user the top 2 candidates as a substitution, or skip.
-- **`{"no_matches": true}`** — the search returned nothing. Tell the user and skip the line.
+- `{"sku": ..., "name": ..., "size": ..., "quantity": ..., "unit": ...}` — unambiguous winner. Use it.
+- `{"ambiguous": true, "candidates": [...]}` — ask the user via `AskUserQuestion`, present the top candidates with size + price.
+- `{"out_of_stock": true, "candidates": [...]}` — offer the user the top 2 OOS alternatives as substitutes, or skip the line.
+- `{"no_matches": true}` — surface to the user, skip.
 
-Default behaviour is to **ask on stock-out** rather than auto-substitute. The user can override this for a hands-off run.
-
-## Cart add
-
-For each successful pick:
+### 3. Cart-add
 
 ```bash
-woolies cart add <sku> <qty> --unit <Each|Kilogram>
+woolies cart add <sku> <quantity> --unit <Each|Kilogram>
 ```
 
-`--unit Kilogram` is only valid for products that support dual pricing (loose produce). The picker only returns `unit: "Kilogram"` when that's actually the case, so trust it.
+### 4. Write back to Iris (NEW in v0.2.0)
 
-Group cart-add invocations and keep a running tally: `added`, `skipped`, `substituted`, `out_of_stock`, `ambiguous_resolved_by_user`.
-
-## Summary
-
-When the list is exhausted:
+After a successful cart-add, write the SKU back so the next shop hits the cache. The shared helper in `scripts/lib/iris_attr_update.sh` does the get-merge-put dance against the `iris` CLI:
 
 ```bash
-woolies cart list --json
+source scripts/lib/iris_attr_update.sh
+
+# Append to the Product attribute notes: "woolies:NNN | confirmed:YYYY-MM-DD"
+# If the exception has no element_id (reason=no_provenance) you cannot write
+# back — surface that to the user as a known limitation.
+
+NEW_NOTES="woolies:${sku} | confirmed:$(date +%Y-%m-%d)"
+
+# product_idx is which Product attribute row to write to. For reason=no_products
+# the user needs to add a Product attribute to the Ingredient element first
+# (via the Iris UI or `iris update element`) before you can write the SKU.
+
+iris_attr_update "$element_id" "Product" "$product_idx" "$NEW_NOTES"
 ```
 
-Render a compact table for the user:
+Three reasons require different handling:
 
-| Item | SKU | Size | Qty | Unit | Status |
+- **`all_cached_skus_failed`** — Product attribute rows exist but their cached SKUs all returned OOS/404. After resolving with a fresh SKU, decide with the user: replace the SKU on the preferred Product row (most common — old SKU was discontinued), or add a NEW Product row for the substitute (user wants both as alternates). Default to replace-preferred unless the user indicates otherwise.
+- **`no_products`** — the Ingredient element has no Product attribute at all. Ask the user to add one with the resolved SKU in its notes. The skill can do this for them via `iris update element` (full element data with the new Product row appended).
+- **`no_provenance`** — the aggregate line had no HTML-comment element_id (graceful-degradation path; the upstream aggregation profile didn't have `include_provenance: true`). You can resolve the cart-add but cannot write back, because you don't know which Ingredient element produced the line. Tell the user this is a known limitation and recommend flipping `include_provenance: true` on their shopping-list aggregation profile in Iris.
 
-with one row per shopping-list line. Items that were substituted carry both the original and the chosen SKU. Items that were skipped or out of stock are marked clearly.
+### 5. Append to phase 3 result log
 
-End by telling the user to **open woolworths.co.nz in a browser to review the trolley and submit the order.** Do not attempt to drive checkout, payment, or delivery-slot selection — those stay with the human.
+When invoked by `shop.sh`, write each resolved exception (sku, name, quantity, unit, action taken — added / substituted / skipped) to `$STATE_DIR/phase3-result.json` so the master script can roll the summary up.
 
-## Scheduling (Cowork only)
+## Summary at the end
 
-If the user wants to run this on a cadence ("every Saturday at 8 am"), point them at Cowork's `/schedule` command. The skill itself doesn't manage a schedule — that's a Cowork-level concern. A scheduled invocation should provide the meal-plan diagram id (or a "find the diagram tagged X" instruction) so the skill knows which list to consume without prompting.
+After all exceptions are resolved, run `woolies cart list --json` and render a compact table for the user showing the full final cart. End with: "**Open https://www.woolworths.co.nz in your browser to review and submit the order.**" The skill never attempts checkout — that's a human-eyeballs-then-clicks-Submit step.
 
-## Failure modes worth knowing
+## Failure modes worth knowing (unchanged from v0.1.0)
 
-- **Camoufox binary missing** — `woolies login` will download it (~300 MB, ~30–60 s). If it fails, the upstream CLI's `README.md` has a troubleshooting table. Surface the error verbatim.
-- **Session expired** — appears as a 401 from the upstream API mid-run. `woolies login` again. Cookies persist for several weeks normally.
-- **Akamai blocking** — sometimes the upstream CLI gets fingerprinted out. The user can route through a proxy via `WOOLIES_PROXY=http://...` env var. Surface this to them and stop.
-- **Boosts / loyalty specials** — the upstream CLI doesn't expose these as of v0.1.1. The skill silently skips them with a note in the summary. The user can pick them up manually before submitting.
-- **Disclaimer** — Woolworths' ToS may prohibit automated access. Restate this on first-run, and recommend using a dedicated Woolies account if the user runs this often.
+- Camoufox binary missing → `woolies login` downloads it on first run (~30–60 s).
+- Session expired → 401 from Woolies API. Run `woolies login` again. Cookies normally persist for weeks.
+- Akamai blocking → set `WOOLIES_PROXY=http://...` env var to route through a proxy.
+- Boosts / loyalty specials → upstream CLI doesn't expose these yet; the skill silently skips them.
+- Disclaimer: automated access may violate Woolworths' ToS. Use a dedicated Woolies account for frequent automated runs.
 
 ## Notes for future iteration
 
-- `tests/test_pick.py` is the behavioural spec for `pick.py`. Add new ranking rules there first, in red/green/refactor order.
-- The Iris MCP server is the only external dependency for the upstream half of the workflow; if the Iris connector isn't configured, ask the user to add it before running this skill.
-- The picker handles **only** the search → SKU mapping. Anything more (taste preference learning, allergen rules, household-size scaling) should live in the Iris element-template stamps (the `Ingredient` template, ADR-212), not in this skill.
+- `tests/test_pick.py` remains the behavioural spec for the picker (10 cases, unchanged).
+- `tests/test_phase2.sh` covers the bash phase 2 (4 reason codes + cache-hit, fallback, no-cache, no-products, no-provenance paths). Add new cases there in red→green order.
+- Multi-retailer is out of scope today but the notes convention is forward-compatible: `woolies:NNN | paknsave:MMM | confirmed:YYYY-MM-DD` would be the natural extension.

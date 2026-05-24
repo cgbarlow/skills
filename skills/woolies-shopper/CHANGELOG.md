@@ -4,6 +4,27 @@ All notable changes to the **woolies-shopper** skill will be documented in this 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this skill follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] — 2026-05-24
+
+### Added
+
+- `scripts/shop.sh` — master bash orchestrator for the full weekly shop. Three phases: (1) interactive Claude Code session for photo OCR + meal-plan + aggregation; (2) pure-bash bulk-add against cached SKUs; (3) conditional Claude session that invokes this skill to resolve exceptions. Each phase runs in a fresh Claude session; state hands off through files in `$SHOP_STATE_DIR` (default `/tmp/shop-<timestamp>/`).
+- `scripts/phase2_bulk_add.sh` — pure-bash bulk-add. Reads the aggregated shopping list, parses each line for the `<!-- iris:element=<uuid> -->` provenance comment (requires iris ≥ v6.31.0 / ADR-217 with `include_provenance: true` on the aggregation profile), looks up each Ingredient element, walks its Product attribute rows in preferred order, tries each cached `woolies:NNN` SKU in the row's notes, refreshes the `confirmed:` date on success, and pushes anything that can't be resolved to `exceptions.json` for phase 3. Zero LLM tokens consumed.
+- `scripts/lib/iris_attr_update.sh` — shared bash helper for the iris CLI's get-merge-put attribute-notes update pattern. Reused by phase 2 (date refresh on success) and phase 3 (skill writeback of new SKUs).
+- `tests/test_phase2.sh` + mock `iris` / `woolies` binaries under `tests/mock-bin/` + 5 fixture JSONs — end-to-end integration test for phase 2 covering cache hit, Product[0]→Product[1] fallback on stock-out, no-cached-SKU, no-Product-attributes, and no-provenance (graceful-degradation) paths.
+
+### Changed
+
+- **Skill re-scoped from "do the whole shop" to "resolve shopping exceptions".** The frontmatter `description` now steers Claude to point users at `shop.sh` for the full workflow and only triggers this skill directly for exception resolution or single-SKU lookups. SKILL.md body has been rewritten end-to-end against the exceptions-payload contract emitted by phase 2.
+- `SKILL.md` body adds a writeback step (new): after a successful exception-resolution cart-add, the skill writes the resolved SKU back to the relevant Product attribute's notes via the `iris` CLI so the next shop hits the cache.
+- `scripts/install.sh` now also checks for `jq` (required by `shop.sh` / `phase2_bulk_add.sh`) and `iris` CLI (required for the cache lookup and writeback). Both checks fail with an install hint rather than silently degrading.
+
+### Notes
+
+- The cache-hit fast path requires `iris ≥ v6.31.0` (ADR-217) AND the user's shopping-list aggregation profile to have `output.include_provenance: true`. Without those, every line falls through to phase 3 as a `no_provenance` exception — graceful degradation, whole workflow still completes, just slower.
+- `scripts/pick.py` and its 10 unit tests are **unchanged** from v0.1.0. The picker stays exactly the same; only the orchestration around it moves.
+- Closes follow-up plan documented at https://github.com/cgbarlow/iris/blob/research/issue-231-woolies-skill/docs/plans/issue-231-followup-cached-skus-plan.md.
+
 ## [0.1.0] — 2026-05-23
 
 ### Added

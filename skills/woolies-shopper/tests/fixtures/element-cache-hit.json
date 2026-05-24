@@ -1,0 +1,11 @@
+{
+  "id": "11111111-1111-1111-1111-111111111111",
+  "name": "Chilli beans",
+  "data": {
+    "attributes": [
+      {"name": "Quantity", "type": "string", "scope": "instance", "value": "1 can", "notes": ""},
+      {"name": "Product", "type": "string", "scope": "instance", "value": "Watties Mild Chilli Beans 420g", "notes": "woolies:111000 | confirmed:2026-03-15"},
+      {"name": "Product", "type": "string", "scope": "instance", "value": "Watties Hot Chilli Beans 420g", "notes": "woolies:111001 | confirmed:2026-03-15"}
+    ]
+  }
+}

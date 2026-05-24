@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Mock `iris` CLI for phase2 tests. Reads fixtures from
+# $MOCK_FIXTURES_DIR (set by the test runner). Logs each invocation to
+# $MOCK_IRIS_LOG so the test can assert on call patterns.
+#
+# Supported subcommands:
+#   iris export diagram <id> --format md   → cat fixtures/aggregate-output.md
+#   iris elements get <id> --json           → cat fixtures/element-<id>.json
+#   iris update element <id> --data-json X  → no-op, exit 0
+
+set -uo pipefail
+
+: "${MOCK_FIXTURES_DIR:?MOCK_FIXTURES_DIR must be set}"
+: "${MOCK_IRIS_LOG:?MOCK_IRIS_LOG must be set}"
+
+echo "iris $*" >> "$MOCK_IRIS_LOG"
+
+case "$1 $2" in
+    "export diagram")
+        cat "$MOCK_FIXTURES_DIR/aggregate-output.md"
+        ;;
+    "elements get")
+        element_id="$3"
+        # Map well-known fixture UUIDs to fixture files.
+        case "$element_id" in
+            11111111-*) cat "$MOCK_FIXTURES_DIR/element-cache-hit.json" ;;
+            22222222-*) cat "$MOCK_FIXTURES_DIR/element-fallback.json" ;;
+            33333333-*) cat "$MOCK_FIXTURES_DIR/element-no-cache.json" ;;
+            44444444-*) cat "$MOCK_FIXTURES_DIR/element-no-products.json" ;;
+            *)
+                echo "mock iris: unknown element $element_id" >&2
+                exit 1
+                ;;
+        esac
+        ;;
+    "update element")
+        # Accept and discard the JSON payload — test doesn't assert on PUT body
+        # contents beyond the fact that the call happened (visible in log).
+        exit 0
+        ;;
+    *)
+        echo "mock iris: unsupported invocation '$*'" >&2
+        exit 2
+        ;;
+esac
