@@ -4,6 +4,28 @@ All notable changes to the **woolies-shopper** skill will be documented in this 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this skill follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] — 2026-05-30
+
+### Added
+
+- **Phase 1 input modes, asked at run time.** `shop.sh` now offers two choices and runs the matching one of four routes:
+  - **What:** _Meal plan_ (derive the list from a week's meals via Iris aggregation) or _Shopping list_ (use a list directly).
+  - **Where:** _Photo_ (newest `*.jpg/*.jpeg/*.png` in the current directory, OCR'd headlessly) or _Iris View GUID_ (an existing diagram already in Iris).
+  - Routes: meal-plan+photo (OCR → confirm → match meals to existing recipes → `iris aggregate`), meal-plan+GUID (`iris aggregate` on the meal-plan View), shopping-list+GUID (`iris export diagram` of the shopping-list View), shopping-list+photo (OCR straight to markdown).
+- **Recipe matching + gate for meal-plan-from-photo.** The commit step matches each OCR'd meal to its EXISTING Iris recipe (no invented ingredients/recipes), writes any it can't match to `$STATE_DIR/unmatched.md`, and `shop.sh` surfaces those and requires confirmation before aggregating — so a missing recipe can't silently shrink the shop.
+- **Aggregation-profile resolution** for meal-plan modes: honours `IRIS_SHOPPING_PROFILE_ID`, else auto-uses the only profile, else presents a numbered picker.
+- **Provenance preflight warning.** When a chosen profile has `output.include_provenance = false`, `shop.sh` warns loudly that the SKU cache and phase-3 writeback are disabled (with the exact enable command) instead of silently degrading.
+- `phase2_bulk_add.sh --list-md <file> <state_dir>` — accepts a pre-rendered shopping-list markdown (the form `shop.sh` now uses). The `<diagram_id> <state_dir>` form is retained for standalone use.
+- `tests/test_phase2_listmd.sh` — regression test for the `--list-md` form (same outcome as diagram mode; asserts no `iris export diagram` call).
+
+### Changed
+
+- `shop.sh` phase 1 no longer assumes a meal-plan photo. It produces `$STATE_DIR/aggregate.md` by whichever route the user selects, then hands phase 2 that file via `--list-md`. Phase 3's `claude` call is unchanged.
+
+### Notes
+
+- **Shopping-list-from-photo has no Iris provenance**, so phase 2's SKU cache can't apply (every line → manual phase 3) and no SKUs are written back. `shop.sh` warns at run time and recommends a meal plan or a shopping-list View GUID for the fast path.
+
 ## [0.2.2] — 2026-05-30
 
 ### Fixed
