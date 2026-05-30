@@ -3,7 +3,7 @@ name: woolies-shopper
 description: Resolve exceptions in a Woolworths NZ online grocery workflow — handle out-of-stock items, find SKUs for newly-added grocery items, and write resolved SKUs back to the Product attribute notes of Iris Ingredient elements so the next shop hits the cache. Triggered automatically by `shop.sh` phase 3 when the bash bulk-add can't resolve a line; also triggers directly when the user asks to "find a Woolies SKU for this ingredient", "deal with this out-of-stock item", "find a substitute for X at Woolworths", or "resolve these woolies shopping exceptions". For the full weekly shop, the user should run `./scripts/shop.sh` from the terminal — this skill is the exception resolver, not the orchestrator. If the user asks to "do the shopping" or similar generic phrasing in a bare Claude session, point them at `shop.sh` first; only invoke this skill directly when they're explicitly working on exceptions or a single SKU lookup.
 ---
 
-# woolies-shopper (v0.2.0 — exception resolver)
+# woolies-shopper (v0.2.1 — exception resolver)
 
 The narrow job of this skill: take one or more Woolworths shopping exceptions — a line that couldn't be cart-added by the deterministic bash bulk-add phase — and resolve each one by searching, picking, asking the user when needed, cart-adding, and writing the resolved SKU back to the Iris Ingredient element's Product attribute notes for next time.
 
