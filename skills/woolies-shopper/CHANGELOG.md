@@ -4,7 +4,21 @@ All notable changes to the **woolies-shopper** skill will be documented in this 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this skill follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.1] — 2026-05-30
+## [0.2.2] — 2026-05-30
+
+### Fixed
+
+- Phase 1 of `scripts/shop.sh` no longer crashes with `Input must be provided either through stdin or as a prompt argument when using --print` (issue #15). The old code ran `claude 2>&1 | tee …` to capture the session; the pipe made stdout a non-TTY, so Claude Code flipped to headless `--print` mode but received no prompt. Phase 1 is now genuinely headless by design (see below), so the failure mode is gone.
+
+### Changed
+
+- **Phase 1 reworked from an interactive session to two headless `claude -p` calls, with the meal-plan photo picked up from the current directory** instead of uploaded interactively:
+  - Selects the **newest** `*.jpg`/`*.jpeg`/`*.png` in the directory `shop.sh` is run from (`.heic` is intentionally unsupported — Claude's image reader doesn't accept it; export as JPG). Fails with a clear message if no image is present.
+  - **Step 1a (OCR):** writes the parsed meal plan to `$STATE_DIR/mealplan.md` and performs no Iris writes, so the user can sanity-check the parse first.
+  - **Confirmation gate:** prints the parsed plan and waits for a `y` before committing. The user can edit `$STATE_DIR/mealplan.md` before confirming.
+  - **Step 1b (commit):** creates the meal plan in Iris, aggregates, and writes the diagram id to `$STATE_DIR/diagram-id`. The handoff is now a file Claude writes (authoritative) rather than a `DIAGRAM_ID=` line scraped from stdout — robust against TUI/formatting noise.
+
+
 
 ### Fixed
 
