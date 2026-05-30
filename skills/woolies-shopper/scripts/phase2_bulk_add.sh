@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 # Phase 2 of the weekly Woolies shop. Pure bash, no LLM.
 #
-# Inputs:
-#   $1 — diagram_id of an aggregated shopping list (output of `iris aggregate`
-#        against a meal plan). The aggregation profile MUST have
-#        include_provenance=true so each line carries an HTML-comment
-#        element_id (ADR-217 / iris v6.31.0). If not, lines without
-#        provenance fall through to phase 3 as exceptions — graceful
-#        degradation, no hard fail.
-#   $2 — state_dir for manifest files (cart-result.json, exceptions.json).
+# Inputs (two forms):
+#   phase2_bulk_add.sh --list-md <file> <state_dir>
+#        <file> — a pre-rendered shopping-list markdown (produced by shop.sh
+#        from any of its phase-1 routes). This is the form shop.sh uses.
+#   phase2_bulk_add.sh <diagram_id> <state_dir>
+#        <diagram_id> — diagram id of a shopping-list View; the list is
+#        fetched via `iris export diagram`. Retained for direct/standalone use.
+#
+# Either way, for the SKU cache to apply each line must carry an HTML-comment
+# element_id (aggregation profile output.include_provenance=true, ADR-217 /
+# iris v6.31.0). Lines without provenance fall through to phase 3 as
+# exceptions — graceful degradation, no hard fail.
+#
+# <state_dir> holds the manifest files (cart-result.json, exceptions.json).
 #
 # Walks each line of the aggregated list. For each line:
 #   1. Look up the underlying Iris Ingredient element via `iris elements get`.
@@ -24,8 +30,16 @@
 
 set -uo pipefail
 
-DIAGRAM_ID="${1:?usage: phase2_bulk_add.sh <diagram_id> <state_dir>}"
-STATE_DIR="${2:?usage: phase2_bulk_add.sh <diagram_id> <state_dir>}"
+USAGE="usage: phase2_bulk_add.sh --list-md <file> <state_dir> | phase2_bulk_add.sh <diagram_id> <state_dir>"
+if [ "${1:-}" = "--list-md" ]; then
+    LIST_MD="${2:?$USAGE}"
+    STATE_DIR="${3:?$USAGE}"
+    SOURCE_MODE="file"
+else
+    DIAGRAM_ID="${1:?$USAGE}"
+    STATE_DIR="${2:?$USAGE}"
+    SOURCE_MODE="diagram"
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=lib/iris_attr_update.sh
@@ -38,10 +52,19 @@ EXCEPTIONS_JSONL="$STATE_DIR/exceptions.jsonl"
 : > "$ADDED_JSONL"
 : > "$EXCEPTIONS_JSONL"
 
-# Fetch the aggregated shopping list as markdown.
-if ! iris export diagram "$DIAGRAM_ID" --format md > "$AGGREGATE_MD" 2>/dev/null; then
-    echo "phase2: iris export diagram $DIAGRAM_ID failed" >&2
-    exit 1
+# Obtain the shopping list as markdown at $AGGREGATE_MD.
+if [ "$SOURCE_MODE" = "file" ]; then
+    if [ ! -s "$LIST_MD" ]; then
+        echo "phase2: list markdown '$LIST_MD' is missing or empty" >&2
+        exit 1
+    fi
+    # shop.sh already writes to $AGGREGATE_MD; copy only if a different path.
+    [ "$LIST_MD" = "$AGGREGATE_MD" ] || cp "$LIST_MD" "$AGGREGATE_MD"
+else
+    if ! iris export diagram "$DIAGRAM_ID" --format md > "$AGGREGATE_MD" 2>/dev/null; then
+        echo "phase2: iris export diagram $DIAGRAM_ID failed" >&2
+        exit 1
+    fi
 fi
 
 # Parse a single shopping-list line. Returns 0 with name/qty/unit/element_id

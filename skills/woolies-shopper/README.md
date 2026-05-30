@@ -10,14 +10,24 @@ A Claude skill + bash orchestrator that runs your weekly Woolworths NZ online gr
 ./scripts/shop.sh
 ```
 
-That's it. The script walks you through the three phases. Run it from a regular terminal — no Claude Code session required (phase 1 spawns its own).
+That's it. The script walks you through the phases. Run it from a regular terminal — no Claude Code session required (it spawns its own when needed).
 
 ## What happens
 
 1. **Preflight** — checks `woolies` is installed and logged in, `iris` CLI is authenticated, and `jq` / `claude` are on PATH.
-2. **Phase 1 (headless Claude, ~1 min)** — picks the **newest** `*.jpg`/`*.jpeg`/`*.png` in the directory you run `shop.sh` from, OCRs it to `$STATE_DIR/mealplan.md`, and **pauses for you to confirm** the parsed plan looks right (edit the file first if not). On confirmation it creates the meal plan in Iris via the MCP, runs `iris aggregate`, and writes the diagram id to `$STATE_DIR/diagram-id`. Two headless `claude -p` calls — no interactive session. (HEIC isn't supported; export iPhone photos as JPG.)
-3. **Phase 2 (pure bash, ~30 s for a 30-item shop)** — reads the aggregated list, looks up each Ingredient element via the `iris` CLI, walks its Product attribute rows in preferred order, and for each Product with a cached `woolies:NNN` SKU in its notes, calls `woolies cart add`. Refreshes the `confirmed:YYYY-MM-DD` date on each Product attribute on success. Anything that can't be resolved (no cached SKU, all cached SKUs OOS, no Product attributes, no provenance) goes to `exceptions.json` for phase 3. Zero Claude tokens consumed.
-4. **Phase 3 (interactive Claude Code, only if exceptions exist)** — spawns a fresh Claude session and invokes the woolies-shopper skill (re-scoped in v0.2.0 as the exception resolver). Claude searches Woolies for each unresolved item, picks via `scripts/pick.py`, asks you about ambiguous picks or out-of-stock substitutions, cart-adds, and writes any newly-discovered SKU back to the relevant Product attribute's notes so the next shop hits the cache.
+2. **Phase 1 — choose your input, produce the shopping list.** Two questions at run time:
+   - **What** are you shopping from? **(1) Meal plan** — derive the list from a week's meals via Iris aggregation; or **(2) Shopping list** — use a list directly.
+   - **Where** does it come from? **(1) Photo** — the **newest** `*.jpg`/`*.jpeg`/`*.png` in the current directory, OCR'd headlessly by `claude -p` (HEIC unsupported — export as JPG); or **(2) Iris View GUID** — an existing diagram already in Iris.
+
+   The four combinations:
+   | | Photo | Iris View GUID |
+   |---|---|---|
+   | **Meal plan** | OCR → confirm → match each meal to its existing Iris recipe (unmatched meals are listed and gated) → `iris aggregate` | `iris aggregate` against the meal-plan View |
+   | **Shopping list** | OCR the list straight to markdown (⚠ no provenance → all of phase 2 falls to phase 3) | `iris export diagram` of the shopping-list View |
+
+   Every path ends by writing `$STATE_DIR/aggregate.md` and pausing for a confirm/gate before phase 2. For meal-plan modes the aggregation profile is taken from `IRIS_SHOPPING_PROFILE_ID`, or auto-selected if you have only one, or chosen from a picker.
+3. **Phase 2 (pure bash, ~30 s for a 30-item shop)** — reads the list, looks up each Ingredient element via the `iris` CLI, walks its Product attribute rows in preferred order, and for each Product with a cached `woolies:NNN` SKU in its notes, calls `woolies cart add`. Refreshes the `confirmed:YYYY-MM-DD` date on each Product attribute on success. Anything that can't be resolved (no cached SKU, all cached SKUs OOS, no Product attributes, no provenance) goes to `exceptions.json` for phase 3. Zero Claude tokens consumed.
+4. **Phase 3 (headless `claude -p`, only if exceptions exist)** — spawns a fresh Claude session and invokes the woolies-shopper skill (the exception resolver). Claude searches Woolies for each unresolved item, picks via `scripts/pick.py`, asks you about ambiguous picks or out-of-stock substitutions, cart-adds, and writes any newly-discovered SKU back to the relevant Product attribute's notes so the next shop hits the cache.
 5. **Summary** — tells you to open woolworths.co.nz to review and submit. State + logs live in `$SHOP_STATE_DIR` (default `/tmp/shop-<timestamp>/`).
 
 ## The cache
