@@ -15,7 +15,7 @@ That's it. The script walks you through the three phases. Run it from a regular 
 ## What happens
 
 1. **Preflight** — checks `woolies` is installed and logged in, `iris` CLI is authenticated, and `jq` / `claude` are on PATH.
-2. **Phase 1 (interactive Claude Code, ~1 min)** — Claude prompts you to upload a photo of this week's meal plan; OCRs it; creates the meal plan in Iris via the MCP; runs `iris aggregate` to produce the rolled-up shopping list; emits the diagram id back to the master script and exits.
+2. **Phase 1 (headless Claude, ~1 min)** — picks the **newest** `*.jpg`/`*.jpeg`/`*.png` in the directory you run `shop.sh` from, OCRs it to `$STATE_DIR/mealplan.md`, and **pauses for you to confirm** the parsed plan looks right (edit the file first if not). On confirmation it creates the meal plan in Iris via the MCP, runs `iris aggregate`, and writes the diagram id to `$STATE_DIR/diagram-id`. Two headless `claude -p` calls — no interactive session. (HEIC isn't supported; export iPhone photos as JPG.)
 3. **Phase 2 (pure bash, ~30 s for a 30-item shop)** — reads the aggregated list, looks up each Ingredient element via the `iris` CLI, walks its Product attribute rows in preferred order, and for each Product with a cached `woolies:NNN` SKU in its notes, calls `woolies cart add`. Refreshes the `confirmed:YYYY-MM-DD` date on each Product attribute on success. Anything that can't be resolved (no cached SKU, all cached SKUs OOS, no Product attributes, no provenance) goes to `exceptions.json` for phase 3. Zero Claude tokens consumed.
 4. **Phase 3 (interactive Claude Code, only if exceptions exist)** — spawns a fresh Claude session and invokes the woolies-shopper skill (re-scoped in v0.2.0 as the exception resolver). Claude searches Woolies for each unresolved item, picks via `scripts/pick.py`, asks you about ambiguous picks or out-of-stock substitutions, cart-adds, and writes any newly-discovered SKU back to the relevant Product attribute's notes so the next shop hits the cache.
 5. **Summary** — tells you to open woolworths.co.nz to review and submit. State + logs live in `$SHOP_STATE_DIR` (default `/tmp/shop-<timestamp>/`).
@@ -70,7 +70,7 @@ If you invoke the skill **without** `shop.sh` — for example, to find a Woolies
 - **Handle delivery slots, payment, or address changes.** Those stay on woolworths.co.nz.
 - **Apply boosts / loyalty specials.** The upstream CLI doesn't expose them.
 - **Run scheduled / on a cron.** Out of scope; wrap `shop.sh` in your own cron line.
-- **Automate the photo upload.** Phase 1 is an interactive Claude session today; async photo ingestion (file watcher, email-in, Dropbox) is tracked at [#13](https://github.com/cgbarlow/skills/issues/13).
+- **Fetch the photo for you.** Phase 1 picks up the newest image in the current directory — you still drop this week's photo there yourself. Fully async ingestion (file watcher, email-in, Dropbox) is tracked at [#13](https://github.com/cgbarlow/skills/issues/13).
 
 ## Disclaimer
 

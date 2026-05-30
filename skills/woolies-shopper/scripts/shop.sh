@@ -2,10 +2,13 @@
 # Master orchestrator for the weekly Woolworths NZ online shop.
 #
 # Three phases:
-#   1. Interactive `claude` session: user uploads a photo of the meal
-#      plan; Claude OCRs it and creates the meal plan + aggregated
-#      shopping list in Iris via the Iris MCP. Session writes the
-#      resulting diagram_id to $STATE_DIR/diagram-id and exits.
+#   1. Headless `claude -p` (two steps): picks the newest meal-plan
+#      image (*.jpg/*.jpeg/*.png) from the current directory, OCRs it
+#      to $STATE_DIR/mealplan.md, pauses for you to confirm the parsed
+#      plan looks right, then creates the meal plan + aggregated
+#      shopping list in Iris via the Iris MCP and writes the resulting
+#      diagram_id to $STATE_DIR/diagram-id. (HEIC is not supported —
+#      export iPhone photos as JPG.)
 #   2. Pure bash (`phase2_bulk_add.sh`): walks the aggregated list,
 #      uses cached SKUs from each Ingredient's Product attribute notes
 #      to bulk-add to the user's Woolies trolley. Refreshes the
@@ -21,7 +24,8 @@
 # and submit the order. shop.sh stops at trolley-populated.
 #
 # Usage:
-#   ./shop.sh              # runs the full pipeline
+#   ./shop.sh              # runs the full pipeline; OCRs the newest
+#                          # *.jpg/*.jpeg/*.png in the current directory
 #   SHOP_STATE_DIR=...     # override the manifest directory
 #
 # Requires: claude CLI, iris CLI (authenticated), woolies CLI
@@ -77,27 +81,59 @@ for tool in jq awk; do
 done
 echo "  jq/awk:  ok"
 
-# ── Phase 1 — interactive Claude session for OCR + meal plan + aggregate ──
+# ── Phase 1 — headless Claude: OCR → confirm → meal plan + aggregate ──
+# Two headless `claude -p` calls (not an interactive session — that broke
+# under `claude | tee`, issue #15). The meal-plan photo is picked up from
+# the current directory rather than uploaded interactively, so phase 1 no
+# longer needs a TTY. Step 1a OCRs; we pause for the user to confirm the
+# parsed plan; step 1b commits it to Iris and aggregates.
 bold ""
 bold "Phase 1 — Photo → meal plan → aggregated shopping list"
-bold "  An interactive Claude Code session will start now. Upload your"
-bold "  weekly meal plan photo when prompted. Claude will OCR it, create"
-bold "  the meal plan in Iris, run \`iris aggregate\`, and print the"
-bold "  resulting diagram id on a line beginning with DIAGRAM_ID="
-bold "  Type /exit when Claude has finished."
-bold ""
-read -r -p "Press Enter to start the Claude session…" _
 
-PHASE1_TRANSCRIPT="$STATE_DIR/phase1-transcript.txt"
-# Spawn claude interactively; the session uses the Iris MCP if configured.
-# We tee the session output so we can grep for DIAGRAM_ID= afterwards.
-claude 2>&1 | tee "$PHASE1_TRANSCRIPT" || true
-
-DIAGRAM_ID=$(grep -oE '^DIAGRAM_ID=[0-9a-fA-F-]+' "$PHASE1_TRANSCRIPT" | tail -1 | cut -d= -f2)
-if [ -z "$DIAGRAM_ID" ]; then
-    fail "Phase 1 did not emit a DIAGRAM_ID= line. Check $PHASE1_TRANSCRIPT."
+# Newest image wins. GNU find (-printf) is fine on the Linux devcontainers
+# this skill targets. HEIC is deliberately excluded — Claude's image reader
+# doesn't accept it; export iPhone photos as JPG.
+MEALPLAN_IMG="$(find . -maxdepth 1 -type f \
+    \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) \
+    -printf '%T@ %p\n' 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)"
+if [ -z "$MEALPLAN_IMG" ]; then
+    fail "No .jpg/.jpeg/.png meal-plan photo found in $(pwd). Drop this week's photo here and re-run. (HEIC isn't supported — export as JPG.)"
 fi
-echo "$DIAGRAM_ID" > "$STATE_DIR/diagram-id"
+echo "  using newest image: $MEALPLAN_IMG"
+
+# Step 1a — OCR only. No Iris writes yet, so the user can sanity-check the
+# parse before anything is committed.
+MEALPLAN_MD="$STATE_DIR/mealplan.md"
+OCR_PROMPT="You are running headless as phase 1 of an automated weekly-shop pipeline. Read the meal-plan photo at the path '$MEALPLAN_IMG' with the Read tool and OCR it. Extract the planned meals/dishes and any ingredients and quantities written on it. Write the parsed meal plan as clean Markdown to the file '$MEALPLAN_MD' (meals as headings, ingredients as bullet lists). Do NOT create anything in Iris and do NOT run any iris commands in this step. Print a one-line confirmation when the file is written."
+claude -p "$OCR_PROMPT" || fail "Phase 1 OCR step failed. Check the photo and your Claude setup."
+
+if [ ! -s "$MEALPLAN_MD" ]; then
+    fail "Phase 1 OCR produced no meal plan at $MEALPLAN_MD."
+fi
+
+bold ""
+bold "Parsed meal plan (from $MEALPLAN_IMG):"
+echo "────────────────────────────────────────────────────────────────"
+cat "$MEALPLAN_MD"
+echo "────────────────────────────────────────────────────────────────"
+bold "  If anything is off, edit $MEALPLAN_MD now, then answer y."
+read -r -p "Does this meal plan look right? [y/N] " _ANS
+case "$_ANS" in
+    [yY] | [yY][eE][sS]) ;;
+    *) fail "Aborted at meal-plan confirmation. Fix the photo or edit $MEALPLAN_MD, then re-run shop.sh." ;;
+esac
+
+# Step 1b — commit the approved plan to Iris and aggregate. Claude writes
+# the diagram id to a file (authoritative handoff) rather than to stdout,
+# so there's nothing fragile to scrape.
+AGG_PROMPT="You are running headless as the commit step of phase 1 of an automated weekly-shop pipeline. The user has approved the parsed meal plan in '$MEALPLAN_MD'. Using that meal plan, create the meal plan in Iris via the Iris MCP, then run the Iris aggregate to produce the rolled-up shopping list. Finally write ONLY the resulting diagram id (the bare UUID, no other text) to the file '$STATE_DIR/diagram-id'. The file is the authoritative handoff. Print a one-line confirmation when done."
+claude -p "$AGG_PROMPT" || fail "Phase 1 aggregate step failed. Check $STATE_DIR for partial state."
+
+DIAGRAM_ID="$(tr -d '[:space:]' < "$STATE_DIR/diagram-id" 2>/dev/null || true)"
+if ! printf '%s' "$DIAGRAM_ID" | grep -qE '^[0-9a-fA-F-]+$'; then
+    fail "Phase 1 did not write a valid diagram id to $STATE_DIR/diagram-id."
+fi
+printf '%s' "$DIAGRAM_ID" > "$STATE_DIR/diagram-id"
 echo "  phase 1 → diagram_id: $DIAGRAM_ID"
 
 # ── Phase 2 — pure bash bulk-add ─────────────────────────────────────
