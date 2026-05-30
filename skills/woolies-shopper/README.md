@@ -45,7 +45,7 @@ Without those, the orchestrator falls back gracefully: every line is treated as 
 The installer:
 - Checks Python 3.11+ is on PATH.
 - Installs `woolies-nz-cli==0.1.1` via `pipx` (pulls `click`, `httpx`, `camoufox` transitively).
-- On Linux, detects missing GTK/NSS system libs Camoufox needs at runtime, and **prints** the exact `apt`/`dnf` command for you to run yourself (the installer never sudos).
+- On Linux, detects missing GTK/NSS/X11 system libs Camoufox needs at runtime. By default it **prints** the exact `apt`/`dnf` command for you to run yourself (the installer never sudos unless you opt in). Pass `--install-system-libs` (or set `WOOLIES_INSTALL_SYSTEM_LIBS=1`) to have it run `sudo apt`/`dnf` for you — kept off by default so non-interactive runs (e.g. `shop.sh` phase 1) never hit a sudo prompt.
 - Checks for `jq` (required by `shop.sh`) and the `iris` CLI (required for the cache lookup + writeback). Prints install commands if either is missing.
 - Runs `woolies doctor` at the end to confirm everything is wired up.
 

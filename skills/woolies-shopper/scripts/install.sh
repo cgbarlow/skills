@@ -16,6 +16,24 @@
 set -euo pipefail
 
 WOOLIES_PINNED_VERSION="0.1.1"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Opt-in: auto-install missing Camoufox system libs via sudo apt/dnf.
+# Off by default (the installer's no-sudo principle holds), so non-interactive
+# spawns — e.g. shop.sh phase 1 — never trigger a sudo password prompt.
+# Enable with --install-system-libs or WOOLIES_INSTALL_SYSTEM_LIBS=1.
+AUTO_INSTALL_LIBS="${WOOLIES_INSTALL_SYSTEM_LIBS:-0}"
+for arg in "$@"; do
+    case "$arg" in
+        --install-system-libs) AUTO_INSTALL_LIBS=1 ;;
+        -h|--help)
+            printf 'Usage: install.sh [--install-system-libs]\n\n'
+            printf '  --install-system-libs   Auto-install missing Camoufox system libraries\n'
+            printf '                          via sudo apt/dnf (off by default; honours\n'
+            printf '                          WOOLIES_INSTALL_SYSTEM_LIBS=1 too).\n'
+            exit 0 ;;
+    esac
+done
 
 bold() { printf '\033[1m%s\033[0m\n' "$*"; }
 warn() { printf '\033[33m%s\033[0m\n' "$*" >&2; }
@@ -66,34 +84,51 @@ fi
 # ── Linux runtime libs for Camoufox (Firefox) ─────────────────────────
 # Camoufox bundles its own Firefox binary but uses host-provided GTK,
 # NSS, audio and X11 libs. macOS bundles equivalents so we only check
-# on Linux. We never sudo — we print the install command for the user.
+# on Linux. By default we never sudo — we print the install command for
+# the user; --install-system-libs (opt-in) runs it via sudo instead.
 if [ "$(uname -s)" = "Linux" ]; then
-    REQUIRED_LIBS=(libnss3.so libgtk-3.so.0 libasound.so.2 libdbus-glib-1.so.2 libxcb.so.1 libgbm.so.1 libxcomposite.so.1 libxdamage.so.1 libxrandr.so.2 libxkbcommon.so.0)
-    MISSING=()
-    if command -v ldconfig >/dev/null 2>&1; then
-        for lib in "${REQUIRED_LIBS[@]}"; do
-            if ! ldconfig -p 2>/dev/null | grep -q "$lib"; then
-                MISSING+=("$lib")
-            fi
-        done
-    else
+    # shellcheck source=lib/system_libs.sh
+    . "$SCRIPT_DIR/lib/system_libs.sh"
+
+    if ! command -v ldconfig >/dev/null 2>&1; then
         warn "  ldconfig not found — skipping Camoufox system-lib check"
-    fi
-    if [ "${#MISSING[@]}" -gt 0 ]; then
-        warn ""
-        warn "Camoufox needs these system libraries which are not on this host:"
-        for lib in "${MISSING[@]}"; do warn "  - $lib"; done
-        warn ""
-        warn "Install them with the command for your distro:"
-        warn "  Debian/Ubuntu: sudo apt install -y libnss3 libgtk-3-0 libasound2 \\"
-        warn "                   libdbus-glib-1-2 libxcb1 libgbm1 libxcomposite1 \\"
-        warn "                   libxdamage1 libxrandr2 libxkbcommon0"
-        warn "  Fedora/RHEL:   sudo dnf install -y nss gtk3 alsa-lib dbus-glib \\"
-        warn "                   libxcb mesa-libgbm libXcomposite libXdamage \\"
-        warn "                   libXrandr libxkbcommon"
-        warn ""
-        warn "  After installing, re-run this script. (We don't sudo for you.)"
-        exit 2
+    else
+        detect_missing_libs
+
+        # Opt-in auto-install before reporting. We re-detect afterwards so a
+        # partial install still surfaces whatever is genuinely still missing.
+        if [ "${#MISSING[@]}" -gt 0 ] && [ "$AUTO_INSTALL_LIBS" = "1" ]; then
+            if command -v apt-get >/dev/null 2>&1; then
+                echo "  installing missing Camoufox libs via apt (--install-system-libs)…"
+                # shellcheck disable=SC2086
+                sudo apt-get update && sudo apt-get install -y $SYSTEM_LIBS_APT_PKGS \
+                    || warn "  apt install failed — see the manual command below."
+            elif command -v dnf >/dev/null 2>&1; then
+                echo "  installing missing Camoufox libs via dnf (--install-system-libs)…"
+                # shellcheck disable=SC2086
+                sudo dnf install -y $SYSTEM_LIBS_DNF_PKGS \
+                    || warn "  dnf install failed — see the manual command below."
+            else
+                warn "  --install-system-libs set, but neither apt-get nor dnf was found."
+            fi
+            sudo ldconfig 2>/dev/null || true
+            detect_missing_libs
+        fi
+
+        if [ "${#MISSING[@]}" -gt 0 ]; then
+            warn ""
+            warn "Camoufox needs these system libraries which are not on this host:"
+            for lib in "${MISSING[@]}"; do warn "  - $lib"; done
+            warn ""
+            warn "Install them with the command for your distro:"
+            warn "  Debian/Ubuntu: sudo apt install -y $SYSTEM_LIBS_APT_PKGS"
+            warn "  Fedora/RHEL:   sudo dnf install -y $SYSTEM_LIBS_DNF_PKGS"
+            warn ""
+            warn "  Or re-run with --install-system-libs (or WOOLIES_INSTALL_SYSTEM_LIBS=1)"
+            warn "  to let this script run the above for you via sudo."
+            exit 2
+        fi
+        echo "  camoufox libs → all present"
     fi
 fi
 

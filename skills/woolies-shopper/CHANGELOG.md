@@ -4,6 +4,18 @@ All notable changes to the **woolies-shopper** skill will be documented in this 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this skill follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] — 2026-05-30
+
+### Fixed
+
+- `scripts/install.sh` no longer falsely reports the X11 libraries `libXcomposite.so.1`, `libXdamage.so.1`, and `libXrandr.so.2` as missing when they are in fact installed. The check listed these sonames in lowercase and matched them with a case-sensitive `grep`, so on disk (where X11 sonames are capitalised) they never matched — the installer kept nagging to install libraries that were already present, and would never exit cleanly. Detection is now case-insensitive and uses the real capitalised sonames.
+
+### Added
+
+- `scripts/install.sh --install-system-libs` flag (also `WOOLIES_INSTALL_SYSTEM_LIBS=1`) — opt-in auto-install of the missing Camoufox system libraries via `sudo apt`/`dnf`. **Off by default**, preserving the installer's no-sudo principle so non-interactive spawns (e.g. `shop.sh` phase 1) never trigger a sudo password prompt. Without the flag, behaviour is unchanged: the exact install command is printed for the user to run.
+- `scripts/lib/system_libs.sh` — extracted, sourceable helper holding `detect_missing_libs` plus the per-distro package lists (`SYSTEM_LIBS_APT_PKGS` / `SYSTEM_LIBS_DNF_PKGS`) as a single source of truth shared by detection, the printed command, and the auto-installer (§13 DRY).
+- `tests/test_system_libs.sh` — regression test for the detection helper: asserts capitalised X11 sonames in an `ldconfig -p` cache are found, that genuinely-missing libs are still reported, and that the package lists stay aligned with `REQUIRED_LIBS`.
+
 ## [0.2.0] — 2026-05-24
 
 ### Added
