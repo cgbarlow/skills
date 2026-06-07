@@ -1,12 +1,12 @@
 {
-  "id": "11111111-1111-1111-1111-111111111111",
-  "name": "Chilli beans",
+  "id": "22222222-2222-2222-2222-222222222222",
+  "name": "Pork mince",
   "element_type": "class",
   "data": {
     "attributes": [
       {
         "name": "Unit",
-        "type": "can",
+        "type": "g",
         "notes": "",
         "scope": "Public",
         "lower_bound": "",
@@ -14,15 +14,15 @@
       },
       {
         "name": "Products",
-        "type": "Beans Chilli Tin",
-        "notes": "woolies:111000 | confirmed:2026-01-01",
+        "type": "Pork Mince",
+        "notes": "woolies:STOCKOUT | confirmed:2026-01-01",
         "scope": "Public",
         "lower_bound": "",
         "upper_bound": ""
       },
       {
         "name": "Preferred product",
-        "type": "Woolworths Chilli Beans 420g",
+        "type": "Woolworths Pork Mince 500g",
         "notes": "",
         "scope": "Public",
         "lower_bound": "",

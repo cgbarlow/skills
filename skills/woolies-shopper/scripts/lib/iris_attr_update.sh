@@ -31,7 +31,7 @@ iris_attr_update() {
     fi
 
     local current
-    if ! current=$(iris elements get "$element_id" --json 2>&1); then
+    if ! current=$(iris --json elements get "$element_id" 2>&1); then
         echo "iris_attr_update: failed to GET element $element_id: $current" >&2
         return 1
     fi

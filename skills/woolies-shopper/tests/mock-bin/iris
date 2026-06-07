@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Mock `iris` CLI for phase2 tests. Reads fixtures from
-# $MOCK_FIXTURES_DIR (set by the test runner). Logs each invocation to
-# $MOCK_IRIS_LOG so the test can assert on call patterns.
+# Mock `iris` CLI for phase2 tests. Reads fixtures from $MOCK_FIXTURES_DIR
+# (set by the test runner). Logs each invocation to $MOCK_IRIS_LOG so the
+# test can assert on call patterns.
 #
-# Supported subcommands:
-#   iris export diagram <id> --format md   → cat fixtures/aggregate-output.md
-#   iris elements get <id> --json           → cat fixtures/element-<id>.json
-#   iris update element <id> --data-json X  → no-op, exit 0
+# Supported (the global --json flag may precede the subcommand):
+#   iris --json export diagram <id> --format json  → fixtures/diagram-export.json
+#   iris --json elements get <id>                  → fixtures/element-<id>.json
+#   iris update element <id> --data-json X          → no-op, exit 0
 
 set -uo pipefail
 
@@ -15,18 +15,20 @@ set -uo pipefail
 
 echo "iris $*" >> "$MOCK_IRIS_LOG"
 
-case "$1 $2" in
+# Drop a leading global --json flag so positional matching is stable.
+[ "${1:-}" = "--json" ] && shift
+
+case "${1:-} ${2:-}" in
     "export diagram")
-        cat "$MOCK_FIXTURES_DIR/aggregate-output.md"
+        cat "$MOCK_FIXTURES_DIR/diagram-export.json"
         ;;
     "elements get")
         element_id="$3"
-        # Map well-known fixture UUIDs to fixture files.
         case "$element_id" in
             11111111-*) cat "$MOCK_FIXTURES_DIR/element-cache-hit.json" ;;
-            22222222-*) cat "$MOCK_FIXTURES_DIR/element-fallback.json" ;;
+            22222222-*) cat "$MOCK_FIXTURES_DIR/element-cached-fail.json" ;;
             33333333-*) cat "$MOCK_FIXTURES_DIR/element-no-cache.json" ;;
-            44444444-*) cat "$MOCK_FIXTURES_DIR/element-no-products.json" ;;
+            44444444-*) cat "$MOCK_FIXTURES_DIR/element-no-product-attr.json" ;;
             *)
                 echo "mock iris: unknown element $element_id" >&2
                 exit 1
@@ -34,8 +36,8 @@ case "$1 $2" in
         esac
         ;;
     "update element")
-        # Accept and discard the JSON payload — test doesn't assert on PUT body
-        # contents beyond the fact that the call happened (visible in log).
+        # Accept and discard the JSON payload — the test asserts on the call
+        # count via the log, not the PUT body.
         exit 0
         ;;
     *)

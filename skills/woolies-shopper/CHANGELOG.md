@@ -4,6 +4,29 @@ All notable changes to the **woolies-shopper** skill will be documented in this 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this skill follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] — 2026-06-07
+
+### Added
+
+- `scripts/shop.sh` phase 1 now offers two shopping-list sources: the original **photo** path (interactive Claude OCR + aggregate) or a new **GUID** path where the user supplies the GUID of an aggregated shopping-list diagram they already have in Iris, skipping the photo/OCR step. The GUID is validated up front with `iris diagrams get` (well-formed UUID + resolves in Iris) before phase 2 runs. The new `SHOP_DIAGRAM_ID=<guid>` env var selects the GUID path non-interactively (e.g. re-runs / cron).
+- `scripts/iris-auth.sh` — sourceable Supabase auth helper. Fetches a Supabase session JWT via the password grant and exports it as `IRIS_TOKEN`, caching the refresh token (0600) for password-free reuse. Works around this deployment's Supabase mode, where `iris login` (password) is disabled and the PAT path 500s. Reads project id + publishable key from env / `$IRIS_ENV_FILE` / a gitignored `scripts/iris-auth.local.env`.
+- `scripts/test-writeback.sh` — safe live round-trip test of the SKU cache writeback against a real Ingredient element: snapshots the element, runs `iris_attr_update`, reads back to confirm the SKU persisted (and round-trips through `extract_woolies_sku`), then restores the original data via an EXIT trap. Adds (and later removes) a temporary Product attribute for the `no_products` case.
+
+### Fixed
+
+- `scripts/phase2_bulk_add.sh` used `iris export diagram --format md`, which the iris-api rejects with HTTP 422 (`format` only accepts `json` or `markdown`) — every real phase-2 run aborted at the export step. Changed to `--format markdown`. (The phase2 mock/tests matched only on the subcommand, so they passed despite the bug; mock doc comment updated.)
+- `scripts/shop.sh` preflight wrongly reported a successfully-authenticated session as a "rejected token" and aborted: `iris whoami` returns `{anonymous,url}` only when *anonymous*, and `{id,username,role,…}` (no `anonymous` field) when *authenticated*. Preflight now classifies by `.username` presence, not `.anonymous == false`. Same fix applied to `scripts/test-writeback.sh`.
+
+### Changed
+
+- **`scripts/phase2_bulk_add.sh` rewritten for the real shopping-list format.** The list is a `smart_markdown` diagram (the meal-plan + recurring list already combined), not an `aggregation_list` output. Phase 2 now: reads the body from `data.markdown_source` via the JSON export (the `--format markdown` export returns only metadata); parses GFM checklist lines `- [optional [x]] [qty] {{element:UUID:name}} [qty] [_(notes)_]`, taking the element id from the `{{element:…}}` token (the provenance) and a best-effort quantity from the surrounding free text; **processes only un-ticked items** by default (ADR-239: `[x]` = ticked off; `SHOP_PROCESS_TICKED=true` to process all); and reads/writes the cached SKU in the **`Products`** attribute notes (override `SHOP_SKU_ATTR`), with `Preferred product` kept as a name-only pointer used for the search hint. New exception reason codes — `no_cached_sku`, `cached_sku_failed`, `no_product_attr`, `element_fetch_failed` — each carrying a `search` hint (`Preferred product` type → `Products` type → name). Replaces the old `<!-- iris:element -->` / singular-`Product`-attribute / multi-row-fallback model. `tests/test_phase2.sh`, its fixtures, and the `iris` mock rewritten to match.
+- **`scripts/shop.sh` photo path now gates on human review.** After generating the combined list it prints a link (`$IRIS_FRONTEND_URL/views/<id>`, default `https://iris-uat.chrisbarlow.nz`) and pauses so the user can check the list and tick off items already on hand; phase 2 then processes only the un-ticked ones. The GUID path skips the pause — supplying a GUID is the confirmation.
+- `scripts/shop.sh` no longer requires an iris login. The shopping-list diagram and ingredient elements are readable anonymously, so the core shop only needs the CLI pointed at the right backend. Preflight now inspects `iris --json whoami` and, if the CLI would fall through to its `http://localhost:8000` default (no `--url`/`IRIS_URL`/config.toml `url`), exports `IRIS_URL=$DEFAULT_IRIS_URL` (default `https://iris-api-gtb3.onrender.com`, overridable) so phases 1–3 hit the right host with zero setup. Any explicit `IRIS_URL`/config.toml url is respected and left untouched. Auth is now **optional**: anonymous sessions run read-only and the preflight echoes the resolved URL + whether the session is authenticated, warning that the SKU cache writeback will be skipped without a token. (Supersedes the brief "fail loudly if anonymous" behaviour from earlier in this Unreleased cycle.)
+
+### Docs
+
+- README + SKILL.md now document the no-login default-URL flow: the `iris` CLI only needs to point at the **iris-api backend** (e.g. `https://iris-api-gtb3.onrender.com`), not the SvelteKit frontend (`iris-uat.chrisbarlow.nz`, whose `/api` path serves HTML); `shop.sh` defaults this automatically. Auth (a PAT via `IRIS_TOKEN`) is only needed for the optional writeback, and this deployment's Supabase mode disables password `iris login` (mint a PAT via `POST /api/users/me/tokens`).
+
 ## [0.2.0] — 2026-05-24
 
 ### Added

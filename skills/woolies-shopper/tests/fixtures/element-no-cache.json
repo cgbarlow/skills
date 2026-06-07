@@ -1,10 +1,13 @@
 {
   "id": "33333333-3333-3333-3333-333333333333",
   "name": "Carrots",
+  "element_type": "class",
   "data": {
     "attributes": [
-      {"name": "Quantity", "type": "string", "scope": "instance", "value": "3", "notes": ""},
-      {"name": "Product", "type": "string", "scope": "instance", "value": "Carrots Loose", "notes": ""}
+      { "name": "Unit", "type": "g", "notes": "", "scope": "Public", "lower_bound": "", "upper_bound": "" },
+      { "name": "Products", "type": "Carrots Loose", "notes": "", "scope": "Public", "lower_bound": "", "upper_bound": "" },
+      { "name": "Preferred product", "type": "Carrot Loose", "notes": "", "scope": "Public", "lower_bound": "", "upper_bound": "" },
+      { "name": "Quantity", "type": "", "notes": "", "scope": "Public", "lower_bound": "", "upper_bound": "" }
     ]
   }
 }
