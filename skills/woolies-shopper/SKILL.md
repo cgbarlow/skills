@@ -3,11 +3,11 @@ name: woolies-shopper
 description: Resolve exceptions in a Woolworths NZ online grocery workflow — handle out-of-stock items, find SKUs for newly-added grocery items, and write resolved SKUs back to the Product attribute notes of Iris Ingredient elements so the next shop hits the cache. Triggered automatically by `shop.sh` phase 3 when the bash bulk-add can't resolve a line; also triggers directly when the user asks to "find a Woolies SKU for this ingredient", "deal with this out-of-stock item", "find a substitute for X at Woolworths", or "resolve these woolies shopping exceptions". For the full weekly shop, the user should run `./scripts/shop.sh` from the terminal — this skill is the exception resolver, not the orchestrator. If the user asks to "do the shopping" or similar generic phrasing in a bare Claude session, point them at `shop.sh` first; only invoke this skill directly when they're explicitly working on exceptions or a single SKU lookup.
 ---
 
-# woolies-shopper (v0.3.0 — exception resolver)
+# woolies-shopper (v0.3.3 — exception resolver)
 
 The narrow job of this skill: take one or more Woolworths shopping exceptions — an item that couldn't be cart-added by the deterministic bash bulk-add phase — and resolve each one by searching, picking, asking the user when needed, cart-adding, and writing the resolved SKU back to the Iris element's `Products` attribute notes for next time.
 
-**This skill is NOT the entry point for the full weekly shop.** That's `./scripts/shop.sh` in the same skill directory — a master bash orchestrator that runs three phases: (1) shopping-list source — either a Claude Code session that turns a meal-plan photo into a combined smart_markdown shopping list (then pauses for the user to review and tick off items they already have), or a GUID the user supplies for an existing list; (2) pure-bash bulk-add that reads the list's `data.markdown_source`, processes the un-ticked `{{element:UUID:name}}` items, and cart-adds those with a cached SKU; (3) this skill for exception resolution. If a user types "do my Woolies shop" into a bare Claude session, your first reply should point them at `shop.sh` from the terminal rather than running the whole workflow inside Claude — the orchestrator is faster and cheaper.
+**This skill is NOT the entry point for the full weekly shop.** That's `./scripts/shop.sh` in the same skill directory — a master bash orchestrator that runs three phases: (1) **produce the shopping list** — the user picks meal-plan-vs-shopping-list and photo-vs-Iris-View-GUID (four routes); a meal-plan photo is OCR'd, confirmed, and its meals matched to existing Iris recipes before `iris aggregate`, while a shopping-list View GUID is read from its `data.markdown_source` (smart_markdown, `{{element:UUID:name}}` provenance). The GUID route is the user's confirmation (curate / tick off owned items in Iris first); (2) **pure-bash bulk-add** that walks the list, processes the un-ticked items, and cart-adds those whose element has a cached SKU; (3) **this skill** for exception resolution. If a user types "do my Woolies shop" into a bare Claude session, your first reply should point them at `shop.sh` from the terminal rather than running the whole workflow inside Claude — the orchestrator is faster and cheaper.
 
 The exception payload `shop.sh` hands you (in phase 3) looks like:
 
@@ -28,6 +28,7 @@ Each exception carries a `search` hint — the element's `Preferred product` typ
 - **`cached_sku_failed`** — a cached SKU existed but Woolworths rejected it (out of stock / discontinued). Find a replacement, cart-add, and overwrite the cached SKU.
 - **`no_product_attr`** — the element has no `Products` attribute at all. Resolve the SKU, then add a `Products` attribute (with the SKU in its notes) via `iris update element`.
 - **`element_fetch_failed`** — `iris elements get` failed for that element_id. Surface to the user; usually transient.
+- **`no_provenance`** — the line carried no element id (e.g. a shopping-list-from-photo route). You can still search + cart-add, but there's no element to cache the SKU back to — tell the user, and recommend a meal-plan or shopping-list View GUID route for the cacheable fast path.
 
 ## Hosts
 

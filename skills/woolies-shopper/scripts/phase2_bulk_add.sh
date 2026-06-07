@@ -1,41 +1,51 @@
 #!/usr/bin/env bash
 # Phase 2 of the weekly Woolies shop. Pure bash, no LLM.
 #
-# Inputs:
-#   $1 — diagram_id of the smart_markdown shopping list. This is the FINAL
-#        combined list (meal plan + recurring list already merged), authored as
-#        a smart_markdown diagram whose body lives in `data.markdown_source` and
-#        references each item as a `{{element:<uuid>:name}}` token (the element
-#        UUID IS the provenance — there are no `<!-- iris:element -->` comments).
-#        Items are GFM checklist lines (ADR-239): `- [x]` = ticked off / already
-#        handled, bare `- ` (or `- [ ]`) = still to buy. By default we process
-#        only the un-ticked lines; set SHOP_PROCESS_TICKED=true to process all.
-#   $2 — state_dir for manifest files (cart-result.json, exceptions.json).
+# Inputs (two forms):
+#   phase2_bulk_add.sh --list-md <file> <state_dir>
+#        <file> — a pre-rendered shopping-list markdown (produced by shop.sh
+#        from any of its phase-1 routes). This is the form shop.sh uses.
+#   phase2_bulk_add.sh <diagram_id> <state_dir>
+#        <diagram_id> — diagram id of a shopping-list View. A smart_markdown
+#        diagram is read from data.markdown_source; anything else falls back to
+#        `iris export diagram --format markdown`. Retained for standalone use.
 #
-# For each un-ticked item line:
-#   1. Extract the element UUID from its {{element:uuid:name}} token + a best-
-#      effort quantity from the surrounding free text.
-#   2. Fetch the Ingredient element via `iris elements get`.
-#   3. If its "Products" attribute notes carry a cached woolies:NNN
-#      SKU, `woolies cart add` it; on success refresh the confirmed: date.
-#   4. Otherwise push an exception (with a search hint) to exceptions.json for
-#      phase 3 — the common first-run case, since SKUs are cached lazily.
+# The list can be in EITHER of two line formats, detected per line:
+#   • smart_markdown checklist (the combined meal-plan + recurring list):
+#       - [x|optional] [<qty>] {{element:<uuid>:name}} [<qty>] [_(notes)_]
+#     `[x]` = ticked off / already handled (ADR-239); bare/`[ ]` = still to buy.
+#     By default only un-ticked lines are processed (SHOP_PROCESS_TICKED=true
+#     for all). The {{element:…}} token IS the provenance.
+#   • aggregation output (meal-plan routes, ADR-217 include_provenance=true):
+#       - <name>: <qty>[ <unit>] [<!-- iris:element=<uuid> -->]
+#     Lines with no element id (e.g. a shopping-list-from-photo) become
+#     no_provenance exceptions — graceful degradation, no hard fail.
 #
-# No human-in-the-loop. No LLM. The SKU cache lives in the element's
-# "Products" attribute notes — the SKU belongs to the individual product.
-# The "Preferred product" attribute is a name-only pointer used for the
-# search hint; see ADR-217 for the provenance mechanism this consumes.
+# For each processable line we fetch the Iris element and, if its "Products"
+# attribute notes carry a cached woolies:NNN SKU, `woolies cart add` it and
+# refresh the confirmed: date. Otherwise we push an exception (with a search
+# hint) to exceptions.json for phase 3. The SKU is a property of the product,
+# so it lives on "Products"; "Preferred product" is a name-only pointer used
+# only for the search hint. Override the cache attribute with SHOP_SKU_ATTR.
+#
+# No human-in-the-loop. No LLM.
 
 set -uo pipefail
 
-DIAGRAM_ID="${1:?usage: phase2_bulk_add.sh <diagram_id> <state_dir>}"
-STATE_DIR="${2:?usage: phase2_bulk_add.sh <diagram_id> <state_dir>}"
+USAGE="usage: phase2_bulk_add.sh --list-md <file> <state_dir> | phase2_bulk_add.sh <diagram_id> <state_dir>"
+if [ "${1:-}" = "--list-md" ]; then
+    LIST_MD="${2:?$USAGE}"
+    STATE_DIR="${3:?$USAGE}"
+    SOURCE_MODE="file"
+else
+    DIAGRAM_ID="${1:?$USAGE}"
+    STATE_DIR="${2:?$USAGE}"
+    SOURCE_MODE="diagram"
+fi
 
-# Which attribute holds the cached SKU (and gets the writeback). The SKU is a
-# property of the individual product, so it lives on "Products", not the
-# "Preferred product" pointer.
+# Which attribute holds the cached SKU (and gets the writeback).
 SKU_ATTR="${SHOP_SKU_ATTR:-Products}"
-# Process ticked-off (`- [x]`) lines too? Default: no (only un-ticked = to buy).
+# Process ticked-off (`- [x]`) smart_markdown lines too? Default: no.
 PROCESS_TICKED="${SHOP_PROCESS_TICKED:-false}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -43,72 +53,86 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/lib/iris_attr_update.sh"
 
 mkdir -p "$STATE_DIR"
+AGGREGATE_MD="$STATE_DIR/aggregate.md"
 ADDED_JSONL="$STATE_DIR/added.jsonl"
 EXCEPTIONS_JSONL="$STATE_DIR/exceptions.jsonl"
 : > "$ADDED_JSONL"
 : > "$EXCEPTIONS_JSONL"
 
-# Fetch the shopping list's markdown body. A smart_markdown diagram keeps its
-# source in data.markdown_source (the `--format markdown` export only returns a
-# metadata summary, NOT the list — that distinction matters).
-MARKDOWN=$(iris --json export diagram "$DIAGRAM_ID" --format json 2>/dev/null \
-    | jq -r '.diagram.data.markdown_source // empty')
-if [ -z "$MARKDOWN" ]; then
-    echo "phase2: could not read data.markdown_source for diagram $DIAGRAM_ID" >&2
-    exit 1
+# Obtain the shopping list as markdown at $AGGREGATE_MD.
+if [ "$SOURCE_MODE" = "file" ]; then
+    if [ ! -s "$LIST_MD" ]; then
+        echo "phase2: list markdown '$LIST_MD' is missing or empty" >&2
+        exit 1
+    fi
+    [ "$LIST_MD" = "$AGGREGATE_MD" ] || cp "$LIST_MD" "$AGGREGATE_MD"
+else
+    # A smart_markdown diagram keeps its body in data.markdown_source; the
+    # `--format markdown` export only returns a metadata summary. Prefer
+    # markdown_source, fall back to the markdown export for other diagram types.
+    SRC=$(iris --json export diagram "$DIAGRAM_ID" --format json 2>/dev/null \
+        | jq -r '.diagram.data.markdown_source // empty')
+    if [ -n "$SRC" ]; then
+        printf '%s\n' "$SRC" > "$AGGREGATE_MD"
+    elif ! iris export diagram "$DIAGRAM_ID" --format markdown > "$AGGREGATE_MD" 2>/dev/null; then
+        echo "phase2: could not read diagram $DIAGRAM_ID (no markdown_source, export failed)" >&2
+        exit 1
+    fi
 fi
 
-# Parse one markdown line. On a processable item line, echoes
-#   <element_id>|<qty_num>|<unit_word>
-# and returns 0. Returns 1 for headings, prose, blank lines, and (by default)
-# ticked-off items.
-#
-# Item line shape (smart_markdown checklist):
-#   - [x|optional] [<qty> [unit]] {{element:<uuid>:name}} [<qty>[ unit]] [_(notes)_]
+# Parse one markdown line. On a processable item line echoes
+#   <element_id>|<qty_num>|<unit_word>|<line_name>
+# (element_id/line_name may be empty) and returns 0. Returns 1 for headings,
+# prose, blanks, and (by default) ticked-off smart_markdown items.
 parse_line() {
     local line="$1"
     [[ "$line" =~ ^-\  ]] || return 1
     local rest="${line#- }"
 
-    # Checkbox state (ADR-239). Strip the marker; honour the ticked filter.
-    local ticked=0
-    if [[ "$rest" == "[x] "* ]]; then ticked=1; rest="${rest#\[x\] }"
-    elif [[ "$rest" == "[ ] "* ]]; then rest="${rest#\[ \] }"
-    fi
-    [ "$ticked" = "1" ] && [ "$PROCESS_TICKED" != "true" ] && return 1
+    # ── smart_markdown checklist line (has an {{element:…}} token) ──
+    if [[ "$rest" == *'{{element:'* ]]; then
+        local ticked=0
+        if [[ "$rest" == "[x] "* ]]; then ticked=1; rest="${rest#\[x\] }"
+        elif [[ "$rest" == "[ ] "* ]]; then rest="${rest#\[ \] }"
+        fi
+        [ "$ticked" = "1" ] && [ "$PROCESS_TICKED" != "true" ] && return 1
 
-    # Must reference an element token.
-    [[ "$rest" =~ \{\{element:([0-9a-fA-F-]+):[a-zA-Z_]+\}\} ]] || return 1
-    local element_id="${BASH_REMATCH[1]}"
-    local token="${BASH_REMATCH[0]}"
-    local before="${rest%%"$token"*}"
-    local after="${rest#*"$token"}"
+        [[ "$rest" =~ \{\{element:([0-9a-fA-F-]+):[a-zA-Z_]+\}\} ]] || return 1
+        local element_id="${BASH_REMATCH[1]}"
+        local token="${BASH_REMATCH[0]}"
+        local before="${rest%%"$token"*}"
+        local after="${rest#*"$token"}"
+        after="${after%%_(*}"
+        before="$(printf '%s' "$before" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')"
+        after="$(printf '%s' "$after" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')"
 
-    # Drop trailing italic notes "_(...)_" and surrounding whitespace.
-    after="${after%%_(*}"
-    before="$(printf '%s' "$before" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')"
-    after="$(printf '%s' "$after" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')"
-
-    # Quantity: a leading qty in `before` wins, else a trailing qty in `after`.
-    local qty_num="" unit_word=""
-    if [[ "$before" =~ ^([0-9]+([.][0-9]+)?)[[:space:]]*([a-zA-Z]+)?$ ]]; then
-        qty_num="${BASH_REMATCH[1]}"; unit_word="${BASH_REMATCH[3]:-}"
-    fi
-    if [ -z "$qty_num" ]; then
-        local a="${after#x }"; a="${a#x}"
-        a="$(printf '%s' "$a" | sed -E 's/^[[:space:]]+//')"
-        if [[ "$a" =~ ^([0-9]+([.][0-9]+)?)[[:space:]]*([a-zA-Z]+)? ]]; then
+        local qty_num="" unit_word=""
+        if [[ "$before" =~ ^([0-9]+([.][0-9]+)?)[[:space:]]*([a-zA-Z]+)?$ ]]; then
             qty_num="${BASH_REMATCH[1]}"; unit_word="${BASH_REMATCH[3]:-}"
         fi
+        if [ -z "$qty_num" ]; then
+            local a="${after#x }"; a="${a#x}"
+            a="$(printf '%s' "$a" | sed -E 's/^[[:space:]]+//')"
+            if [[ "$a" =~ ^([0-9]+([.][0-9]+)?)[[:space:]]*([a-zA-Z]+)? ]]; then
+                qty_num="${BASH_REMATCH[1]}"; unit_word="${BASH_REMATCH[3]:-}"
+            fi
+        fi
+        if [ -z "$qty_num" ] && [[ "$after" =~ ([0-9]+([.][0-9]+)?)[[:space:]]*(g|kg|ml|l)([[:space:]]|$) ]]; then
+            qty_num="${BASH_REMATCH[1]}"; unit_word="${BASH_REMATCH[3]}"
+        fi
+        [ -z "$qty_num" ] && qty_num="1"
+        printf '%s|%s|%s|\n' "$element_id" "$qty_num" "$unit_word"
+        return 0
     fi
-    # Last resort: a weight anywhere in the after-text (e.g. "feijoas 600 g").
-    # (bash ERE has no \b, so anchor the unit on a trailing space or end.)
-    if [ -z "$qty_num" ] && [[ "$after" =~ ([0-9]+([.][0-9]+)?)[[:space:]]*(g|kg|ml|l)([[:space:]]|$) ]]; then
-        qty_num="${BASH_REMATCH[1]}"; unit_word="${BASH_REMATCH[3]}"
-    fi
-    [ -z "$qty_num" ] && qty_num="1"
 
-    printf '%s|%s|%s\n' "$element_id" "$qty_num" "$unit_word"
+    # ── aggregation-output line: "<name>: <qty>[ unit] [<!-- iris:element=… -->]" ──
+    local element_id=""
+    if [[ "$rest" =~ ^(.*[^[:space:]])[[:space:]]*\<!--[[:space:]]*iris:element=([0-9a-f-]+)[[:space:]]*--\>[[:space:]]*$ ]]; then
+        rest="${BASH_REMATCH[1]}"
+        element_id="${BASH_REMATCH[2]}"
+    fi
+    [[ "$rest" =~ ^(.+):[[:space:]]+([0-9]+(\.[0-9]+)?)([[:space:]]+(.+))?$ ]] || return 1
+    printf '%s|%s|%s|%s\n' "$element_id" "${BASH_REMATCH[2]}" "${BASH_REMATCH[5]:-}" "${BASH_REMATCH[1]}"
 }
 
 # Map a free-text unit to the (qty, woolies_unit) pair the CLI expects.
@@ -145,28 +169,33 @@ record_exception() {
 # Main loop
 while IFS= read -r line; do
     parse_output=$(parse_line "$line") || continue
-    IFS='|' read -r element_id qty_raw unit_raw <<< "$parse_output"
+    IFS='|' read -r element_id qty_raw unit_raw line_name <<< "$parse_output"
 
     mapped=$(map_unit "$qty_raw" "$unit_raw")
     qty=$(printf '%s' "$mapped" | head -1)
     unit=$(printf '%s' "$mapped" | tail -1)
 
-    if ! element=$(iris --json elements get "$element_id" 2>/dev/null); then
-        record_exception "element_fetch_failed" "$element_id" "$element_id" "$qty" "$unit" ""
+    # No element id → no provenance → can't use the cache (e.g. photo-OCR list).
+    if [ -z "$element_id" ]; then
+        record_exception "no_provenance" "${line_name:-unknown}" "" "$qty" "$unit" "${line_name:-}"
         continue
     fi
 
-    name=$(printf '%s' "$element" | jq -r '.name // "unknown"')
+    if ! element=$(iris --json elements get "$element_id" 2>/dev/null); then
+        record_exception "element_fetch_failed" "${line_name:-$element_id}" "$element_id" "$qty" "$unit" "${line_name:-}"
+        continue
+    fi
 
-    # Search hint for phase 3: the chosen product name, then catalogue name, then
-    # the element's own name.
+    name=$(printf '%s' "$element" | jq -r '.name // empty')
+    [ -z "$name" ] && name="${line_name:-unknown}"
+
+    # Search hint for phase 3: chosen-product name → catalogue name → element name.
     pref_type=$(printf '%s' "$element" | jq -r \
         '[.data.attributes[] | select(.name == "Preferred product")] | .[0].type // ""')
     prod_type=$(printf '%s' "$element" | jq -r \
         '[.data.attributes[] | select(.name == "Products")] | .[0].type // ""')
     search="$pref_type"; [ -z "$search" ] && search="$prod_type"; [ -z "$search" ] && search="$name"
 
-    # Is there a SKU-bearing "Products" attribute, and does it hold a cached SKU?
     pref_count=$(printf '%s' "$element" | jq --arg a "$SKU_ATTR" \
         '[.data.attributes[] | select(.name == $a)] | length')
     if [ "$pref_count" -eq 0 ]; then
@@ -189,7 +218,7 @@ while IFS= read -r line; do
     else
         record_exception "cached_sku_failed" "$name" "$element_id" "$qty" "$unit" "$search"
     fi
-done <<< "$MARKDOWN"
+done < "$AGGREGATE_MD"
 
 # Roll up jsonl files into final result manifests.
 ADDED_COUNT=$(wc -l < "$ADDED_JSONL")

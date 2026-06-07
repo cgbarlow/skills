@@ -10,16 +10,24 @@ A Claude skill + bash orchestrator that runs your weekly Woolworths NZ online gr
 ./scripts/shop.sh
 ```
 
-That's it. The script walks you through the three phases. Run it from a regular terminal — no Claude Code session required (phase 1 spawns its own).
+That's it. The script walks you through the phases. Run it from a regular terminal — no Claude Code session required (it spawns its own when needed).
 
 ## What happens
 
 1. **Preflight** — checks `woolies` is installed and logged in, `iris` CLI is authenticated, and `jq` / `claude` are on PATH.
-2. **Phase 1 (shopping-list source)** — pick how to supply the shopping list (a `smart_markdown` diagram whose body lives in `data.markdown_source`, with each item written as a `{{element:UUID:name}}` token):
-   - **Photo** (interactive Claude Code, ~1 min) — Claude prompts you to upload a photo of this week's meal plan and builds the combined shopping list in Iris (merging your recurring list). It then prints a **link to the list and pauses** so you can review it and tick off (✓, checklist mode) anything you already have. Phase 2 buys only the items left **un-ticked**.
-   - **GUID** — you already have the list in Iris, so paste its diagram GUID. Supplying a GUID *is* your confirmation, so there's no review pause. The script validates it with `iris diagrams get`. Set `SHOP_DIAGRAM_ID=<guid>` to choose this non-interactively (e.g. re-runs / cron).
-3. **Phase 2 (pure bash, ~30 s)** — reads `data.markdown_source`, parses each **un-ticked** `{{element:UUID:name}}` line (pulling the element id and a best-effort quantity), looks up the element via the `iris` CLI, and if its **`Products`** attribute notes carry a cached `woolies:NNN` SKU, calls `woolies cart add` and refreshes the `confirmed:` date. Anything else (no cached SKU, cached SKU rejected, no `Products` attribute) goes to `exceptions.json` for phase 3 with a search hint. Zero Claude tokens consumed. (`SHOP_PROCESS_TICKED=true` processes every item regardless of checkbox.)
-4. **Phase 3 (interactive Claude Code, only if exceptions exist)** — spawns a fresh Claude session and invokes the woolies-shopper skill (the exception resolver). Claude searches Woolies using each exception's search hint, picks via `scripts/pick.py`, asks you about ambiguous picks or out-of-stock substitutions, cart-adds, and writes the resolved SKU back to the element's `Products` notes so next week's shop hits the cache.
+2. **Phase 1 — choose your input, produce the shopping list.** Two questions at run time:
+   - **What** are you shopping from? **(1) Meal plan** — derive the list from a week's meals via Iris aggregation; or **(2) Shopping list** — use a list directly.
+   - **Where** does it come from? **(1) Photo** — the **newest** `*.jpg`/`*.jpeg`/`*.png` in the current directory, OCR'd headlessly by `claude -p` (HEIC unsupported — export as JPG); or **(2) Iris View GUID** — an existing diagram already in Iris.
+
+   The four combinations:
+   | | Photo | Iris View GUID |
+   |---|---|---|
+   | **Meal plan** | OCR → confirm → match each meal to its existing Iris recipe (unmatched meals are listed and gated) → `iris aggregate` (HTML-comment provenance) | `iris aggregate` against the meal-plan View |
+   | **Shopping list** | OCR the list straight to markdown (⚠ no provenance → all of phase 2 falls to phase 3) | read the View's `data.markdown_source` (smart_markdown, `{{element:UUID:name}}` provenance) |
+
+   Each route writes `$STATE_DIR/aggregate.md`. Photo/meal-plan routes pause for a confirm/gate; the shopping-list **GUID** route has no pause — supplying a GUID is your confirmation (curate the list and tick off owned items in Iris first). For meal-plan modes the aggregation profile comes from `IRIS_SHOPPING_PROFILE_ID`, or is auto-selected / picked.
+3. **Phase 2 (pure bash, ~30 s)** — reads the list and auto-detects each line's format: the **smart_markdown** checklist `- [x?] [qty] {{element:UUID:name}} [qty]` (processing only **un-ticked** items by default; `SHOP_PROCESS_TICKED=true` for all) **or** the aggregation output `- name: qty <!-- iris:element=… -->`. For each, it looks up the element via the `iris` CLI and, if its **`Products`** attribute notes carry a cached `woolies:NNN` SKU, calls `woolies cart add` and refreshes the `confirmed:` date. Anything else (no cached SKU, cached SKU rejected, no `Products` attribute, no provenance) goes to `exceptions.json` for phase 3 with a search hint. Zero Claude tokens consumed. (`SHOP_SKU_ATTR` overrides the cache attribute.)
+4. **Phase 3 (interactive Claude Code, only if exceptions exist)** — spawns a fresh interactive Claude session (not `claude -p`, so it can ask you questions) and invokes the woolies-shopper skill. Claude searches Woolies using each exception's search hint, picks via `scripts/pick.py`, asks you about ambiguous picks or out-of-stock substitutions, cart-adds, and writes the resolved SKU back to the element's `Products` notes so next week's shop hits the cache.
 5. **Summary** — tells you to open woolworths.co.nz to review and submit. State + logs live in `$SHOP_STATE_DIR` (default `/tmp/shop-<timestamp>/`).
 
 ## The cache
@@ -43,7 +51,7 @@ The provenance that links each list line to its element is the `{{element:UUID:n
 The installer:
 - Checks Python 3.11+ is on PATH.
 - Installs `woolies-nz-cli==0.1.1` via `pipx` (pulls `click`, `httpx`, `camoufox` transitively).
-- On Linux, detects missing GTK/NSS system libs Camoufox needs at runtime, and **prints** the exact `apt`/`dnf` command for you to run yourself (the installer never sudos).
+- On Linux, detects missing GTK/NSS/X11 system libs Camoufox needs at runtime. By default it **prints** the exact `apt`/`dnf` command for you to run yourself (the installer never sudos unless you opt in). Pass `--install-system-libs` (or set `WOOLIES_INSTALL_SYSTEM_LIBS=1`) to have it run `sudo apt`/`dnf` for you — kept off by default so non-interactive runs (e.g. `shop.sh` phase 1) never hit a sudo prompt.
 - Checks for `jq` (required by `shop.sh`) and the `iris` CLI (required for the cache lookup + writeback). Prints install commands if either is missing.
 - Runs `woolies doctor` at the end to confirm everything is wired up.
 
@@ -93,7 +101,7 @@ If you invoke the skill **without** `shop.sh` — for example, to find a Woolies
 - **Handle delivery slots, payment, or address changes.** Those stay on woolworths.co.nz.
 - **Apply boosts / loyalty specials.** The upstream CLI doesn't expose them.
 - **Run scheduled / on a cron.** Out of scope; wrap `shop.sh` in your own cron line.
-- **Automate the photo upload.** Phase 1 is an interactive Claude session today; async photo ingestion (file watcher, email-in, Dropbox) is tracked at [#13](https://github.com/cgbarlow/skills/issues/13).
+- **Fetch the photo for you.** Phase 1 picks up the newest image in the current directory — you still drop this week's photo there yourself. Fully async ingestion (file watcher, email-in, Dropbox) is tracked at [#13](https://github.com/cgbarlow/skills/issues/13).
 
 ## Disclaimer
 
