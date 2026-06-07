@@ -4,6 +4,12 @@ All notable changes to the **woolies-shopper** skill will be documented in this 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this skill follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.4] — 2026-06-07
+
+### Fixed
+
+- **Meal-plan routes never worked: `shop.sh` passed `--json` as a trailing flag.** `--json` is a *global* `iris` flag and must precede the subcommand, so `iris aggregation-profile list --json`, `iris aggregation-profile get … --json`, and `iris aggregate … --json` all exited non-zero — surfacing as "No aggregation profile available" even when profiles existed (5 were present). Moved `--json` to the global position (`iris --json aggregation-profile list`, etc.) in `resolve_profile_id`, `warn_if_no_provenance`, and the aggregate call. (Same flag-position class as the phase-2 `iris elements get` fix.)
+
 ## [0.3.3] — 2026-06-07
 
 Builds on 0.3.0's phase-1 input modes (below): keeps the four routes + the v0.2.1/v0.2.2 installer/headless fixes, makes phase 2 work on the **real** smart_markdown shopping list (the old parser produced "0 items added" on it), and adds Supabase auth + a no-login default backend.
