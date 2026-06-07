@@ -4,6 +4,12 @@ All notable changes to the **woolies-shopper** skill will be documented in this 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this skill follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.5] — 2026-06-07
+
+### Added
+
+- **Phase 2 now reports each item live** instead of running silently between the "Bulk-adding cached SKUs" banner and the final summary. `scripts/phase2_bulk_add.sh` prints `  + <name> ×<qty> <unit> (woolies:NNN)` on every successful cart-add (cache hit), and `  → deferred: <name> (<reason>)` for each line pushed to a phase-3 exception. The deferred line lives in `record_exception`, so it covers all reason codes (`no_cached_sku`, `cached_sku_failed`, `no_product_attr`, `element_fetch_failed`, `no_provenance`). Output is on stdout (which `shop.sh` lets flow to the terminal); the rolled-up summary stays on stderr. Both phase-2 test suites still pass.
+
 ## [0.3.4] — 2026-06-07
 
 ### Fixed

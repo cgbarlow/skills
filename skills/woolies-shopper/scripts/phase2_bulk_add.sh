@@ -164,6 +164,7 @@ record_exception() {
           quantity: (if $qty == "" then null else ($qty|tonumber) end),
           unit: $unit, search: $search}' \
         >> "$EXCEPTIONS_JSONL"
+    printf '  → deferred: %s (%s)\n' "$name" "$reason"
 }
 
 # Main loop
@@ -215,6 +216,7 @@ while IFS= read -r line; do
         new_notes=$(refresh_confirmed_date "$pref_notes")
         iris_attr_update "$element_id" "$SKU_ATTR" 0 "$new_notes" || true
         record_added "$name" "$element_id" "$sku" "$qty" "$unit" 0
+        printf '  + %s ×%s %s (woolies:%s)\n' "$name" "$qty" "$unit" "$sku"
     else
         record_exception "cached_sku_failed" "$name" "$element_id" "$qty" "$unit" "$search"
     fi
