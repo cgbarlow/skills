@@ -1,2 +1,7 @@
 __pycache__/
 *.pyc
+
+# Local Supabase config for scripts/iris-auth.sh (project id + publishable key).
+# Public values, but environment-specific — keep them out of the published skill.
+iris-auth.local.env
+scripts/iris-auth.local.env

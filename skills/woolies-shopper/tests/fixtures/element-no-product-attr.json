@@ -1,0 +1,11 @@
+{
+  "id": "44444444-4444-4444-4444-444444444444",
+  "name": "Mystery item",
+  "element_type": "class",
+  "data": {
+    "attributes": [
+      { "name": "Unit", "type": "unit", "notes": "", "scope": "Public", "lower_bound": "", "upper_bound": "" },
+      { "name": "Quantity", "type": "", "notes": "", "scope": "Public", "lower_bound": "", "upper_bound": "" }
+    ]
+  }
+}

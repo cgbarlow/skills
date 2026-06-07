@@ -44,6 +44,16 @@ SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 STATE_DIR="${SHOP_STATE_DIR:-/tmp/shop-$(date +%Y-%m-%d-%H%M%S)}"
 mkdir -p "$STATE_DIR"
 
+# iris-api backend the shopping list + ingredient elements live on. The content
+# is readable anonymously, so no login is needed for the core shop — the CLI
+# just has to point at the right host. Override with IRIS_URL or config.toml;
+# this default is used only when neither is set (the CLI would otherwise fall
+# through to http://localhost:8000, which has none of your data).
+DEFAULT_IRIS_URL="${DEFAULT_IRIS_URL:-https://iris-api-gtb3.onrender.com}"
+# Iris frontend (SvelteKit) base URL — used only to build a human review link.
+# This is the frontend host, NOT the iris-api backend above.
+IRIS_FRONTEND_URL="${IRIS_FRONTEND_URL:-https://iris-uat.chrisbarlow.nz}"
+
 bold() { printf '\033[1m%s\033[0m\n' "$*"; }
 warn() { printf '\033[33m%s\033[0m\n' "$*" >&2; }
 fail() { printf '\033[31m%s\033[0m\n' "$*" >&2; exit 1; }
@@ -136,13 +146,40 @@ fi
 echo "  woolies: ok"
 
 if ! command -v iris >/dev/null 2>&1; then
-    fail "iris CLI not found. Install + run \`iris login\` before shop.sh."
+    fail "iris CLI not found. Install + point it at your iris-api backend before shop.sh."
 fi
-if ! iris whoami >/dev/null 2>&1; then
-    warn "iris CLI is installed but not authenticated."
-    fail "Run \`iris login\` then re-run shop.sh."
+# `iris --json whoami` returns DIFFERENT shapes: {anonymous,url} when anonymous,
+# {id,username,role,…} (no "anonymous"/"url") when authenticated, and non-JSON
+# on error (e.g. a rejected token). Classify by `.username`, not `.anonymous`.
+# If the CLI would fall through to its localhost default (anonymous on
+# localhost, no IRIS_URL set), repoint it at DEFAULT_IRIS_URL and re-probe.
+# Reads work anonymously, so auth is OPTIONAL — only the SKU writeback needs it.
+_iris_probe() { IRIS_WHOAMI=$(iris --json whoami 2>/dev/null || true); }
+_iris_field() { printf '%s' "$IRIS_WHOAMI" | jq -r "$1 // empty" 2>/dev/null || true; }
+_iris_probe
+if [ "$(_iris_field '.anonymous')" = "true" ] \
+   && [ "$(_iris_field '.url')" = "http://localhost:8000" ] \
+   && [ -z "${IRIS_URL:-}" ]; then
+    export IRIS_URL="$DEFAULT_IRIS_URL"
+    _iris_probe
 fi
-echo "  iris:    ok"
+IRIS_USER=$(_iris_field '.username')
+IRIS_ANON=$(_iris_field '.anonymous')
+IRIS_URL_RESOLVED=$(_iris_field '.url')
+[ -n "$IRIS_URL_RESOLVED" ] || IRIS_URL_RESOLVED="${IRIS_URL:-$DEFAULT_IRIS_URL}"
+if [ -n "$IRIS_USER" ]; then
+    echo "  iris:    ok ($IRIS_URL_RESOLVED, authenticated as $IRIS_USER)"
+elif [ "$IRIS_ANON" = "true" ]; then
+    echo "  iris:    ok ($IRIS_URL_RESOLVED, anonymous — read-only)"
+    warn "  Note: anonymous session — the SKU cache writeback will be skipped."
+    warn "  To enable writeback, run:  source scripts/iris-auth.sh"
+else
+    warn "iris \`whoami\` failed against $IRIS_URL_RESOLVED (empty/non-JSON response)."
+    warn "  Likely a rejected token in ~/.config/iris/config.toml, or the backend is"
+    warn "  unreachable. Fix by:  source scripts/iris-auth.sh  (or remove the bad"
+    warn "  token line from config.toml to fall back to anonymous read-only)."
+    fail "iris CLI session unusable. Resolve the above, then re-run shop.sh."
+fi
 
 if ! command -v claude >/dev/null 2>&1; then
     fail "claude CLI not found. Install Claude Code from https://claude.com/claude-code"
@@ -252,13 +289,21 @@ else
         [ -s "$AGGREGATE_MD" ] || fail "Phase 1 OCR produced no shopping list at $AGGREGATE_MD."
         show_and_confirm "$AGGREGATE_MD" "Does this shopping list look right?" "Edit $AGGREGATE_MD"
     else
-        # Route 2b: existing shopping-list View GUID (an aggregation_list
-        # diagram). Exporting it renders the rolled-up list with provenance.
+        # Route 2b: existing shopping-list View GUID. Supplying a GUID is the
+        # user's confirmation that this list is correct (curate it / tick off
+        # owned items in Iris beforehand), so there's no review gate here.
+        # A smart_markdown list lives in data.markdown_source ({{element:…}}
+        # provenance); an aggregation_list renders via the markdown export. We
+        # try markdown_source first, then fall back to the export.
         read -r -p "Enter the Iris shopping-list View GUID: " LIST_DIAGRAM_ID
         is_guid "$LIST_DIAGRAM_ID" || fail "'$LIST_DIAGRAM_ID' doesn't look like an Iris GUID."
-        echo "  rendering shopping-list View $LIST_DIAGRAM_ID…"
-        if ! iris export diagram "$LIST_DIAGRAM_ID" --format md > "$AGGREGATE_MD" 2>/dev/null; then
-            fail "iris export diagram $LIST_DIAGRAM_ID failed."
+        echo "  reading shopping-list View $LIST_DIAGRAM_ID…"
+        LIST_SRC=$(iris --json export diagram "$LIST_DIAGRAM_ID" --format json 2>/dev/null \
+            | jq -r '.diagram.data.markdown_source // empty')
+        if [ -n "$LIST_SRC" ]; then
+            printf '%s\n' "$LIST_SRC" > "$AGGREGATE_MD"
+        elif ! iris export diagram "$LIST_DIAGRAM_ID" --format markdown > "$AGGREGATE_MD" 2>/dev/null; then
+            fail "iris export diagram $LIST_DIAGRAM_ID failed (no markdown_source and export failed)."
         fi
     fi
 fi
@@ -276,16 +321,22 @@ DEFERRED=$(jq '.count' "$STATE_DIR/exceptions.json")
 echo "  phase 2 → added $ADDED items, $DEFERRED exceptions deferred"
 
 # ── Phase 3 — conditional Claude session for exception resolution ────
+# This MUST be an interactive `claude` session (NOT `claude -p`): the skill asks
+# you about ambiguous / out-of-stock picks via AskUserQuestion, which needs a
+# TTY. `claude -p` is headless — it would run invisibly and be unable to ask.
 if [ "$DEFERRED" -gt 0 ]; then
     bold ""
     bold "Phase 3 — Resolving $DEFERRED exception(s) with Claude + the skill"
-    bold "  Spawning a fresh Claude session. The woolies-shopper skill"
-    bold "  will be invoked to search, ask you about ambiguities, cart-add,"
-    bold "  and write back any newly-discovered SKUs to Iris."
+    bold "  An interactive Claude session will start now. The woolies-shopper"
+    bold "  skill will search Woolworths, ask you about ambiguous or out-of-stock"
+    bold "  picks, cart-add, and cache the resolved SKUs back to Iris."
+    bold "  Type /exit when it's finished."
+    bold ""
+    read -r -p "Press Enter to start the Claude session…" _
 
-    PHASE3_PROMPT="Resolve these Woolworths shopping exceptions from a phased shop pipeline. The state dir is $STATE_DIR; the exceptions are in $STATE_DIR/exceptions.json. Use the woolies-shopper skill (it has been re-scoped in v0.2.0 to handle exactly this case). For each exception: search woolies for the item, pick a SKU (use scripts/pick.py if helpful), ask me about ambiguous picks or out-of-stock substitutions, cart-add the chosen SKU, and write the newly-discovered SKU back to the corresponding Product attribute's notes on the Ingredient element via iris update element. Element ids and quantities are in the exceptions.json file. When done, append the resolution log to $STATE_DIR/phase3-result.json."
+    PHASE3_PROMPT="Resolve these Woolworths shopping exceptions from a phased shop pipeline. The state dir is $STATE_DIR; the exceptions are in $STATE_DIR/exceptions.json. Use the woolies-shopper skill. For each exception: search Woolworths using the exception's \"search\" hint (fall back to its name), pick a SKU (use scripts/pick.py if helpful), ask me about ambiguous picks or out-of-stock substitutions, cart-add the chosen SKU, and write the newly-discovered SKU back to the element's \"Products\" attribute notes via the iris CLI (scripts/lib/iris_attr_update.sh). Element ids, quantities, units and search hints are all in the exceptions.json file. When done, append the resolution log to $STATE_DIR/phase3-result.json and print a summary."
 
-    claude -p "$PHASE3_PROMPT" || warn "Phase 3 Claude session exited non-zero — check $STATE_DIR for partial state."
+    claude "$PHASE3_PROMPT" || warn "Phase 3 Claude session exited non-zero — check $STATE_DIR for partial state."
 else
     bold ""
     bold "Phase 3 — Skipped (no exceptions)."

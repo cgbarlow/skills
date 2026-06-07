@@ -4,6 +4,30 @@ All notable changes to the **woolies-shopper** skill will be documented in this 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this skill follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.3] — 2026-06-07
+
+Builds on 0.3.0's phase-1 input modes (below): keeps the four routes + the v0.2.1/v0.2.2 installer/headless fixes, makes phase 2 work on the **real** smart_markdown shopping list (the old parser produced "0 items added" on it), and adds Supabase auth + a no-login default backend.
+
+### Added
+- `scripts/iris-auth.sh` — sourceable Supabase auth helper. Fetches a Supabase session JWT via the password grant and exports it as `IRIS_TOKEN`, caching the refresh token (0600) for password-free reuse. Works around this deployment's Supabase mode, where `iris login` (password) is disabled and the PAT path 500s. Reads project id + publishable key from env / `$IRIS_ENV_FILE` / a gitignored `scripts/iris-auth.local.env`.
+- `scripts/test-writeback.sh` — safe live round-trip test of the SKU cache writeback against a real Ingredient element: snapshots the element, runs `iris_attr_update`, reads back to confirm the SKU persisted (and round-trips through `extract_woolies_sku`), then restores the original data via an EXIT trap. Adds (and later removes) a temporary Product attribute for the `no_products` case.
+
+### Fixed
+
+- `scripts/phase2_bulk_add.sh` used `iris export diagram --format md`, which the iris-api rejects with HTTP 422 (`format` only accepts `json` or `markdown`) — every real phase-2 run aborted at the export step. Changed to `--format markdown`. (The phase2 mock/tests matched only on the subcommand, so they passed despite the bug; mock doc comment updated.)
+- `scripts/shop.sh` preflight wrongly reported a successfully-authenticated session as a "rejected token" and aborted: `iris whoami` returns `{anonymous,url}` only when *anonymous*, and `{id,username,role,…}` (no `anonymous` field) when *authenticated*. Preflight now classifies by `.username` presence, not `.anonymous == false`. Same fix applied to `scripts/test-writeback.sh`.
+
+### Changed
+
+- **`scripts/phase2_bulk_add.sh` now handles the real smart_markdown shopping list.** `parse_line` auto-detects two line formats: the smart_markdown checklist `- [optional [x]] [qty] {{element:UUID:name}} [qty] [_(notes)_]` (the combined meal-plan + recurring list) **and** the original aggregation output `- name: qty <!-- iris:element=… -->` (meal-plan routes), so both phase-1 route families work. For smart_markdown it takes the element id from the `{{element:…}}` token, a best-effort quantity from the surrounding text, and **processes only un-ticked items** by default (ADR-239: `[x]` = ticked off; `SHOP_PROCESS_TICKED=true` for all). The SKU cache moved to the **`Products`** attribute notes (the SKU is a product property; `Preferred product` is a name-only pointer used for the search hint) — override with `SHOP_SKU_ATTR`. The diagram-id input now reads `data.markdown_source` (the `--format markdown` export returns only metadata — the cause of the earlier "0 items"), falling back to the markdown export. New exception reason codes — `no_cached_sku`, `cached_sku_failed`, `no_product_attr`, `element_fetch_failed`, plus `no_provenance` — each carrying a `search` hint. `tests/test_phase2.sh`, its fixtures, and the `iris` mock updated to match; `tests/test_phase2_listmd.sh` (the `--list-md` aggregate form) retained.
+- **`scripts/shop.sh` route 2b (shopping-list View GUID)** now reads `data.markdown_source` (smart_markdown) instead of `iris export diagram --format md` (which 422'd / returned metadata-only). Supplying a GUID is the user's confirmation, so that route has no review gate — curate / tick off owned items in Iris beforehand.
+- **`scripts/shop.sh` phase 3 is now an interactive `claude` session, not `claude -p`.** Headless `-p` can't surface the skill's AskUserQuestion prompts, so it ran invisibly and couldn't ask about ambiguous / out-of-stock picks.
+- `scripts/shop.sh` no longer requires an iris login. Reads are anonymous, so the core shop only needs the CLI pointed at the right backend. Preflight now classifies the session by `iris --json whoami`'s `.username` (the old `iris whoami` exit-code check passed even for an anonymous localhost CLI) and, if the CLI would fall through to its `http://localhost:8000` default, exports `IRIS_URL=$DEFAULT_IRIS_URL` (`https://iris-api-gtb3.onrender.com`, overridable). Any explicit `IRIS_URL`/config.toml url is respected. Auth is **optional**: anonymous runs are read-only (writeback skipped, with a hint to `source scripts/iris-auth.sh`).
+
+### Docs
+
+- README + SKILL.md now document the no-login default-URL flow: the `iris` CLI only needs to point at the **iris-api backend** (e.g. `https://iris-api-gtb3.onrender.com`), not the SvelteKit frontend (`iris-uat.chrisbarlow.nz`, whose `/api` path serves HTML); `shop.sh` defaults this automatically. Auth (a PAT via `IRIS_TOKEN`) is only needed for the optional writeback, and this deployment's Supabase mode disables password `iris login` (mint a PAT via `POST /api/users/me/tokens`).
+
 ## [0.3.0] — 2026-05-30
 
 ### Added
@@ -51,7 +75,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - `scripts/install.sh --install-system-libs` flag (also `WOOLIES_INSTALL_SYSTEM_LIBS=1`) — opt-in auto-install of the missing Camoufox system libraries via `sudo apt`/`dnf`. **Off by default**, preserving the installer's no-sudo principle so non-interactive spawns (e.g. `shop.sh` phase 1) never trigger a sudo password prompt. Without the flag, behaviour is unchanged: the exact install command is printed for the user to run.
 - `scripts/lib/system_libs.sh` — extracted, sourceable helper holding `detect_missing_libs` plus the per-distro package lists (`SYSTEM_LIBS_APT_PKGS` / `SYSTEM_LIBS_DNF_PKGS`) as a single source of truth shared by detection, the printed command, and the auto-installer (§13 DRY).
 - `tests/test_system_libs.sh` — regression test for the detection helper: asserts capitalised X11 sonames in an `ldconfig -p` cache are found, that genuinely-missing libs are still reported, and that the package lists stay aligned with `REQUIRED_LIBS`.
-
 ## [0.2.0] — 2026-05-24
 
 ### Added
