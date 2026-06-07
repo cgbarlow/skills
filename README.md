@@ -113,6 +113,9 @@ individually without forcing the whole bundle.
    `"source": "./"` and `"skills": ["./skills/<your-skill>"]`.
 4. Mention it in this README's table.
 
+For the change → version → release workflow (versioning rules and the
+GitHub Release convention), see [CONTRIBUTING.md](./CONTRIBUTING.md).
+
 ## License
 
 Each plugin carries its own license metadata in the marketplace listing.
