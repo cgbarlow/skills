@@ -95,7 +95,7 @@ resolve_profile_id() {
         printf '%s' "$IRIS_SHOPPING_PROFILE_ID"; return 0
     fi
     local json arr count sel
-    json="$(iris aggregation-profile list --json 2>/dev/null)" || return 1
+    json="$(iris --json aggregation-profile list 2>/dev/null)" || return 1
     arr="$(printf '%s' "$json" | jq -c \
         'if type=="array" then . else (.items // .profiles // .results // []) end')"
     count="$(printf '%s' "$arr" | jq 'length')"
@@ -114,7 +114,7 @@ resolve_profile_id() {
 # disables the SKU cache and the phase-3 writeback.
 warn_if_no_provenance() {
     local pid="$1" inc
-    inc="$(iris aggregation-profile get "$pid" --json 2>/dev/null \
+    inc="$(iris --json aggregation-profile get "$pid" 2>/dev/null \
         | jq -r '.profile_data.output.include_provenance // false')"
     if [ "$inc" != "true" ]; then
         warn ""
@@ -264,7 +264,7 @@ if [ "$SHOP_MODE" = "1" ]; then
     fi
 
     echo "  aggregating meal plan $SOURCE_DIAGRAM_ID via profile $PROFILE_ID…"
-    if ! iris aggregate --profile "$PROFILE_ID" --source "$SOURCE_DIAGRAM_ID" --json 2>/dev/null \
+    if ! iris --json aggregate --profile "$PROFILE_ID" --source "$SOURCE_DIAGRAM_ID" 2>/dev/null \
             | jq -r '.markdown // empty' > "$AGGREGATE_MD"; then
         fail "iris aggregate failed for source $SOURCE_DIAGRAM_ID / profile $PROFILE_ID."
     fi
