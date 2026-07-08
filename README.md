@@ -23,11 +23,13 @@ validation pipeline.
 | [`math-coach`](skills/math-coach) | Coaching companion for a 13-year-old advanced math student — refuses to give answers, hooks interest with basketball / anime / advanced-math connections, catches him when he has skipped the workbook instructions. |
 | [`doview-outcomes-answer`](skills/doview-outcomes-answer) | Answers outcomes-theory questions strictly from Dr Paul Duignan's [DoView Planning Handbook](https://www.doviewplanning.org/book). Faithful adaptation of [Prompt A v1.1.9](https://www.doviewplanning.org/bookai). Triggers on outcomes-theory questions, DoView analyses of strategy/proposal/plan docs, or any "what does outcomes theory say…" prompt. |
 | [`doview-image-retriever`](skills/doview-image-retriever) | Retrieves and reproduces DoView handbook diagrams to accompany an outcomes-theory answer. Faithful adaptation of [Prompt B v1.1.9](https://www.doviewplanning.org/bookai) with a Mermaid-first overlay — pulls Mermaid blocks from the [doview-book](https://github.com/cgbarlow/doview-book) Markdown edition first, falling back to upstream PNG URLs. Pairs with `doview-outcomes-answer`. |
+| [`woolies-shopper`](skills/woolies-shopper) | Phased orchestrator (`scripts/shop.sh`) for the weekly Woolworths NZ online grocery shop — OCRs a meal-plan photo into [Iris](https://github.com/cgbarlow/iris), bulk-adds cached SKUs LLM-free, and the skill resolves leftover exceptions and writes SKUs back for next time. |
+| [`metservice-weather`](skills/metservice-weather) | Authoritative NZ weather from [MetService](https://www.metservice.com)'s public JSON endpoints via a zero-dependency Python script — up-to-10-day town forecasts, current observations, hourly wind gusts, and multi-town comparisons. Triggers on any NZ weather question; preferred over global models (Open-Meteo, AccuWeather) for NZ rain and wind. |
 | [`six-animals`](https://github.com/cgbarlow/simons-six-animals) | Six psychologically-grounded team-role agents (Bear, Cat, Owl, Puppy, Rabbit, Wolf) plus Simon as educator/supervisor. Prerequisite for the full Campaign Mode experience. |
 | [`campaign-mode`](https://github.com/cgbarlow/campaign-mode) | Quest-based extension for AI-assisted work. Three NPC agents (Gandalf, Dragon, Guardian) provide mentorship, adversarial testing, and quality gates. |
 | [`mitchell-agentic-sprint`](https://github.com/cgbarlow/mitchell-agentic-sprint) | AI-led 6-step sprint that takes an AI builder's idea from rough notion to investor-conversation-ready artefacts. Adversarial by default. Depends on `six-animals` + `campaign-mode`. |
 
-The first nine plugins ship from this repository — each one is a skill
+The first eleven plugins ship from this repository — each one is a skill
 directory under [`skills/`](skills) that the marketplace lists as a
 separately-installable plugin. The last three are listed for convenience
 and source from their own repos.
@@ -41,7 +43,7 @@ and source from their own repos.
    ```
    https://github.com/cgbarlow/skills
    ```
-3. **Install plugins** — find and install whichever plugins you want from the marketplace. Each one is independent — install just `iris`, just `timesheet`, or all ten.
+3. **Install plugins** — find and install whichever plugins you want from the marketplace. Each one is independent — install just `iris`, just `timesheet`, or all fourteen.
 
 ### Claude Code CLI
 
