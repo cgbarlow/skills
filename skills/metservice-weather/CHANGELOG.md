@@ -4,6 +4,12 @@ All notable changes to the **metservice-weather** skill will be documented in th
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this skill follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] — 2026-07-08
+
+### Added
+
+- **Location page links.** Each text view now prints a `Page:` line with the MetService web page for the location (`forecast`, `obs`, `hourly`); `compare` prints one `Pages:` link per town. The URL uses the plain slug (`https://www.metservice.com/towns-cities/locations/<slug>`), which MetService redirects to the canonical region page and resolves legacy slugs (e.g. Whanganui → the `wanganui` page). SKILL.md now instructs the model to surface these as links when presenting weather, so users can open the official page for radar, the full forecast, and any active warnings. `--json` output is unchanged (raw structure only).
+
 ## [1.0.0] — 2026-07-08
 
 Initial release into this marketplace. Reviewed against the skill-creator methodology (functional verification of all four commands against live endpoints, edge-case probing, description-triggering review) and hardened before inclusion.

@@ -2,7 +2,7 @@
   "name": "cgbarlow-skills",
   "metadata": {
     "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow / math coaching, DoView outcomes-theory answer and diagram retriever, NZ MetService weather — plus the Campaign Mode quest framework, the Six Animals advisory council, and the Mitchell Agentic Sprint validation pipeline.",
-    "version": "2.7.0"
+    "version": "2.8.0"
   },
   "owner": {
     "name": "Chris Barlow",
@@ -133,7 +133,7 @@
     },
     {
       "name": "metservice-weather",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Get authoritative New Zealand weather from MetService's public JSON endpoints via a zero-dependency Python script (scripts/metservice.py) — up-to-10-day town forecasts, current observations, hourly forecasts with wind gusts, and multi-town comparisons. Use it for any NZ weather question: a town forecast, whether it will rain/be fine/windy/frosty somewhere in NZ, which NZ location is sunniest or driest or best for a trip, current temperature in an NZ town, or any mention of MetService. Prefer it over web search or global models (Open-Meteo, Apple Weather, AccuWeather) for NZ — MetService is NZ's national weather authority and routinely disagrees with global models on rain and wind.",
       "source": "./",
       "strict": false,

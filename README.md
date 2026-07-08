@@ -101,7 +101,7 @@ skills/
 │   ├── woolies-shopper/
 │   └── metservice-weather/
 └── skills-standalone/       # packaged .skill bundles (zip archives) for distribution outside the marketplace
-    └── metservice-weather.skill
+    └── <name>.skill         # one per skill above (iris.skill, timesheet.skill, …)
 ```
 
 Each marketplace entry lists the skill via `"skills": ["./skills/<name>"]`,
