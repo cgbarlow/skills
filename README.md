@@ -87,21 +87,26 @@ triggers. List loaded skills any time with `/skills`.
 ```
 skills/
 ├── .claude-plugin/
-│   └── marketplace.json     # the marketplace (lists 10 plugins)
-└── skills/
-    ├── iris/{SKILL.md, README.md, evals/}
-    ├── ir3-tax-return/
-    ├── timesheet/
-    ├── pdf-to-ebook/
-    ├── agentic-coach/
-    ├── flow-coach/
-    ├── math-coach/
-    ├── doview-outcomes-answer/
-    └── doview-image-retriever/
+│   └── marketplace.json     # the marketplace (lists 14 plugins; some sourced from external repos)
+├── skills/                  # the skills the marketplace serves
+│   ├── iris/{SKILL.md, README.md, evals/}
+│   ├── ir3-tax-return/
+│   ├── timesheet/
+│   ├── pdf-to-ebook/
+│   ├── agentic-coach/
+│   ├── flow-coach/
+│   ├── math-coach/
+│   ├── doview-outcomes-answer/
+│   ├── doview-image-retriever/
+│   ├── woolies-shopper/
+│   └── metservice-weather/
+└── skills-standalone/       # packaged .skill bundles (zip archives) for distribution outside the marketplace
+    └── metservice-weather.skill
 ```
 
 Each marketplace entry lists the skill via `"skills": ["./skills/<name>"]`,
 mirroring [`anthropics/skills`](https://github.com/anthropics/skills/blob/main/.claude-plugin/marketplace.json).
+`skills-standalone/` holds `.skill` files — zip archives of a skill's full directory — for sharing a single skill outside the marketplace clone.
 Installing a plugin clones the whole repo but loads only the named
 skill — fine on disk, and means each skill can be installed
 individually without forcing the whole bundle.
