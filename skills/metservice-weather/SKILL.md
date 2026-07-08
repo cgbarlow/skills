@@ -18,6 +18,8 @@ python3 scripts/metservice.py compare tauranga hamilton rotorua napier --days 5
 
 Add `--json` to `forecast`, `obs`, or `hourly` for the raw structure when you need fields the text view omits (part-of-day breakdowns, sunrise/sunset, moon, pressure trend). The text views degrade gracefully if MetService drops a field for a given row — a missing value shows as `?` rather than crashing the command.
 
+Each text view ends with a `Page:` line — the MetService web page for that location (`compare` prints one per town under `Pages:`). Surface these as links when you present the weather, so the user can open the official page for the full picture, radar, and any warnings. See [Citing location pages](#citing-location-pages).
+
 ## Location slugs
 
 The script normalises town names itself (lowercase, macrons stripped, spaces to hyphens), so pass natural names: "New Plymouth", "Taupō", "palmerston north". Known quirks it already handles:
@@ -44,6 +46,14 @@ Severe weather warnings and watches are NOT in these endpoints. When forecasts m
 - Answer "where is best" questions with `compare`, then sanity-check the winner's full forecast text for wind or fog before declaring it.
 - Forecasts run up to about 10 days but MetService's own confidence drops sharply after day 5; caveat anything beyond that.
 - Temperatures are Celsius, wind km/h, rain mm. Quote the `issuedAt` time for currency when it matters.
+
+## Citing location pages
+
+The script resolves each town to its MetService slug and prints the public page URL (`https://www.metservice.com/towns-cities/locations/<slug>`). Include it as a link whenever you report weather for a location:
+
+- Link every location you give conditions or a forecast for — for a single town, one link; for `compare`, link each town from its row.
+- Use the exact URL the script prints. It handles the legacy-slug redirects (e.g. Whanganui resolves to `.../locations/wanganui`, which MetService redirects to the Whanganui page), so don't hand-build URLs from the town name.
+- The page carries the live radar, the full forecast, and any active warnings that the JSON endpoints omit — so the link is where the user goes to confirm before travel. Pair it with the warnings check below.
 
 ## When to fall back to other sources
 

@@ -24,6 +24,8 @@ Pure Python 3 standard library — nothing to `pip install`. Pass town names nat
 | `hourly` | `hourlyObsAndForecast_{slug}` | 24 hourly rows — temperature, rain, wind speed, and **gusts**. |
 | `compare` | `localForecast{slug}` ×N | Side-by-side forecast-word + min/max grid across several towns. |
 
+Every text view also prints a `Page:` link to the location's MetService web page (`compare` prints one per town), so the model can cite the official page for radar, the full forecast, and warnings.
+
 Add `--json` to `forecast`, `obs`, or `hourly` for the raw structure (part-of-day, moon, pressure trend, sunrise/sunset) when the text view omits a field you need.
 
 ## Design notes

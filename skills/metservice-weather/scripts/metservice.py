@@ -18,6 +18,10 @@ import urllib.error
 import urllib.request
 
 BASE = "https://www.metservice.com/publicData"
+# Public town page. Works with the plain slug: MetService 302-redirects it to
+# the canonical /regions/<region>/locations/<slug> page (and maps legacy slugs,
+# e.g. wanganui -> whanganui), so we don't need to know the region.
+LOCATION_URL = "https://www.metservice.com/towns-cities/locations/{slug}"
 UA = {"User-Agent": "Mozilla/5.0"}
 
 # MetService uses some legacy/irregular slugs
@@ -34,6 +38,11 @@ def slugify(town: str) -> str:
     s = s.strip().lower().replace("_", " ")
     s = "-".join(s.split())
     return ALIASES.get(s, s)
+
+
+def location_url(slug: str) -> str:
+    """Public MetService town page for a resolved slug (for citing sources)."""
+    return LOCATION_URL.format(slug=slug)
 
 
 def cell(value, suffix="") -> str:
@@ -105,6 +114,7 @@ def cmd_forecast(args):
     rs = days[0].get("riseSet") or {}
     if rs:
         print(f"\nSun today: rise {rs.get('sunRise')}, set {rs.get('sunSet')}")
+    print(f"Page: {location_url(slug)}")
 
 
 def cmd_obs(args):
@@ -123,6 +133,7 @@ def cmd_obs(args):
     print(f"  Last 24h (from {tf.get('dateTime')}): "
           f"{cell(tf.get('minTemp'))}-{cell(tf.get('maxTemp'), 'C')}, "
           f"rain {cell(tf.get('rainfall'), ' mm')}")
+    print(f"Page: {location_url(slug)}")
 
 
 def cmd_hourly(args):
@@ -140,13 +151,16 @@ def cmd_hourly(args):
               f"{wind:<10}"
               f"{cell(r.get('gustSpeed'), 'km/h')}")
     print(f"Forecast rain total: {cell(data.get('rainfallTotalForecast'), ' mm')}")
+    print(f"Page: {location_url(slug)}")
 
 
 def cmd_compare(args):
     results = {}
+    slugs = {}
     for town in args.towns:
         data, slug = get("localForecast{slug}", town)
         results[town] = data.get("days", [])[: args.days]
+        slugs[town] = slug
     # Use the town with the most days to build the header, so a short/empty
     # forecast for one town doesn't truncate the whole table.
     header_days = max(results.values(), key=len, default=[])
@@ -161,6 +175,9 @@ def cmd_compare(args):
         print(f"{town:<{width}}" + "".join(f"{c:<24}" for c in cells))
     print("\nNote: 'Windy' and 'Wind rain' words flag gale conditions; "
           "read full forecasts before declaring a winner.")
+    print("\nPages:")
+    for town, slug in slugs.items():
+        print(f"  {town}: {location_url(slug)}")
 
 
 def main():
