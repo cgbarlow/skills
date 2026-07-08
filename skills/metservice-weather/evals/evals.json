@@ -1,0 +1,54 @@
+{
+  "skill_name": "metservice-weather",
+  "evals": [
+    {
+      "id": 1,
+      "name": "single-town-forecast",
+      "prompt": "what's the weather doing in new plymouth for the next few days? thinking of heading to the coast this weekend",
+      "expected_output": "Skill runs `forecast \"new plymouth\"` (a multi-day forecast, default 5 days), reports the forecast word, min/max and the full forecast sentence per day, and — because a coast trip is travel and the forecast mentions wind — flags any Windy / Wind rain days and checks metservice.com/warnings/home for active watches.",
+      "assertions": [
+        {"text": "Uses scripts/metservice.py forecast for New Plymouth (not web search or a global model)"},
+        {"text": "Reports per-day forecast word + min/max + the full forecast sentence (which carries the wind), not just the temperature"},
+        {"text": "Because it's a travel/coast question mentioning the weekend, flags wind (Windy / Wind rain words) and mentions checking MetService warnings"},
+        {"text": "Quotes the issued time or otherwise conveys currency"}
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "best-town-comparison",
+      "prompt": "which of tauranga, hamilton, rotorua or napier is the best bet for a fine warm weekend? want somewhere dry",
+      "expected_output": "Skill runs `compare tauranga hamilton rotorua napier`, then does NOT just pick the warmest/sunniest cell — it sanity-checks the leading town's full forecast sentence for wind or fog before declaring a winner, and notes that Windy / Wind rain words flag possible gale conditions.",
+      "assertions": [
+        {"text": "Uses the compare subcommand across all four towns"},
+        {"text": "Does not rank on a single metric — checks the winner's full forecast text for wind/fog before recommending it"},
+        {"text": "Explicitly caveats confidence beyond ~5 days if the horizon is that far out, or flags wind where present"}
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "current-conditions",
+      "prompt": "how cold is it in taupō right now and is it raining?",
+      "expected_output": "Skill runs `obs \"Taupō\"` (macron handled by slugify), reporting current temp, wind chill, and rain last 3h/24h, with the observation time for currency.",
+      "assertions": [
+        {"text": "Uses the obs subcommand for current conditions (not a multi-day forecast)"},
+        {"text": "Passes the macronised name through — relies on the script's macron stripping rather than failing or asking the user to re-spell it"},
+        {"text": "Reports temperature and recent rainfall, and the observation time"}
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "hourly-wind-for-activity",
+      "prompt": "planning to fly my drone in wellington this afternoon — what are the gusts looking like hour by hour?",
+      "expected_output": "Skill runs `hourly wellington`, surfacing the per-hour wind and especially the gust column, and notes that Wellington gusts can flag a wind watch worth checking at metservice.com/warnings/home.",
+      "assertions": [
+        {"text": "Uses the hourly subcommand (the only one carrying gust data)"},
+        {"text": "Highlights gust speeds specifically, not just average wind"},
+        {"text": "Mentions checking MetService warnings if gusts are high"}
+      ],
+      "files": []
+    }
+  ]
+}
