@@ -2,7 +2,7 @@
   "name": "cgbarlow-skills",
   "metadata": {
     "description": "Personal skill collection for Claude Code — iris CLI wrapper, NZ IR3 tax return, interactive timesheet, PDF→ebook, agentic / flow / math coaching, DoView outcomes-theory answer and diagram retriever, NZ MetService weather — plus the Campaign Mode quest framework, the Six Animals advisory council, and the Mitchell Agentic Sprint validation pipeline.",
-    "version": "2.8.0"
+    "version": "2.9.0"
   },
   "owner": {
     "name": "Chris Barlow",
@@ -141,6 +141,17 @@
       "author": { "name": "Chris Barlow" },
       "license": "CC-BY-SA-4.0",
       "keywords": ["weather", "metservice", "nz", "forecast", "new-zealand", "meteorology"]
+    },
+    {
+      "name": "askuserquestion",
+      "version": "1.0.0",
+      "description": "OpenCode-compatible emulation of Claude Code's AskUserQuestion tool — asks 1–4 structured multiple-choice questions (short header, 2–4 options with descriptions, optional multi-select, recommended default, implicit free-text Other), stops, and parses the reply (`1a 2bc`, option names, `defaults`, free text) before continuing. Defers to a native AskUserQuestion / question tool when one exists; takes recommended defaults in non-interactive runs.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/askuserquestion"],
+      "author": { "name": "Chris Barlow" },
+      "license": "CC-BY-SA-4.0",
+      "keywords": ["opencode", "askuserquestion", "clarifying-questions", "multiple-choice", "interaction"]
     },
     {
       "name": "mitchell-agentic-sprint",

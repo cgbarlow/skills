@@ -1,0 +1,62 @@
+{
+  "skill_name": "askuserquestion",
+  "evals": [
+    {
+      "id": 1,
+      "name": "ambiguous-choice-renders-and-stops",
+      "prompt": "add caching to the product API",
+      "expected_output": "In an environment without a native question tool, the agent renders a single question block (1–4 numbered questions, lettered options with descriptions, a recommended first option, a final 'Other' option, reply instructions) about the cache backend / invalidation policy, then ends its turn without writing code.",
+      "assertions": [
+        {"text": "Renders between 1 and 4 questions, each with a [header] of 12 characters or fewer"},
+        {"text": "Each question has 2–4 real options plus a final 'Other — type your own answer' line"},
+        {"text": "Recommended option, if any, is first and labelled '(Recommended)'"},
+        {"text": "Ends the turn after the question block — no code edits or tool calls under an assumed answer"}
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "parses-shorthand-and-free-text",
+      "prompt": "(after the question block from eval 1) 1a, 2 on write but only for price changes",
+      "expected_output": "Agent maps 1a to Redis, treats question 2 as Other with the free-text answer, echoes both answers in one line, and proceeds with the implementation.",
+      "assertions": [
+        {"text": "Resolves 1a to the first option of question 1"},
+        {"text": "Treats the question-2 text as an authoritative 'Other' answer"},
+        {"text": "Echoes the resolved answers in one compact line, then continues without re-asking"}
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "no-question-when-default-is-obvious",
+      "prompt": "fix the typo 'recieve' in src/utils.ts",
+      "expected_output": "Agent does not invoke the question protocol — there is nothing for the user to decide — and just fixes the typo.",
+      "assertions": [
+        {"text": "Does not render a question block"},
+        {"text": "Completes the task directly"}
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "non-interactive-uses-defaults",
+      "prompt": "opencode run \"scaffold a CLI for this project; pick whatever arg parser you think is best\"",
+      "expected_output": "In a non-interactive run the agent does not stop to ask; it chooses the recommended/conventional option, states the assumption in one line, and continues.",
+      "assertions": [
+        {"text": "Does not end the run waiting for input"},
+        {"text": "States the assumed choice in one line"}
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "defers-to-native-tool",
+      "prompt": "(in Claude Code) help me pick an auth method for this app — I'm not sure between sessions and JWT",
+      "expected_output": "Agent calls the native AskUserQuestion tool with the same question/header/options shape instead of rendering the text emulation.",
+      "assertions": [
+        {"text": "Uses the AskUserQuestion tool rather than a markdown question block"}
+      ],
+      "files": []
+    }
+  ]
+}

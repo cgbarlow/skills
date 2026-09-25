@@ -25,11 +25,12 @@ validation pipeline.
 | [`doview-image-retriever`](skills/doview-image-retriever) | Retrieves and reproduces DoView handbook diagrams to accompany an outcomes-theory answer. Faithful adaptation of [Prompt B v1.1.9](https://www.doviewplanning.org/bookai) with a Mermaid-first overlay — pulls Mermaid blocks from the [doview-book](https://github.com/cgbarlow/doview-book) Markdown edition first, falling back to upstream PNG URLs. Pairs with `doview-outcomes-answer`. |
 | [`woolies-shopper`](skills/woolies-shopper) | Phased orchestrator (`scripts/shop.sh`) for the weekly Woolworths NZ online grocery shop — OCRs a meal-plan photo into [Iris](https://github.com/cgbarlow/iris), bulk-adds cached SKUs LLM-free, and the skill resolves leftover exceptions and writes SKUs back for next time. |
 | [`metservice-weather`](skills/metservice-weather) | Authoritative NZ weather from [MetService](https://www.metservice.com)'s public JSON endpoints via a zero-dependency Python script — up-to-10-day town forecasts, current observations, hourly wind gusts, and multi-town comparisons. Triggers on any NZ weather question; preferred over global models (Open-Meteo, AccuWeather) for NZ rain and wind. |
+| [`askuserquestion`](skills/askuserquestion) | OpenCode-compatible emulation of Claude Code's `AskUserQuestion` tool — 1–4 structured multiple-choice questions with headers, described options, multi-select, a recommended default and free-text "Other"; stops and parses the reply. Defers to a native question tool when present. |
 | [`six-animals`](https://github.com/cgbarlow/simons-six-animals) | Six psychologically-grounded team-role agents (Bear, Cat, Owl, Puppy, Rabbit, Wolf) plus Simon as educator/supervisor. Prerequisite for the full Campaign Mode experience. |
 | [`campaign-mode`](https://github.com/cgbarlow/campaign-mode) | Quest-based extension for AI-assisted work. Three NPC agents (Gandalf, Dragon, Guardian) provide mentorship, adversarial testing, and quality gates. |
 | [`mitchell-agentic-sprint`](https://github.com/cgbarlow/mitchell-agentic-sprint) | AI-led 6-step sprint that takes an AI builder's idea from rough notion to investor-conversation-ready artefacts. Adversarial by default. Depends on `six-animals` + `campaign-mode`. |
 
-The first eleven plugins ship from this repository — each one is a skill
+The first twelve plugins ship from this repository — each one is a skill
 directory under [`skills/`](skills) that the marketplace lists as a
 separately-installable plugin. The last three are listed for convenience
 and source from their own repos.
@@ -43,7 +44,7 @@ and source from their own repos.
    ```
    https://github.com/cgbarlow/skills
    ```
-3. **Install plugins** — find and install whichever plugins you want from the marketplace. Each one is independent — install just `iris`, just `timesheet`, or all fourteen.
+3. **Install plugins** — find and install whichever plugins you want from the marketplace. Each one is independent — install just `iris`, just `timesheet`, or all fifteen.
 
 ### Claude Code CLI
 
@@ -66,6 +67,7 @@ and source from their own repos.
    /plugin install math-coach@cgbarlow-skills
    /plugin install doview-outcomes-answer@cgbarlow-skills
    /plugin install doview-image-retriever@cgbarlow-skills
+   /plugin install askuserquestion@cgbarlow-skills
    /plugin install campaign-mode@cgbarlow-skills
    /plugin install six-animals@cgbarlow-skills
    /plugin install mitchell-agentic-sprint@cgbarlow-skills
@@ -87,7 +89,7 @@ triggers. List loaded skills any time with `/skills`.
 ```
 skills/
 ├── .claude-plugin/
-│   └── marketplace.json     # the marketplace (lists 14 plugins; some sourced from external repos)
+│   └── marketplace.json     # the marketplace (lists 15 plugins; some sourced from external repos)
 ├── skills/                  # the skills the marketplace serves
 │   ├── iris/{SKILL.md, README.md, evals/}
 │   ├── ir3-tax-return/
@@ -99,7 +101,8 @@ skills/
 │   ├── doview-outcomes-answer/
 │   ├── doview-image-retriever/
 │   ├── woolies-shopper/
-│   └── metservice-weather/
+│   ├── metservice-weather/
+│   └── askuserquestion/
 └── skills-standalone/       # packaged .skill bundles (zip archives) for distribution outside the marketplace
     └── <name>.skill         # one per skill above (iris.skill, timesheet.skill, …)
 ```
